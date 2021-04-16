@@ -29,9 +29,10 @@ class PageController extends Controller
         $this->validate($request, [
             'title' => 'required|string|max:300',
             'description' => 'required|string|max:300',
-            'slug' => 'required|string|max:500',
+            'slug' => 'filled|string|max:100',
             'body' => 'required|string',
             'thumbnail' => 'required|string|max:500',
+            'layout' => 'required|in:blank,normal',
             'status' => 'required|in:draft,publish,schedule',
             'robots' => 'required|in:noindex, nofollow, none,all',
         ]);
@@ -45,6 +46,7 @@ class PageController extends Controller
             'slug',
             'body',
             'thumbnail',
+            'layout',
             'status',
             'robots',
         ]));
@@ -81,6 +83,7 @@ class PageController extends Controller
             'slug' => 'nullable|string|max:500',
             'body' => 'nullable|string',
             'thumbnail' => 'nullable|string|max:500',
+            'layout' => 'nullable|in:blank,normal',
             'status' => 'nullable|in:draft,publish,schedule',
             'robots' => 'nullable|in:noindex, nofollow, none,all',
         ]);
@@ -93,6 +96,7 @@ class PageController extends Controller
             'slug',
             'body',
             'thumbnail',
+            'layout',
             'status',
             'robots',
         ]));

@@ -11,156 +11,84 @@ use Validator;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login']]);
-    }
 
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+            'remember_me' => 'boolean'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        $credentials = request(['email','password']);
+        if(!Auth::attempt($credentials))
+        {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ],401);
         }
 
-        if (!$token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+        $user = $request->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->plainTextToken;
 
-        return $this->createNewToken($token);
+        return response()->json([
+            'accessToken' =>$token,
+            'token_type' => 'Bearer',
+        ]);
     }
 
-    /**
-     * Register a User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|between:2,100',
-            'last_name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
-        ]);
-
-        if (Auth::user()->hasPermissionTo('admin')) {
-            dd('your admin and can create new user ');
-        }
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-
-        $user = User::create(array_merge(
-            $validator->validated(),
-            ['password' => bcrypt($request->password)]
-        ));
-
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
-    }
-
-    /**
-     * Register a Admin User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function adminRegister(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|between:2,100',
-            'last_name' => 'required|string|between:2,100',
-            'email' => 'required|string|email|max:100|unique:users',
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'phone'=>'required',
+            'email'=>'required|string|unique:users',
+            'password'=>'required|string',
+            'c_password' => 'required|same:password',
             'role.*' => 'required|in:article_writer,page_creator,category_creator,tag_creator',
-            'password' => 'required|string|confirmed|min:6',
+
+        ]);
+//        if (Auth::user()->hasPermissionTo('admin')) {
+//            dd('your admin and can create new user ');
+//        }
+        $user = new User([
+            'first_name'  => $request->first_name,
+            'last_name'  => $request->last_name,
+            'phone'  => $request->phone,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
-        if (Auth::user()->hasPermissionTo('admin')) {
-            dd('your admin and can create new user ');
+        if($user->save()){
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->plainTextToken;
+            $user->syncRoles($request->role);
+
+            return response()->json([
+                'message' => 'Successfully created user!',
+                'accessToken'=> $token,
+            ],201);
         }
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
+        else{
+            return response()->json(['error'=>'Provide proper details']);
         }
-
-        $user = User::create(array_merge(
-            $validator->validated(),
-            ['password' => bcrypt($request->password)]
-        ));
-
-        $user->syncRoles($request->role);
-
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout()
-    {
-        auth()->logout();
-
-        return response()->json(['message' => 'User successfully signed out']);
-    }
-
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh()
-    {
-        return $this->createNewToken(auth()->refresh());
-    }
-
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function userProfile()
+    public function user()
     {
         return response()->json(auth()->user());
     }
 
-    /**
-     * Get the token array structure.
-     *
-     * @param string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function createNewToken($token)
+    public function logout(Request $request)
     {
+        $request->user()->tokens()->delete();
+
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'message' => 'Successfully logged out'
         ]);
+
     }
 
 }

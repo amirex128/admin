@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,66 +19,54 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
 
-], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
-});
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
 
-Route::group([
-    'middleware' => ['api', 'role:super_admin'],
-    'prefix' => 'admin'
-
-], function ($router) {
-    Route::post('/register', [AuthController::class, 'adminRegister']);
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::get('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'user']);
+    });
 });
 
 Route::group([
     'prefix' => 'article',
-    'middleware' => 'auth'
+    'middleware' => 'auth:sanctum'
 ], function () {
-    Route::get('/','ArticleController@index');
-    Route::post('/','ArticleController@store');
-    Route::get('/{article}','ArticleController@show');
-    Route::post('/{article}','ArticleController@update');
-    Route::delete('/{article}','ArticleController@destroy');
+    Route::get('/', [ArticleController::class, 'index']);
+    Route::post('/', [ArticleController::class, 'store']);
+    Route::get('/{article}', [ArticleController::class, 'show']);
+    Route::post('/{article}', [ArticleController::class, 'update']);
+    Route::delete('/{article}', [ArticleController::class, 'destroy']);
 });
 Route::group([
     'prefix' => 'page',
-    'middleware' => 'auth'
+    'middleware' => 'auth:sanctum'
 ], function () {
-    Route::get('/','PageController@index');
-    Route::post('/','PageController@store');
-    Route::get('/{page}','PageController@show');
-    Route::post('/{page}','PageController@update');
-    Route::delete('/{page}','PageController@destroy');
+    Route::get('/', [PageController::class, 'index']);
+    Route::post('/', [PageController::class, 'store']);
+    Route::get('/{page}', [PageController::class, 'show']);
+    Route::post('/{page}', [PageController::class, 'update']);
+    Route::delete('/{page}', [PageController::class, 'destroy']);
 });
 Route::group([
     'prefix' => 'category',
-    'middleware' => 'auth'
+    'middleware' => 'auth:sanctum'
 ], function () {
-    Route::get('/','CategoryController@index');
-    Route::post('/','CategoryController@store');
-    Route::get('/{category}','CategoryController@show');
-    Route::post('/{category}','CategoryController@update');
-    Route::delete('/{category}','CategoryController@destroy');
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::post('/', [CategoryController::class, 'store']);
+    Route::get('/{category}', [CategoryController::class, 'show']);
+    Route::post('/{category}', [CategoryController::class, 'update']);
+    Route::delete('/{category}', [CategoryController::class, 'destroy']);
 });
 Route::group([
     'prefix' => 'tag',
-    'middleware' => 'auth'
+    'middleware' => 'auth:sanctum'
 ], function () {
-    Route::get('/','TagController@index');
-    Route::post('/','TagController@store');
-    Route::get('/{tag}','TagController@show');
-    Route::post('/{tag}','TagController@update');
-    Route::delete('/{tag}','TagController@destroy');
+    Route::get('/', [TagController::class, 'index']);
+    Route::post('/', [TagController::class, 'store']);
+    Route::get('/{tag}', [TagController::class, 'show']);
+    Route::post('/{tag}', [TagController::class, 'update']);
+    Route::delete('/{tag}', [TagController::class, 'destroy']);
 });

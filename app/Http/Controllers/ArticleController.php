@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        return Article::query()->latest()->paginate($request->input('per_page',10));
+        return Article::query()->withCount(['categories','tags','user','comments'])->latest()->paginate($request->input('per_page',10));
     }
 
     /**
@@ -28,18 +28,20 @@ class ArticleController extends Controller
         $this->validate($request, [
             'title' => 'required|string|max:300',
             'description' => 'required|string|max:300',
-            'slug' => 'required|string|max:500',
+            'slug' => 'filled|string|max:100',
             'body' => 'required|string',
             'thumbnail' => 'required|string|max:500',
             'status' => 'required|in:draft,publish,schedule',
             'robots' => 'required|in:noindex, nofollow, none,all',
             'canonical' => 'required|boolean',
             'schedule' => 'required|date|date_after:now',
+            'category_id.*'=>'required|exists:id,categories',
+            'tag_id.*'=>'required|exists:id,tags',
         ]);
 
         $request->merge(['user_id' => auth()->id()]);
 
-        Article::query()->create($request->only([
+        $article = Article::query()->create($request->only([
             'user_id',
             'title',
             'description',
@@ -52,6 +54,13 @@ class ArticleController extends Controller
             'schedule',
         ]));
 
+
+        if ($request->filled('category_id.*')){
+            $article->categories()->sync($request->category_id);
+        }
+        if ($request->filled('tag_id.*')){
+            $article->tags()->sync($request->tag_id);
+        }
         return response(['status'=>'created','message'=>'مقاله با موفقیت ایجاد شد']);
     }
 
@@ -63,7 +72,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return $article;
+        return $article->load(['categories','tags','user','comment']);
     }
 
 
@@ -86,6 +95,8 @@ class ArticleController extends Controller
             'robots' => 'nullable|in:noindex, nofollow, none,all',
             'canonical' => 'nullable|boolean',
             'schedule' => 'nullable|date|date_after:now',
+            'category_id.*'=>'required|exists:id,categories',
+            'tag_id.*'=>'required|exists:id,tags',
         ]);
 
 
@@ -100,6 +111,13 @@ class ArticleController extends Controller
             'canonical',
             'schedule',
         ]));
+
+        if ($request->filled('category_id.*')){
+            $article->categories()->sync($request->category_id);
+        }
+        if ($request->filled('tag_id.*')){
+            $article->tags()->sync($request->tag_id);
+        }
 
         return response(['status'=>'updated','message'=>'مقاله با موفقیت بروزرسانی شد']);
 

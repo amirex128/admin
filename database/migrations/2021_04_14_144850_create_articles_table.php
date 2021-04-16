@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id');
             $table->string('title', 300);
             $table->string('description', 300);
-            $table->string('slug', 500);
+            $table->string('slug', 100);
             $table->text('body');
             $table->string('thumbnail', 500);
             $table->enum('status', ['draft', 'publish', 'schedule'])->default('draft');
