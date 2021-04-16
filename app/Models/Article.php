@@ -8,4 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function categories()
+    {
+        return $this->morphToMany(Category::class, 'categoryable');
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class,'taggable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

@@ -13,19 +13,8 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable,HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'phone',
-        'description',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -62,5 +51,15 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function pages()
+    {
+        return $this->hasMany(Page::class);
     }
 }

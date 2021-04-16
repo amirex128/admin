@@ -10,76 +10,112 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Article::query()->latest()->paginate($request->input('per_page',10));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string|max:300',
+            'description' => 'required|string|max:300',
+            'slug' => 'required|string|max:500',
+            'body' => 'required|string',
+            'thumbnail' => 'required|string|max:500',
+            'status' => 'required|in:draft,publish,schedule',
+            'robots' => 'required|in:noindex, nofollow, none,all',
+            'canonical' => 'required|boolean',
+            'schedule' => 'required|date|date_after:now',
+        ]);
+
+        $request->merge(['user_id' => auth()->id()]);
+
+        Article::query()->create($request->only([
+            'user_id',
+            'title',
+            'description',
+            'slug',
+            'body',
+            'thumbnail',
+            'status',
+            'robots',
+            'canonical',
+            'schedule',
+        ]));
+
+        return response(['status'=>'created','message'=>'مقاله با موفقیت ایجاد شد']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Article $article
+     * @return Article
      */
     public function show(Article $article)
     {
-        //
+        return $article;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Article $article
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $this->validate($request, [
+            'title' => 'nullable|string|max:300',
+            'description' => 'nullable|string|max:300',
+            'slug' => 'nullable|string|max:500',
+            'body' => 'nullable|string',
+            'thumbnail' => 'nullable|string|max:500',
+            'status' => 'nullable|in:draft,publish,schedule',
+            'robots' => 'nullable|in:noindex, nofollow, none,all',
+            'canonical' => 'nullable|boolean',
+            'schedule' => 'nullable|date|date_after:now',
+        ]);
+
+
+        $article->update($request->only([
+            'title',
+            'description',
+            'slug',
+            'body',
+            'thumbnail',
+            'status',
+            'robots',
+            'canonical',
+            'schedule',
+        ]));
+
+        return response(['status'=>'updated','message'=>'مقاله با موفقیت بروزرسانی شد']);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Article  $article
+     * @param \App\Models\Article $article
      * @return \Illuminate\Http\Response
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        return response(['status'=>'deleted','message'=>'مقاله با موفقیت حذف شد']);
+
     }
 }
