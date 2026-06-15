@@ -40,6 +40,7 @@ Load detailed guidance based on context:
 ## Constraints
 
 ### MUST DO
+
 - Use PHP 8.5+ features (readonly, enums, typed properties)
 - Type hint all method parameters and return types
 - Use Eloquent relationships properly (avoid N+1 with eager loading)
@@ -50,6 +51,7 @@ Load detailed guidance based on context:
 - Implement authentication using Laravel Fortify actions
 
 ### MUST NOT DO
+
 - Use raw queries without protection (SQL injection)
 - Skip eager loading (causes N+1 problems)
 - Store sensitive data unencrypted

@@ -15,6 +15,7 @@
         "wayfinder-development",
         "inertia-react-development",
         "tailwindcss-development",
+        "laravel-inertia-react",
         "laravel-specialist"
     ]
 }
