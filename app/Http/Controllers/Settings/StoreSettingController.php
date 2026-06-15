@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Concerns\BuildsStoreSettingProps;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateStoreSettingRequest;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\PackagingTypeResource;
 use App\Services\Store\StoreSettingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,9 +24,21 @@ class StoreSettingController extends Controller
      */
     public function edit(Request $request): Response
     {
+        $user = $request->user();
+
         return Inertia::render('settings/store', array_merge(
-            $this->storeSettingProps($request->user(), $request, $this->service),
-            ['updateUrl' => route('settings.store.update')],
+            $this->storeSettingProps($user, $request, $this->service),
+            [
+                'updateUrl' => route('settings.store.update'),
+                'taxonomy' => [
+                    'categories' => CategoryResource::collection(
+                        $user->categories()->with('parent')->withCount('products')->orderBy('name')->get()
+                    )->resolve(),
+                    'packagingTypes' => PackagingTypeResource::collection(
+                        $user->packagingTypes()->orderBy('name')->get()
+                    )->resolve(),
+                ],
+            ],
         ));
     }
 

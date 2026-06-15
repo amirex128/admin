@@ -83,9 +83,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
     Route::delete('notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
-    // Categories & packaging types (managed inline from the product form)
+    // Categories & packaging types (managed inline from the product form and
+    // from the store settings page).
     Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     Route::post('packaging-types', [PackagingTypeController::class, 'store'])->name('packaging-types.store');
+    Route::put('packaging-types/{packagingType}', [PackagingTypeController::class, 'update'])->name('packaging-types.update');
+    Route::delete('packaging-types/{packagingType}', [PackagingTypeController::class, 'destroy'])->name('packaging-types.destroy');
 });
 
 require __DIR__.'/auth.php';
