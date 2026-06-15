@@ -1,176 +1,223 @@
 {
   "communities": {
     "0": [
-      "auth_login",
-      "auth_login_props",
-      "auth_register",
-      "auth_register_props",
-      "auth_register_register",
-      "auth_two_factor_challenge",
-      "auth_twofactorchallengetest_twofactorchallengetest_setup",
-      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_can_be_rendered",
-      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_redirects_to_login_when_not_authenticated",
-      "auth_verify_email",
-      "components_delete_user",
-      "components_delete_user_deleteuser",
-      "components_heading",
-      "components_heading_heading",
-      "components_input_error",
-      "components_input_error_inputerror",
-      "components_manage_passkeys",
-      "components_manage_passkeys_emptystate",
-      "components_manage_passkeys_props",
-      "components_manage_two_factor",
-      "components_manage_two_factor_props",
-      "components_passkey_item",
-      "components_passkey_item_passkeyitem",
-      "components_passkey_item_props",
-      "components_passkey_register",
-      "components_passkey_register_passkeyregistration",
-      "components_passkey_register_props",
-      "components_passkey_verify",
-      "components_passkey_verify_props",
-      "components_text_link",
-      "components_text_link_props",
-      "components_text_link_textlink",
-      "components_two_factor_setup_modal",
-      "components_two_factor_setup_modal_gridscanicon",
-      "components_two_factor_setup_modal_props",
-      "components_two_factor_setup_modal_twofactorverificationstep",
-      "hooks_use_two_factor_auth",
-      "hooks_use_two_factor_auth_usetwofactorauthreturn",
-      "settings_profile",
-      "settings_profile_pageprops",
-      "settings_profile_profile",
-      "settings_security",
-      "settings_security_props",
-      "settings_security_security",
-      "types_auth",
-      "types_auth_auth",
-      "types_auth_passkey",
-      "types_auth_twofactorsecretkey",
-      "types_auth_twofactorsetupdata",
-      "types_auth_user",
-      "types_global_d",
-      "types_global_d_inertiaconfig",
-      "types_global_d_inputhtmlattributes",
-      "ui_button",
-      "ui_button_button",
-      "ui_button_buttonvariants",
-      "ui_dialog",
-      "ui_dialog_dialog",
-      "ui_dialog_dialogclose",
-      "ui_dialog_dialogcontent",
-      "ui_dialog_dialogdescription",
-      "ui_dialog_dialogfooter",
-      "ui_dialog_dialogheader",
-      "ui_dialog_dialogoverlay",
-      "ui_dialog_dialogportal",
-      "ui_dialog_dialogtitle",
-      "ui_dialog_dialogtrigger",
-      "ui_input",
-      "ui_input_input",
-      "ui_input_otp",
-      "ui_input_otp_inputotp",
-      "ui_input_otp_inputotpgroup",
-      "ui_input_otp_inputotpseparator",
-      "ui_input_otp_inputotpslot",
-      "ui_label",
-      "ui_label_label",
-      "ui_spinner",
-      "ui_spinner_spinner"
+      "auth_auth_card_layout",
+      "components_pagination_nav",
+      "components_pagination_nav_paginationnav",
+      "components_two_factor_recovery_codes",
+      "components_two_factor_recovery_codes_props",
+      "financial_plans",
+      "financial_plans_pageprops",
+      "financial_plans_period_labels",
+      "financial_plans_planspage",
+      "financial_transactions_table",
+      "financial_wallet",
+      "financial_wallet_pageprops",
+      "financial_wallet_quick_amounts",
+      "financial_wallet_walletpage",
+      "lib_format",
+      "lib_format_formatdate",
+      "lib_format_formatdatetime",
+      "lib_format_formattoman",
+      "lib_format_formattomanlabel",
+      "plans_index",
+      "plans_index_adminplansindex",
+      "plans_index_pageprops",
+      "types_financial",
+      "types_financial_adminuserrow",
+      "types_financial_plan",
+      "types_financial_subscription",
+      "types_financial_wallettransaction",
+      "types_pagination",
+      "types_pagination_paginated",
+      "types_pagination_paginationlink",
+      "ui_badge",
+      "ui_badge_badge",
+      "ui_badge_badgevariants",
+      "ui_card",
+      "ui_card_card",
+      "ui_card_cardcontent",
+      "ui_card_carddescription",
+      "ui_card_cardfooter",
+      "ui_card_cardheader",
+      "ui_card_cardtitle",
+      "ui_table",
+      "ui_table_table",
+      "ui_table_tablebody",
+      "ui_table_tablecaption",
+      "ui_table_tablecell",
+      "ui_table_tablefooter",
+      "ui_table_tablehead",
+      "ui_table_tableheader",
+      "ui_table_tablerow",
+      "ui_tabs",
+      "ui_tabs_tabs",
+      "ui_tabs_tabscontent",
+      "ui_tabs_tabscontentprops",
+      "ui_tabs_tabscontext",
+      "ui_tabs_tabscontextvalue",
+      "ui_tabs_tabslist",
+      "ui_tabs_tabsprops",
+      "ui_tabs_tabstrigger",
+      "ui_tabs_tabstriggerprops",
+      "ui_tabs_usetabs",
+      "users_index",
+      "users_index_adminusersindex",
+      "users_index_pageprops",
+      "users_show",
+      "users_show_adminuser",
+      "users_show_adminusershow",
+      "users_show_info",
+      "users_show_pageprops",
+      "users_show_typebutton"
     ],
     "1": [
-      "components_app_sidebar",
-      "components_app_sidebar_footernavitems",
-      "components_app_sidebar_mainnavitems",
-      "components_nav_footer",
-      "components_nav_footer_navfooter",
-      "components_nav_main",
-      "components_nav_user",
-      "components_nav_user_navuser",
-      "hooks_use_mobile",
-      "hooks_use_mobile_getserversnapshot",
-      "hooks_use_mobile_issmallerthanbreakpoint",
-      "hooks_use_mobile_mediaquerylistener",
-      "hooks_use_mobile_useismobile",
-      "ui_sheet_sheetdescription",
-      "ui_sidebar",
-      "ui_sidebar_sidebar",
-      "ui_sidebar_sidebarcontext",
-      "ui_sidebar_sidebarfooter",
-      "ui_sidebar_sidebargroup",
-      "ui_sidebar_sidebargroupaction",
-      "ui_sidebar_sidebargroupcontent",
-      "ui_sidebar_sidebargrouplabel",
-      "ui_sidebar_sidebarheader",
-      "ui_sidebar_sidebarinput",
-      "ui_sidebar_sidebarinset",
-      "ui_sidebar_sidebarmenu",
-      "ui_sidebar_sidebarmenuaction",
-      "ui_sidebar_sidebarmenubadge",
-      "ui_sidebar_sidebarmenubutton",
-      "ui_sidebar_sidebarmenubuttonvariants",
-      "ui_sidebar_sidebarmenuitem",
-      "ui_sidebar_sidebarmenuskeleton",
-      "ui_sidebar_sidebarmenusub",
-      "ui_sidebar_sidebarmenusubbutton",
-      "ui_sidebar_sidebarmenusubitem",
-      "ui_sidebar_sidebarprovider",
-      "ui_sidebar_sidebarrail",
-      "ui_sidebar_sidebarseparator",
-      "ui_sidebar_sidebartrigger",
-      "ui_sidebar_usesidebar"
+      "app_http_resources_wallettransactionresource_php_request",
+      "app_models_plan_php_hasmany",
+      "app_models_subscription_php_belongsto",
+      "app_models_user_php_belongsto",
+      "app_models_wallet_php_belongsto",
+      "app_models_wallet_php_hasmany",
+      "app_models_wallettransaction_php_belongsto",
+      "app_services_wallet_walletservice_php_model",
+      "app_services_wallet_walletservice_php_user",
+      "authenticatable",
+      "builder",
+      "enums_wallettransactionreason_label",
+      "enums_wallettransactiontype_label",
+      "enums_wallettransactiontype_sign",
+      "factories_wallettransactionfactory",
+      "factories_wallettransactionfactory_wallettransactionfactory",
+      "factories_wallettransactionfactory_wallettransactionfactory_definition",
+      "hasfactory",
+      "hasmany",
+      "hasone",
+      "models_plan",
+      "models_plan_plan",
+      "models_plan_plan_casts",
+      "models_plan_plan_discountedprice",
+      "models_plan_plan_scopeactive",
+      "models_plan_plan_subscriptions",
+      "models_subscription",
+      "models_subscription_subscription",
+      "models_subscription_subscription_casts",
+      "models_subscription_subscription_isactive",
+      "models_subscription_subscription_plan",
+      "models_subscription_subscription_user",
+      "models_user",
+      "models_user_user",
+      "models_user_user_casts",
+      "models_user_user_isadmin",
+      "models_user_user_referrals",
+      "models_user_user_referrer",
+      "models_user_user_subscriptions",
+      "models_user_user_wallet",
+      "models_wallet",
+      "models_wallet_wallet",
+      "models_wallet_wallet_casts",
+      "models_wallet_wallet_transactions",
+      "models_wallet_wallet_user",
+      "models_wallettransaction_wallettransaction",
+      "models_wallettransaction_wallettransaction_casts",
+      "models_wallettransaction_wallettransaction_performer",
+      "models_wallettransaction_wallettransaction_reference",
+      "models_wallettransaction_wallettransaction_user",
+      "models_wallettransaction_wallettransaction_wallet",
+      "morphto",
+      "notifiable",
+      "passkeyauthenticatable",
+      "passkeyuser",
+      "resources_wallettransactionresource_wallettransactionresource_toarray",
+      "twofactorauthenticatable",
+      "wallet",
+      "wallet_walletservice",
+      "wallet_walletservice_walletservice",
+      "wallet_walletservice_walletservice_adjust",
+      "wallet_walletservice_walletservice_assertpositiveamount",
+      "wallet_walletservice_walletservice_balance",
+      "wallet_walletservice_walletservice_deposit",
+      "wallet_walletservice_walletservice_record",
+      "wallet_walletservice_walletservice_withdraw",
+      "wallettransaction",
+      "wallettransactiontype"
     ],
     "2": [
-      "app_app_header_layout",
-      "app_app_sidebar_layout",
-      "auth_auth_simple_layout",
-      "auth_auth_split_layout",
-      "auth_login_login",
-      "components_app_content",
-      "components_app_content_appcontent",
-      "components_app_content_props",
-      "components_app_header_appheader",
-      "components_app_logo_icon",
-      "components_app_logo_icon_applogoicon",
-      "components_app_shell",
-      "components_app_shell_appshell",
-      "components_app_shell_props",
-      "components_app_sidebar_appsidebar",
-      "components_app_sidebar_header",
-      "components_breadcrumbs",
-      "components_breadcrumbs_breadcrumbs",
-      "layouts_app_layout",
-      "layouts_app_layout_applayout",
-      "layouts_auth_layout",
-      "layouts_auth_layout_authlayout",
-      "pages_dashboard_dashboard",
-      "pages_welcome",
-      "pages_welcome_welcome",
-      "types_index",
-      "types_navigation",
-      "types_navigation_breadcrumbitem",
-      "types_ui",
-      "types_ui_applayoutprops",
-      "types_ui_appvariant",
-      "types_ui_authlayoutprops",
-      "ui_breadcrumb",
-      "ui_breadcrumb_breadcrumb",
-      "ui_breadcrumb_breadcrumbellipsis",
-      "ui_breadcrumb_breadcrumbitem",
-      "ui_breadcrumb_breadcrumblist",
-      "ui_breadcrumb_breadcrumbpage",
-      "ui_breadcrumb_breadcrumbseparator"
+      "adjustwalletrequest",
+      "admin_plancontroller",
+      "admin_plancontroller_plancontroller",
+      "admin_plancontroller_plancontroller_destroy",
+      "admin_plancontroller_plancontroller_index",
+      "admin_plancontroller_plancontroller_store",
+      "admin_plancontroller_plancontroller_toggle",
+      "admin_plancontroller_plancontroller_update",
+      "admin_usercontroller",
+      "admin_usercontroller_usercontroller",
+      "admin_usercontroller_usercontroller_construct",
+      "admin_usercontroller_usercontroller_index",
+      "admin_usercontroller_usercontroller_show",
+      "admin_userwalletcontroller",
+      "admin_userwalletcontroller_userwalletcontroller",
+      "admin_userwalletcontroller_userwalletcontroller_construct",
+      "admin_userwalletcontroller_userwalletcontroller_store",
+      "app_http_controllers_admin_plancontroller_php_plan",
+      "app_http_controllers_admin_plancontroller_php_redirectresponse",
+      "app_http_controllers_admin_plancontroller_php_response",
+      "app_http_controllers_admin_usercontroller_php_request",
+      "app_http_controllers_admin_usercontroller_php_response",
+      "app_http_controllers_admin_usercontroller_php_user",
+      "app_http_controllers_admin_userwalletcontroller_php_redirectresponse",
+      "app_http_controllers_admin_userwalletcontroller_php_user",
+      "app_http_controllers_user_subscriptionplancontroller_php_plan",
+      "app_http_controllers_user_subscriptionplancontroller_php_redirectresponse",
+      "app_http_controllers_user_subscriptionplancontroller_php_request",
+      "app_http_controllers_user_subscriptionplancontroller_php_response",
+      "app_http_controllers_user_walletcontroller_php_redirectresponse",
+      "app_http_controllers_user_walletcontroller_php_request",
+      "app_http_controllers_user_walletcontroller_php_response",
+      "app_http_resources_planresource_php_request",
+      "app_http_resources_subscriptionresource_php_request",
+      "chargewalletrequest",
+      "controller",
+      "jsonresource",
+      "resources_planresource",
+      "resources_planresource_planresource",
+      "resources_planresource_planresource_toarray",
+      "resources_subscriptionresource",
+      "resources_subscriptionresource_subscriptionresource",
+      "resources_subscriptionresource_subscriptionresource_toarray",
+      "storeplanrequest",
+      "updateplanrequest",
+      "user_subscriptionplancontroller",
+      "user_subscriptionplancontroller_subscriptionplancontroller",
+      "user_subscriptionplancontroller_subscriptionplancontroller_construct",
+      "user_subscriptionplancontroller_subscriptionplancontroller_index",
+      "user_subscriptionplancontroller_subscriptionplancontroller_subscribe",
+      "user_walletcontroller",
+      "user_walletcontroller_walletcontroller",
+      "user_walletcontroller_walletcontroller_charge",
+      "user_walletcontroller_walletcontroller_construct",
+      "user_walletcontroller_walletcontroller_index"
     ],
     "3": [
       "app_services_sms_providers_limosmsprovider_php_smsresult",
       "app_services_sms_smsmanager_php_smsresult",
+      "database_factories_planfactory_php_static",
+      "factories_planfactory",
+      "factories_planfactory_planfactory",
+      "factories_planfactory_planfactory_definition",
+      "factories_planfactory_planfactory_inactive",
+      "factories_subscriptionfactory",
+      "factories_subscriptionfactory_subscriptionfactory",
+      "factories_subscriptionfactory_subscriptionfactory_definition",
       "factories_userfactory",
       "factories_userfactory_userfactory",
+      "factories_userfactory_userfactory_admin",
       "factories_userfactory_userfactory_definition",
       "factories_userfactory_userfactory_unverified",
       "factories_userfactory_userfactory_withtwofactor",
+      "factories_walletfactory",
+      "factories_walletfactory_walletfactory",
+      "factories_walletfactory_walletfactory_definition",
       "factory",
       "providers_appserviceprovider",
       "providers_appserviceprovider_appserviceprovider",
@@ -205,6 +252,95 @@
       "static"
     ],
     "4": [
+      "admin_adjustwalletrequest",
+      "admin_adjustwalletrequest_adjustwalletrequest",
+      "admin_adjustwalletrequest_adjustwalletrequest_authorize",
+      "admin_adjustwalletrequest_adjustwalletrequest_rules",
+      "admin_adjustwalletrequest_adjustwalletrequest_signedamount",
+      "admin_storeplanrequest",
+      "admin_storeplanrequest_storeplanrequest",
+      "admin_storeplanrequest_storeplanrequest_authorize",
+      "admin_storeplanrequest_storeplanrequest_planattributes",
+      "admin_storeplanrequest_storeplanrequest_rules",
+      "admin_updateplanrequest",
+      "admin_updateplanrequest_updateplanrequest",
+      "admin_updateplanrequest_updateplanrequest_authorize",
+      "admin_updateplanrequest_updateplanrequest_planattributes",
+      "admin_updateplanrequest_updateplanrequest_rules",
+      "app_actions_fortify_createnewuser_php_user",
+      "app_actions_fortify_resetuserpassword_php_user",
+      "createsnewusers",
+      "formrequest",
+      "fortify_createnewuser",
+      "fortify_createnewuser_createnewuser",
+      "fortify_createnewuser_createnewuser_create",
+      "fortify_resetuserpassword",
+      "fortify_resetuserpassword_resetuserpassword",
+      "fortify_resetuserpassword_resetuserpassword_reset",
+      "interactswithtwofactorstate",
+      "passwordvalidationrules",
+      "phonevalidationrules",
+      "profilevalidationrules",
+      "resetsuserpasswords",
+      "settings_passwordupdaterequest",
+      "settings_passwordupdaterequest_passwordupdaterequest",
+      "settings_passwordupdaterequest_passwordupdaterequest_rules",
+      "settings_profiledeleterequest",
+      "settings_profiledeleterequest_profiledeleterequest",
+      "settings_profiledeleterequest_profiledeleterequest_rules",
+      "settings_profileupdaterequest",
+      "settings_profileupdaterequest_profileupdaterequest",
+      "settings_profileupdaterequest_profileupdaterequest_rules",
+      "settings_twofactorauthenticationrequest",
+      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest",
+      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest_rules",
+      "user_chargewalletrequest",
+      "user_chargewalletrequest_chargewalletrequest",
+      "user_chargewalletrequest_chargewalletrequest_authorize",
+      "user_chargewalletrequest_chargewalletrequest_messages",
+      "user_chargewalletrequest_chargewalletrequest_rules"
+    ],
+    "5": [
+      "app_app_header_layout",
+      "app_app_sidebar_layout",
+      "auth_auth_simple_layout",
+      "auth_auth_split_layout",
+      "auth_login_login",
+      "components_app_content",
+      "components_app_content_appcontent",
+      "components_app_content_props",
+      "components_app_header_appheader",
+      "components_app_logo_icon",
+      "components_app_logo_icon_applogoicon",
+      "components_app_shell",
+      "components_app_shell_appshell",
+      "components_app_shell_props",
+      "components_app_sidebar_appsidebar",
+      "components_app_sidebar_header",
+      "components_breadcrumbs",
+      "components_breadcrumbs_breadcrumbs",
+      "layouts_app_layout",
+      "layouts_app_layout_applayout",
+      "pages_dashboard_dashboard",
+      "pages_welcome",
+      "pages_welcome_welcome",
+      "types_index",
+      "types_navigation",
+      "types_navigation_breadcrumbitem",
+      "types_ui",
+      "types_ui_applayoutprops",
+      "types_ui_appvariant",
+      "types_ui_authlayoutprops",
+      "types_ui_flashtoast",
+      "ui_breadcrumb",
+      "ui_breadcrumb_breadcrumb",
+      "ui_breadcrumb_breadcrumbellipsis",
+      "ui_breadcrumb_breadcrumbitem",
+      "ui_breadcrumb_breadcrumblist",
+      "ui_breadcrumb_breadcrumbpage",
+      "ui_breadcrumb_breadcrumbseparator"
+    ],
+    "6": [
       "package_dependencies",
       "package_dependencies_class_variance_authority",
       "package_dependencies_clsx",
@@ -242,44 +378,7 @@
       "package_dependencies_vite",
       "package_dependencies_vitejs_plugin_react"
     ],
-    "5": [
-      "package",
-      "package_devdependencies",
-      "package_devdependencies_babel_plugin_react_compiler",
-      "package_devdependencies_eslint",
-      "package_devdependencies_eslint_config_prettier",
-      "package_devdependencies_eslint_import_resolver_typescript",
-      "package_devdependencies_eslint_js",
-      "package_devdependencies_eslint_plugin_import",
-      "package_devdependencies_eslint_plugin_react",
-      "package_devdependencies_eslint_plugin_react_hooks",
-      "package_devdependencies_laravel_vite_plugin_wayfinder",
-      "package_devdependencies_prettier",
-      "package_devdependencies_prettier_plugin_tailwindcss",
-      "package_devdependencies_stylistic_eslint_plugin",
-      "package_devdependencies_types_node",
-      "package_devdependencies_typescript_eslint",
-      "package_optionaldependencies",
-      "package_optionaldependencies_lightningcss_linux_x64_gnu",
-      "package_optionaldependencies_lightningcss_win32_x64_msvc",
-      "package_optionaldependencies_rollup_rollup_linux_x64_gnu",
-      "package_optionaldependencies_rollup_rollup_win32_x64_msvc",
-      "package_optionaldependencies_tailwindcss_oxide_linux_x64_gnu",
-      "package_optionaldependencies_tailwindcss_oxide_win32_x64_msvc",
-      "package_private",
-      "package_schema",
-      "package_scripts",
-      "package_scripts_build",
-      "package_scripts_build_ssr",
-      "package_scripts_dev",
-      "package_scripts_format",
-      "package_scripts_format_check",
-      "package_scripts_lint",
-      "package_scripts_lint_check",
-      "package_scripts_types_check",
-      "package_type"
-    ],
-    "6": [
+    "7": [
       "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata",
       "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_author",
       "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_categories",
@@ -314,7 +413,7 @@
       "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_updatedat",
       "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_version"
     ],
-    "7": [
+    "8": [
       "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata",
       "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_author",
       "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_categories",
@@ -349,7 +448,7 @@
       "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_updatedat",
       "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_version"
     ],
-    "8": [
+    "9": [
       "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata",
       "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_author",
       "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_categories",
@@ -384,41 +483,39 @@
       "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_updatedat",
       "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_version"
     ],
-    "9": [
-      "lib_utils",
-      "lib_utils_cn",
-      "ui_badge",
-      "ui_badge_badge",
-      "ui_badge_badgevariants",
+    "10": [
+      "auth_login",
+      "auth_login_props",
+      "auth_register",
+      "auth_register_props",
+      "auth_register_register",
+      "auth_verify_email",
+      "components_input_error",
+      "components_input_error_inputerror",
+      "components_passkey_register",
+      "components_passkey_register_passkeyregistration",
+      "components_passkey_register_props",
+      "components_passkey_verify",
+      "components_passkey_verify_props",
+      "components_text_link",
+      "components_text_link_props",
+      "components_text_link_textlink",
+      "settings_profile",
+      "settings_profile_pageprops",
+      "settings_profile_profile",
+      "ui_button",
+      "ui_button_button",
+      "ui_button_buttonvariants",
       "ui_checkbox",
       "ui_checkbox_checkbox",
-      "ui_navigation_menu",
-      "ui_navigation_menu_navigationmenucontent",
-      "ui_navigation_menu_navigationmenuindicator",
-      "ui_navigation_menu_navigationmenulist",
-      "ui_navigation_menu_navigationmenutriggerstyle",
-      "ui_navigation_menu_navigationmenuviewport",
-      "ui_select",
-      "ui_select_select",
-      "ui_select_selectcontent",
-      "ui_select_selectgroup",
-      "ui_select_selectitem",
-      "ui_select_selectlabel",
-      "ui_select_selectscrolldownbutton",
-      "ui_select_selectscrollupbutton",
-      "ui_select_selectseparator",
-      "ui_select_selecttrigger",
-      "ui_select_selectvalue",
-      "ui_skeleton",
-      "ui_skeleton_skeleton",
-      "ui_toggle",
-      "ui_toggle_group",
-      "ui_toggle_group_togglegroupcontext",
-      "ui_toggle_group_togglegroupitem",
-      "ui_toggle_toggle",
-      "ui_toggle_togglevariants"
+      "ui_input",
+      "ui_input_input",
+      "ui_label",
+      "ui_label_label",
+      "ui_spinner",
+      "ui_spinner_spinner"
     ],
-    "10": [
+    "11": [
       "app_http_controllers_auth_passwordresetcontroller_php_redirectresponse",
       "app_http_controllers_auth_passwordresetcontroller_php_request",
       "app_http_controllers_auth_passwordresetcontroller_php_response",
@@ -449,10 +546,9 @@
       "settings_securitycontroller_securitycontroller_update",
       "twofactorauthenticationrequest"
     ],
-    "11": [
+    "12": [
       "components_appearance_tabs",
       "components_appearance_tabs_appearancetoggletab",
-      "components_two_factor_setup_modal_twofactorsetupstep",
       "hooks_use_appearance",
       "hooks_use_appearance_appearance",
       "hooks_use_appearance_applytheme",
@@ -468,45 +564,15 @@
       "hooks_use_appearance_setcookie",
       "hooks_use_appearance_subscribe",
       "hooks_use_appearance_useappearancereturn",
-      "hooks_use_clipboard",
-      "hooks_use_clipboard_copiedvalue",
-      "hooks_use_clipboard_copyfn",
-      "hooks_use_clipboard_useclipboardreturn",
       "hooks_use_flash_toast",
+      "js_app",
+      "js_app_withapp",
+      "layouts_auth_layout",
+      "layouts_auth_layout_authlayout",
       "settings_appearance",
       "settings_appearance_appearance",
-      "types_ui_flashtoast",
       "ui_sonner",
       "ui_sonner_toaster"
-    ],
-    "12": [
-      "app_actions_fortify_createnewuser_php_user",
-      "app_actions_fortify_resetuserpassword_php_user",
-      "createsnewusers",
-      "formrequest",
-      "fortify_createnewuser",
-      "fortify_createnewuser_createnewuser",
-      "fortify_createnewuser_createnewuser_create",
-      "fortify_resetuserpassword",
-      "fortify_resetuserpassword_resetuserpassword",
-      "fortify_resetuserpassword_resetuserpassword_reset",
-      "interactswithtwofactorstate",
-      "passwordvalidationrules",
-      "phonevalidationrules",
-      "profilevalidationrules",
-      "resetsuserpasswords",
-      "settings_passwordupdaterequest",
-      "settings_passwordupdaterequest_passwordupdaterequest",
-      "settings_passwordupdaterequest_passwordupdaterequest_rules",
-      "settings_profiledeleterequest",
-      "settings_profiledeleterequest_profiledeleterequest",
-      "settings_profiledeleterequest_profiledeleterequest_rules",
-      "settings_profileupdaterequest",
-      "settings_profileupdaterequest_profileupdaterequest",
-      "settings_profileupdaterequest_profileupdaterequest_rules",
-      "settings_twofactorauthenticationrequest",
-      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest",
-      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest_rules"
     ],
     "13": [
       "app_models_passwordresetcode_php_belongsto",
@@ -518,7 +584,6 @@
       "auth_passwordresetcodeservice_passwordresetcodeservice_sendemailcode",
       "auth_passwordresetcodeservice_passwordresetcodeservice_verify",
       "auth_passwordresetcodeservice_passwordresetcodeservice_verifyemailcode",
-      "auth_passwordresettest_passwordresettest_test_password_can_be_reset_with_a_valid_sms_code",
       "facade",
       "facades_sms",
       "facades_sms_sms",
@@ -541,10 +606,12 @@
       "components_app_header_mainnavitems",
       "components_app_header_props",
       "components_app_header_rightnavitems",
-      "components_app_logo",
-      "components_app_logo_applogo",
-      "js_app",
-      "js_app_withapp",
+      "ui_navigation_menu",
+      "ui_navigation_menu_navigationmenucontent",
+      "ui_navigation_menu_navigationmenuindicator",
+      "ui_navigation_menu_navigationmenulist",
+      "ui_navigation_menu_navigationmenutriggerstyle",
+      "ui_navigation_menu_navigationmenuviewport",
       "ui_sheet",
       "ui_sheet_sheet",
       "ui_sheet_sheetclose",
@@ -562,49 +629,100 @@
       "ui_tooltip_tooltiptrigger"
     ],
     "15": [
-      "app_models_user_php_belongsto",
-      "authenticatable",
-      "hasfactory",
-      "hasmany",
-      "models_user",
-      "models_user_user",
-      "models_user_user_casts",
-      "models_user_user_generatereferralcode",
-      "models_user_user_referrals",
-      "models_user_user_referrer",
-      "notifiable",
-      "passkeyauthenticatable",
-      "passkeyuser",
-      "self",
-      "sms_smsresult",
-      "sms_smsresult_smsresult",
-      "sms_smsresult_smsresult_construct",
-      "sms_smsresult_smsresult_failure",
-      "sms_smsresult_smsresult_success",
-      "twofactorauthenticatable"
+      "lib_utils_cn",
+      "ui_sheet_sheetdescription",
+      "ui_sidebar",
+      "ui_sidebar_sidebar",
+      "ui_sidebar_sidebarcontext",
+      "ui_sidebar_sidebarfooter",
+      "ui_sidebar_sidebargroupaction",
+      "ui_sidebar_sidebargroupcontent",
+      "ui_sidebar_sidebargrouplabel",
+      "ui_sidebar_sidebarheader",
+      "ui_sidebar_sidebarinput",
+      "ui_sidebar_sidebarinset",
+      "ui_sidebar_sidebarmenuaction",
+      "ui_sidebar_sidebarmenubadge",
+      "ui_sidebar_sidebarmenuskeleton",
+      "ui_sidebar_sidebarmenusub",
+      "ui_sidebar_sidebarmenusubbutton",
+      "ui_sidebar_sidebarmenusubitem",
+      "ui_sidebar_sidebarprovider",
+      "ui_sidebar_sidebarrail",
+      "ui_sidebar_sidebarseparator",
+      "ui_sidebar_sidebartrigger",
+      "ui_sidebar_usesidebar",
+      "ui_skeleton",
+      "ui_skeleton_skeleton"
     ],
     "16": [
-      "components_user_menu_content",
-      "components_user_menu_content_props",
-      "hooks_use_mobile_navigation",
-      "hooks_use_mobile_navigation_cleanupfn",
-      "ui_dropdown_menu",
-      "ui_dropdown_menu_dropdownmenucheckboxitem",
-      "ui_dropdown_menu_dropdownmenucontent",
-      "ui_dropdown_menu_dropdownmenugroup",
-      "ui_dropdown_menu_dropdownmenuitem",
-      "ui_dropdown_menu_dropdownmenulabel",
-      "ui_dropdown_menu_dropdownmenuportal",
-      "ui_dropdown_menu_dropdownmenuradiogroup",
-      "ui_dropdown_menu_dropdownmenuradioitem",
-      "ui_dropdown_menu_dropdownmenuseparator",
-      "ui_dropdown_menu_dropdownmenushortcut",
-      "ui_dropdown_menu_dropdownmenusub",
-      "ui_dropdown_menu_dropdownmenusubcontent",
-      "ui_dropdown_menu_dropdownmenusubtrigger",
-      "ui_dropdown_menu_dropdownmenutrigger"
+      "auth_passwordconfirmationtest",
+      "auth_passwordconfirmationtest_passwordconfirmationtest",
+      "auth_passwordconfirmationtest_passwordconfirmationtest_test_confirm_password_screen_can_be_rendered",
+      "auth_passwordconfirmationtest_passwordconfirmationtest_test_password_confirmation_requires_authentication",
+      "auth_twofactorchallengetest",
+      "basetestcase",
+      "feature_dashboardtest",
+      "feature_dashboardtest_dashboardtest_test_authenticated_users_can_visit_the_dashboard",
+      "feature_dashboardtest_dashboardtest_test_guests_are_redirected_to_the_login_page",
+      "feature_exampletest",
+      "feature_exampletest_exampletest",
+      "feature_exampletest_exampletest_test_returns_a_successful_response",
+      "pages_dashboard",
+      "refreshdatabase",
+      "tests_testcase",
+      "tests_testcase_testcase",
+      "tests_testcase_testcase_skipunlessfortifyhas",
+      "ui_placeholder_pattern",
+      "unit_exampletest",
+      "unit_exampletest_exampletest",
+      "unit_exampletest_exampletest_test_that_true_is_true"
     ],
     "17": [
+      "auth_two_factor_challenge",
+      "auth_twofactorchallengetest_twofactorchallengetest_setup",
+      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_can_be_rendered",
+      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_redirects_to_login_when_not_authenticated",
+      "components_two_factor_setup_modal",
+      "components_two_factor_setup_modal_gridscanicon",
+      "components_two_factor_setup_modal_props",
+      "components_two_factor_setup_modal_twofactorsetupstep",
+      "components_two_factor_setup_modal_twofactorverificationstep",
+      "hooks_use_clipboard",
+      "hooks_use_clipboard_copiedvalue",
+      "hooks_use_clipboard_copyfn",
+      "hooks_use_clipboard_useclipboardreturn",
+      "hooks_use_two_factor_auth",
+      "hooks_use_two_factor_auth_usetwofactorauthreturn",
+      "ui_dialog_dialogheader",
+      "ui_input_otp",
+      "ui_input_otp_inputotp",
+      "ui_input_otp_inputotpgroup",
+      "ui_input_otp_inputotpseparator",
+      "ui_input_otp_inputotpslot"
+    ],
+    "18": [
+      "admin_plan_form_dialog",
+      "admin_plan_form_dialog_billing_periods",
+      "admin_plan_form_dialog_planformdata",
+      "ui_select",
+      "ui_select_select",
+      "ui_select_selectcontent",
+      "ui_select_selectgroup",
+      "ui_select_selectitem",
+      "ui_select_selectlabel",
+      "ui_select_selectscrolldownbutton",
+      "ui_select_selectscrollupbutton",
+      "ui_select_selectseparator",
+      "ui_select_selecttrigger",
+      "ui_select_selectvalue",
+      "ui_switch",
+      "ui_switch_switch",
+      "ui_switch_switchprops",
+      "ui_textarea",
+      "ui_textarea_textarea"
+    ],
+    "19": [
       "components",
       "components_aliases",
       "components_aliases_components",
@@ -624,7 +742,7 @@
       "components_tailwind_prefix",
       "components_tsx"
     ],
-    "18": [
+    "20": [
       "tsconfig",
       "tsconfig_compileroptions",
       "tsconfig_compileroptions_allowjs",
@@ -644,41 +762,115 @@
       "tsconfig_include",
       "tsconfig_paths"
     ],
-    "19": [
-      "auth_auth_card_layout",
-      "components_alert_error",
-      "components_alert_error_alerterror",
-      "components_two_factor_recovery_codes",
-      "components_two_factor_recovery_codes_props",
-      "ui_alert",
-      "ui_alert_alert",
-      "ui_alert_alertdescription",
-      "ui_alert_alerttitle",
-      "ui_alert_alertvariants",
-      "ui_card",
-      "ui_card_card",
-      "ui_card_cardcontent",
-      "ui_card_carddescription",
-      "ui_card_cardfooter",
-      "ui_card_cardheader",
-      "ui_card_cardtitle"
-    ],
-    "20": [
-      "components_nav_main_navmain",
-      "hooks_use_current_url",
-      "hooks_use_current_url_iscurrentorparenturlfn",
-      "hooks_use_current_url_iscurrenturlfn",
-      "hooks_use_current_url_usecurrenturlreturn",
-      "hooks_use_current_url_whencurrenturlfn",
-      "lib_utils_tourl",
-      "settings_layout",
-      "settings_layout_settingslayout",
-      "settings_layout_sidebarnavitems",
-      "types_navigation_navitem",
-      "ui_separator",
-      "ui_separator_separator"
-    ],
     "21": [
+      "admin_adminaccesstest",
+      "financial_subscriptionplantest",
+      "financial_subscriptionplantest_subscriptionplantest",
+      "financial_subscriptionplantest_subscriptionplantest_test_user_can_charge_their_wallet",
+      "financial_subscriptionplantest_subscriptionplantest_test_user_can_subscribe_to_a_plan_paying_from_their_wallet",
+      "financial_subscriptionplantest_subscriptionplantest_test_user_cannot_subscribe_without_enough_balance",
+      "testcase",
+      "wallet_walletservicetest",
+      "wallet_walletservicetest_walletservicetest",
+      "wallet_walletservicetest_walletservicetest_setup",
+      "wallet_walletservicetest_walletservicetest_test_a_new_user_starts_with_a_zero_balance",
+      "wallet_walletservicetest_walletservicetest_test_admin_adjustment_supports_positive_and_negative_amounts",
+      "wallet_walletservicetest_walletservicetest_test_amount_must_be_positive",
+      "wallet_walletservicetest_walletservicetest_test_deposit_increases_balance_and_records_a_credit",
+      "wallet_walletservicetest_walletservicetest_test_withdraw_decreases_balance_and_records_a_debit",
+      "wallet_walletservicetest_walletservicetest_test_withdraw_fails_when_balance_is_insufficient",
+      "walletservice"
+    ],
+    "22": [
+      "components_app_logo",
+      "components_app_logo_applogo",
+      "components_app_sidebar",
+      "components_app_sidebar_adminnavitems",
+      "components_app_sidebar_financialnavitems",
+      "components_app_sidebar_footernavitems",
+      "components_app_sidebar_mainnavitems",
+      "components_nav_footer",
+      "components_nav_footer_navfooter",
+      "components_nav_main",
+      "components_nav_main_navmain",
+      "types_navigation_navitem",
+      "ui_sidebar_sidebargroup",
+      "ui_sidebar_sidebarmenu",
+      "ui_sidebar_sidebarmenubutton",
+      "ui_sidebar_sidebarmenubuttonvariants",
+      "ui_sidebar_sidebarmenuitem"
+    ],
+    "23": [
+      "components_user_menu_content",
+      "components_user_menu_content_props",
+      "hooks_use_mobile_navigation",
+      "hooks_use_mobile_navigation_cleanupfn",
+      "ui_dropdown_menu",
+      "ui_dropdown_menu_dropdownmenucheckboxitem",
+      "ui_dropdown_menu_dropdownmenugroup",
+      "ui_dropdown_menu_dropdownmenuitem",
+      "ui_dropdown_menu_dropdownmenulabel",
+      "ui_dropdown_menu_dropdownmenuportal",
+      "ui_dropdown_menu_dropdownmenuradiogroup",
+      "ui_dropdown_menu_dropdownmenuradioitem",
+      "ui_dropdown_menu_dropdownmenuseparator",
+      "ui_dropdown_menu_dropdownmenushortcut",
+      "ui_dropdown_menu_dropdownmenusub",
+      "ui_dropdown_menu_dropdownmenusubcontent",
+      "ui_dropdown_menu_dropdownmenusubtrigger"
+    ],
+    "24": [
+      "components_delete_user",
+      "components_delete_user_deleteuser",
+      "components_passkey_item",
+      "components_passkey_item_passkeyitem",
+      "components_passkey_item_props",
+      "ui_dialog",
+      "ui_dialog_dialog",
+      "ui_dialog_dialogclose",
+      "ui_dialog_dialogcontent",
+      "ui_dialog_dialogdescription",
+      "ui_dialog_dialogfooter",
+      "ui_dialog_dialogoverlay",
+      "ui_dialog_dialogportal",
+      "ui_dialog_dialogtitle",
+      "ui_dialog_dialogtrigger"
+    ],
+    "25": [
+      "composer",
+      "composer_autoload",
+      "composer_autoload_dev",
+      "composer_autoload_psr_4",
+      "composer_description",
+      "composer_keywords",
+      "composer_license",
+      "composer_minimum_stability",
+      "composer_name",
+      "composer_prefer_stable",
+      "composer_psr_4_app",
+      "composer_psr_4_database_factories",
+      "composer_psr_4_tests",
+      "composer_schema",
+      "composer_type"
+    ],
+    "26": [
+      "package_devdependencies",
+      "package_devdependencies_babel_plugin_react_compiler",
+      "package_devdependencies_eslint",
+      "package_devdependencies_eslint_config_prettier",
+      "package_devdependencies_eslint_import_resolver_typescript",
+      "package_devdependencies_eslint_js",
+      "package_devdependencies_eslint_plugin_import",
+      "package_devdependencies_eslint_plugin_react",
+      "package_devdependencies_eslint_plugin_react_hooks",
+      "package_devdependencies_laravel_vite_plugin_wayfinder",
+      "package_devdependencies_prettier",
+      "package_devdependencies_prettier_plugin_tailwindcss",
+      "package_devdependencies_stylistic_eslint_plugin",
+      "package_devdependencies_types_node",
+      "package_devdependencies_typescript_eslint"
+    ],
+    "27": [
       "composer_scripts",
       "composer_scripts_ci_check",
       "composer_scripts_dev",
@@ -693,7 +885,34 @@
       "composer_scripts_test",
       "composer_scripts_types_check"
     ],
-    "22": [
+    "28": [
+      "hooks_use_current_url",
+      "hooks_use_current_url_iscurrentorparenturlfn",
+      "hooks_use_current_url_iscurrenturlfn",
+      "hooks_use_current_url_usecurrenturlreturn",
+      "hooks_use_current_url_whencurrenturlfn",
+      "lib_utils",
+      "lib_utils_tourl",
+      "settings_layout",
+      "settings_layout_settingslayout",
+      "settings_layout_sidebarnavitems",
+      "ui_separator",
+      "ui_separator_separator"
+    ],
+    "29": [
+      "app_http_middleware_ensureuserisadmin_php_request",
+      "app_http_middleware_ensureuserisadmin_php_response",
+      "app_http_middleware_handleappearance_php_request",
+      "app_http_middleware_handleappearance_php_response",
+      "closure",
+      "middleware_ensureuserisadmin",
+      "middleware_ensureuserisadmin_ensureuserisadmin",
+      "middleware_ensureuserisadmin_ensureuserisadmin_handle",
+      "middleware_handleappearance",
+      "middleware_handleappearance_handleappearance",
+      "middleware_handleappearance_handleappearance_handle"
+    ],
+    "30": [
       "composer_require_dev",
       "composer_require_dev_fakerphp_faker",
       "composer_require_dev_larastan_larastan",
@@ -706,7 +925,32 @@
       "composer_require_dev_nunomaduro_collision",
       "composer_require_dev_phpunit_phpunit"
     ],
-    "23": [
+    "31": [
+      "package",
+      "package_optionaldependencies",
+      "package_optionaldependencies_lightningcss_linux_x64_gnu",
+      "package_optionaldependencies_lightningcss_win32_x64_msvc",
+      "package_optionaldependencies_rollup_rollup_linux_x64_gnu",
+      "package_optionaldependencies_rollup_rollup_win32_x64_msvc",
+      "package_optionaldependencies_tailwindcss_oxide_linux_x64_gnu",
+      "package_optionaldependencies_tailwindcss_oxide_win32_x64_msvc",
+      "package_private",
+      "package_schema",
+      "package_type"
+    ],
+    "32": [
+      "components_heading",
+      "components_heading_heading",
+      "components_manage_passkeys",
+      "components_manage_passkeys_emptystate",
+      "components_manage_passkeys_props",
+      "components_manage_two_factor",
+      "components_manage_two_factor_props",
+      "settings_security",
+      "settings_security_props",
+      "settings_security_security"
+    ],
+    "33": [
       "auth_registrationtest",
       "auth_registrationtest_registrationtest",
       "auth_registrationtest_registrationtest_setup",
@@ -717,18 +961,18 @@
       "auth_registrationtest_registrationtest_test_registration_requires_a_valid_iranian_mobile_number",
       "auth_registrationtest_registrationtest_test_registration_screen_can_be_rendered"
     ],
-    "24": [
-      "composer",
-      "composer_description",
-      "composer_keywords",
-      "composer_license",
-      "composer_minimum_stability",
-      "composer_name",
-      "composer_prefer_stable",
-      "composer_schema",
-      "composer_type"
+    "34": [
+      "components_nav_user",
+      "components_nav_user_navuser",
+      "hooks_use_mobile",
+      "hooks_use_mobile_getserversnapshot",
+      "hooks_use_mobile_issmallerthanbreakpoint",
+      "hooks_use_mobile_mediaquerylistener",
+      "hooks_use_mobile_useismobile",
+      "ui_dropdown_menu_dropdownmenucontent",
+      "ui_dropdown_menu_dropdownmenutrigger"
     ],
-    "25": [
+    "35": [
       "composer_require",
       "composer_require_inertiajs_inertia_laravel",
       "composer_require_laravel_chisel",
@@ -739,7 +983,29 @@
       "composer_require_laravel_wayfinder",
       "composer_require_php"
     ],
-    "26": [
+    "36": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_build_ssr",
+      "package_scripts_dev",
+      "package_scripts_format",
+      "package_scripts_format_check",
+      "package_scripts_lint",
+      "package_scripts_lint_check",
+      "package_scripts_types_check"
+    ],
+    "37": [
+      "types_auth",
+      "types_auth_auth",
+      "types_auth_passkey",
+      "types_auth_twofactorsecretkey",
+      "types_auth_twofactorsetupdata",
+      "types_auth_user",
+      "types_global_d",
+      "types_global_d_inertiaconfig",
+      "types_global_d_inputhtmlattributes"
+    ],
+    "38": [
       "auth_authenticationtest",
       "auth_authenticationtest_authenticationtest",
       "auth_authenticationtest_authenticationtest_test_login_screen_can_be_rendered",
@@ -749,7 +1015,7 @@
       "auth_authenticationtest_authenticationtest_test_users_can_not_authenticate_with_invalid_password",
       "auth_authenticationtest_authenticationtest_test_users_with_two_factor_enabled_are_redirected_to_two_factor_challenge"
     ],
-    "27": [
+    "39": [
       "auth_emailverificationtest",
       "auth_emailverificationtest_emailverificationtest",
       "auth_emailverificationtest_emailverificationtest_setup",
@@ -759,27 +1025,7 @@
       "auth_emailverificationtest_emailverificationtest_test_email_verification_screen_can_be_rendered",
       "auth_emailverificationtest_emailverificationtest_test_verified_user_is_redirected_to_dashboard_from_verification_prompt"
     ],
-    "28": [
-      "auth_passwordconfirmationtest",
-      "auth_passwordconfirmationtest_passwordconfirmationtest",
-      "auth_passwordconfirmationtest_passwordconfirmationtest_test_confirm_password_screen_can_be_rendered",
-      "auth_passwordconfirmationtest_passwordconfirmationtest_test_password_confirmation_requires_authentication",
-      "feature_exampletest",
-      "feature_exampletest_exampletest",
-      "feature_exampletest_exampletest_test_returns_a_successful_response",
-      "refreshdatabase"
-    ],
-    "29": [
-      "auth_twofactorchallengetest",
-      "basetestcase",
-      "tests_testcase",
-      "tests_testcase_testcase",
-      "tests_testcase_testcase_skipunlessfortifyhas",
-      "unit_exampletest",
-      "unit_exampletest_exampletest",
-      "unit_exampletest_exampletest_test_that_true_is_true"
-    ],
-    "30": [
+    "40": [
       "boost",
       "boost_agents",
       "boost_cloud",
@@ -789,7 +1035,7 @@
       "boost_sail",
       "boost_skills"
     ],
-    "31": [
+    "41": [
       "components_user_info",
       "components_user_info_userinfo",
       "hooks_use_initials",
@@ -799,7 +1045,17 @@
       "ui_avatar_avatarfallback",
       "ui_avatar_avatarimage"
     ],
-    "32": [
+    "42": [
+      "composer_psr_4_database_seeders",
+      "seeder",
+      "seeders_databaseseeder",
+      "seeders_databaseseeder_databaseseeder_run",
+      "seeders_planseeder",
+      "seeders_planseeder_planseeder",
+      "seeders_planseeder_planseeder_run",
+      "withoutmodelevents"
+    ],
+    "43": [
       "content",
       "envelope",
       "mail_passwordresetcodemail",
@@ -809,7 +1065,7 @@
       "queueable",
       "serializesmodels"
     ],
-    "33": [
+    "44": [
       "app_http_middleware_handleinertiarequests_php_request",
       "bootstrap_app",
       "middleware",
@@ -818,7 +1074,25 @@
       "middleware_handleinertiarequests_handleinertiarequests_share",
       "middleware_handleinertiarequests_handleinertiarequests_version"
     ],
-    "34": [
+    "45": [
+      "auth_passwordresettest",
+      "auth_passwordresettest_passwordresettest",
+      "auth_passwordresettest_passwordresettest_test_a_reset_code_is_emailed_when_the_user_has_an_email",
+      "auth_passwordresettest_passwordresettest_test_a_reset_code_is_sent_over_sms",
+      "auth_passwordresettest_passwordresettest_test_forgot_password_screen_can_be_rendered",
+      "auth_passwordresettest_passwordresettest_test_password_can_be_reset_with_a_valid_sms_code",
+      "auth_passwordresettest_passwordresettest_test_password_cannot_be_reset_with_an_invalid_code"
+    ],
+    "46": [
+      "components_alert_error",
+      "components_alert_error_alerterror",
+      "ui_alert",
+      "ui_alert_alert",
+      "ui_alert_alertdescription",
+      "ui_alert_alerttitle",
+      "ui_alert_alertvariants"
+    ],
+    "47": [
       "composer_allow_plugins_pestphp_pest_plugin",
       "composer_allow_plugins_php_http_discovery",
       "composer_config",
@@ -827,7 +1101,16 @@
       "composer_config_preferred_install",
       "composer_config_sort_packages"
     ],
-    "35": [
+    "48": [
+      "models_user_user_generatereferralcode",
+      "self",
+      "sms_smsresult",
+      "sms_smsresult_smsresult",
+      "sms_smsresult_smsresult_construct",
+      "sms_smsresult_smsresult_failure",
+      "sms_smsresult_smsresult_success"
+    ],
+    "49": [
       "opencode",
       "opencode_laravel_boost_command",
       "opencode_laravel_boost_enabled",
@@ -836,7 +1119,7 @@
       "opencode_mcp_laravel_boost",
       "opencode_schema"
     ],
-    "36": [
+    "50": [
       "settings_profileupdatetest",
       "settings_profileupdatetest_profileupdatetest",
       "settings_profileupdatetest_profileupdatetest_test_correct_password_must_be_provided_to_delete_account",
@@ -845,7 +1128,7 @@
       "settings_profileupdatetest_profileupdatetest_test_profile_page_is_displayed",
       "settings_profileupdatetest_profileupdatetest_test_user_can_delete_their_account"
     ],
-    "37": [
+    "51": [
       "settings_securitytest",
       "settings_securitytest_securitytest",
       "settings_securitytest_securitytest_test_correct_password_must_be_provided_to_update_password",
@@ -854,31 +1137,15 @@
       "settings_securitytest_securitytest_test_security_page_renders_without_two_factor_when_feature_is_disabled",
       "settings_securitytest_securitytest_test_security_page_requires_password_confirmation_when_enabled"
     ],
-    "38": [
-      "app_http_middleware_handleappearance_php_request",
-      "app_http_middleware_handleappearance_php_response",
-      "closure",
-      "middleware_handleappearance",
-      "middleware_handleappearance_handleappearance",
-      "middleware_handleappearance_handleappearance_handle"
+    "52": [
+      "admin_adminaccesstest_adminaccesstest",
+      "admin_adminaccesstest_adminaccesstest_test_admin_can_adjust_a_user_wallet_balance",
+      "admin_adminaccesstest_adminaccesstest_test_admin_can_create_a_plan",
+      "admin_adminaccesstest_adminaccesstest_test_admin_can_toggle_a_plan_active_state",
+      "admin_adminaccesstest_adminaccesstest_test_admins_can_view_the_users_list",
+      "admin_adminaccesstest_adminaccesstest_test_non_admins_cannot_access_the_admin_users_page"
     ],
-    "39": [
-      "auth_passwordresettest",
-      "auth_passwordresettest_passwordresettest",
-      "auth_passwordresettest_passwordresettest_test_a_reset_code_is_emailed_when_the_user_has_an_email",
-      "auth_passwordresettest_passwordresettest_test_a_reset_code_is_sent_over_sms",
-      "auth_passwordresettest_passwordresettest_test_forgot_password_screen_can_be_rendered",
-      "auth_passwordresettest_passwordresettest_test_password_cannot_be_reset_with_an_invalid_code"
-    ],
-    "40": [
-      "composer_autoload",
-      "composer_autoload_dev",
-      "composer_autoload_psr_4",
-      "composer_psr_4_app",
-      "composer_psr_4_database_factories",
-      "composer_psr_4_tests"
-    ],
-    "41": [
+    "53": [
       "providers_telescopeserviceprovider",
       "providers_telescopeserviceprovider_telescopeserviceprovider",
       "providers_telescopeserviceprovider_telescopeserviceprovider_gate",
@@ -886,517 +1153,546 @@
       "providers_telescopeserviceprovider_telescopeserviceprovider_register",
       "telescopeapplicationserviceprovider"
     ],
-    "42": [
+    "54": [
+      "ui_toggle",
+      "ui_toggle_group",
+      "ui_toggle_group_togglegroupcontext",
+      "ui_toggle_group_togglegroupitem",
+      "ui_toggle_toggle",
+      "ui_toggle_togglevariants"
+    ],
+    "55": [
       "app_services_sms_contracts_smsprovider_php_smsresult",
       "contracts_smsprovider",
       "contracts_smsprovider_sendotp",
       "contracts_smsprovider_sendpattern",
       "contracts_smsprovider_verifyotp"
     ],
-    "43": [
+    "56": [
       "auth_verificationnotificationtest",
       "auth_verificationnotificationtest_verificationnotificationtest",
       "auth_verificationnotificationtest_verificationnotificationtest_setup",
       "auth_verificationnotificationtest_verificationnotificationtest_test_does_not_send_verification_notification_if_email_is_verified",
       "auth_verificationnotificationtest_verificationnotificationtest_test_sends_verification_notification"
     ],
-    "44": [
+    "57": [
       "composer_extra",
       "composer_extra_laravel",
       "composer_installer_post_create_project",
       "composer_laravel_dont_discover",
       "composer_laravel_installer"
     ],
-    "45": [
-      "composer_psr_4_database_seeders",
-      "seeder",
-      "seeders_databaseseeder",
-      "seeders_databaseseeder_databaseseeder_run",
-      "withoutmodelevents"
+    "58": [
+      "command",
+      "commands_graph",
+      "commands_graph_graph",
+      "commands_graph_graph_handle"
     ],
-    "46": [
-      "feature_dashboardtest",
-      "feature_dashboardtest_dashboardtest_test_authenticated_users_can_visit_the_dashboard",
-      "feature_dashboardtest_dashboardtest_test_guests_are_redirected_to_the_login_page",
-      "pages_dashboard",
-      "ui_placeholder_pattern"
-    ],
-    "47": [
+    "59": [
       "concerns_profilevalidationrules",
       "concerns_profilevalidationrules_emailrules",
       "concerns_profilevalidationrules_namerules",
       "concerns_profilevalidationrules_profilerules"
     ],
-    "48": [
+    "60": [
       "migrations_2026_06_15_081328_create_telescope_entries_table",
       "migrations_2026_06_15_081328_create_telescope_entries_table_down",
       "migrations_2026_06_15_081328_create_telescope_entries_table_getconnection",
       "migrations_2026_06_15_081328_create_telescope_entries_table_up"
     ],
-    "49": [
+    "61": [
+      "runtimeexception",
+      "wallet_insufficientbalanceexception",
+      "wallet_insufficientbalanceexception_insufficientbalanceexception",
+      "wallet_insufficientbalanceexception_insufficientbalanceexception_construct"
+    ],
+    "62": [
       "ui_collapsible",
       "ui_collapsible_collapsible",
       "ui_collapsible_collapsiblecontent",
       "ui_collapsible_collapsibletrigger"
     ],
-    "50": [
-      "claude_settings",
-      "claude_settings_hooks",
-      "claude_settings_hooks_pretooluse"
-    ],
-    "51": [
+    "63": [
       "concerns_passwordvalidationrules",
       "concerns_passwordvalidationrules_currentpasswordrules",
       "concerns_passwordvalidationrules_passwordrules"
     ],
-    "52": [
+    "64": [
       "eslint_config",
       "eslint_config_controlstatements",
       "eslint_config_paddingaroundcontrol"
     ],
-    "53": [
+    "65": [
       "mcp",
       "mcp_command_php",
       "mcp_mcp_server_laravel_boost"
     ],
-    "54": [
+    "66": [
       "migrations_0001_01_01_000000_create_users_table",
       "migrations_0001_01_01_000000_create_users_table_down",
       "migrations_0001_01_01_000000_create_users_table_up"
     ],
-    "55": [
+    "67": [
       "migrations_0001_01_01_000001_create_cache_table",
       "migrations_0001_01_01_000001_create_cache_table_down",
       "migrations_0001_01_01_000001_create_cache_table_up"
     ],
-    "56": [
+    "68": [
       "migrations_0001_01_01_000002_create_jobs_table",
       "migrations_0001_01_01_000002_create_jobs_table_down",
       "migrations_0001_01_01_000002_create_jobs_table_up"
     ],
-    "57": [
+    "69": [
       "migrations_2024_01_01_000000_create_passkeys_table",
       "migrations_2024_01_01_000000_create_passkeys_table_down",
       "migrations_2024_01_01_000000_create_passkeys_table_up"
     ],
-    "58": [
+    "70": [
       "migrations_2025_08_14_170933_add_two_factor_columns_to_users_table",
       "migrations_2025_08_14_170933_add_two_factor_columns_to_users_table_down",
       "migrations_2025_08_14_170933_add_two_factor_columns_to_users_table_up"
     ],
-    "59": [
+    "71": [
       "migrations_2026_06_15_093420_create_password_reset_codes_table",
       "migrations_2026_06_15_093420_create_password_reset_codes_table_down",
       "migrations_2026_06_15_093420_create_password_reset_codes_table_up"
     ],
-    "60": [
+    "72": [
+      "migrations_2026_06_15_105110_create_plans_table",
+      "migrations_2026_06_15_105110_create_plans_table_down",
+      "migrations_2026_06_15_105110_create_plans_table_up"
+    ],
+    "73": [
+      "migrations_2026_06_15_105111_create_wallets_table",
+      "migrations_2026_06_15_105111_create_wallets_table_down",
+      "migrations_2026_06_15_105111_create_wallets_table_up"
+    ],
+    "74": [
+      "migrations_2026_06_15_105112_create_wallet_transactions_table",
+      "migrations_2026_06_15_105112_create_wallet_transactions_table_down",
+      "migrations_2026_06_15_105112_create_wallet_transactions_table_up"
+    ],
+    "75": [
+      "migrations_2026_06_15_105113_create_subscriptions_table",
+      "migrations_2026_06_15_105113_create_subscriptions_table_down",
+      "migrations_2026_06_15_105113_create_subscriptions_table_up"
+    ],
+    "76": [
+      "migrations_2026_06_15_105115_add_is_admin_to_users_table",
+      "migrations_2026_06_15_105115_add_is_admin_to_users_table_down",
+      "migrations_2026_06_15_105115_add_is_admin_to_users_table_up"
+    ],
+    "77": [
       "ui_icon",
       "ui_icon_icon",
       "ui_icon_iconprops"
     ],
-    "61": [
+    "78": [
       "concerns_phonevalidationrules",
       "concerns_phonevalidationrules_phonerules"
     ],
-    "62": [
+    "79": [
       "pint",
       "pint_preset"
     ],
-    "63": [
+    "80": [
       "bootstrap_providers"
     ],
-    "64": [
+    "81": [
       "cache_packages"
     ],
-    "65": [
+    "82": [
       "cache_services"
     ],
-    "66": [
+    "83": [
       "config_app"
     ],
-    "67": [
+    "84": [
       "config_auth"
     ],
-    "68": [
+    "85": [
       "config_cache"
     ],
-    "69": [
+    "86": [
       "config_database"
     ],
-    "70": [
+    "87": [
       "config_filesystems"
     ],
-    "71": [
+    "88": [
       "config_fortify"
     ],
-    "72": [
+    "89": [
       "config_inertia"
     ],
-    "73": [
+    "90": [
       "config_logging"
     ],
-    "74": [
+    "91": [
       "config_mail"
     ],
-    "75": [
+    "92": [
       "config_queue"
     ],
-    "76": [
+    "93": [
       "config_services"
     ],
-    "77": [
+    "94": [
       "config_session"
     ],
-    "78": [
+    "95": [
       "config_telescope"
     ],
-    "79": [
+    "96": [
       "mail_password_reset_code_blade"
     ],
-    "80": [
+    "97": [
       "public_index"
     ],
-    "81": [
-      "routes_auth"
-    ],
-    "82": [
-      "routes_console"
-    ],
-    "83": [
-      "routes_settings"
-    ],
-    "84": [
-      "routes_web"
-    ],
-    "85": [
-      "types_vite_env_d"
-    ],
-    "86": [
-      "views_0737d3b26db093725173d7118bb02826"
-    ],
-    "87": [
-      "views_08ca5dc7f224de91c5679370a9ad32ab"
-    ],
-    "88": [
-      "views_0ab93d59a8544002151bfacea869489a"
-    ],
-    "89": [
-      "views_0c3aaf40a11d072a423a69439784ca62"
-    ],
-    "90": [
-      "views_0caa662244269dd2af8e553a66044c15"
-    ],
-    "91": [
-      "views_0edfd6e4ed22df48f0abae834812a6cc"
-    ],
-    "92": [
-      "views_1419bd7cfb760f4886e71b1862b0f43c"
-    ],
-    "93": [
-      "views_153f35438b5b2a7c91374dbd3114fe87_blade"
-    ],
-    "94": [
-      "views_1afc33508056af3763d3848e35172830"
-    ],
-    "95": [
-      "views_1c4b0334bb65ebfe9f80fcaaef11a430"
-    ],
-    "96": [
-      "views_1f5000fdd2f1b9370a55becd55068bcb"
-    ],
-    "97": [
-      "views_244208cb6398e4fa45259ddd22acba41"
-    ],
     "98": [
-      "views_2b3b75ec9892892981b355f1d066492b_blade"
+      "routes_admin"
     ],
     "99": [
-      "views_2d21c7721a51fb6d42304f35ce55c99a_blade"
+      "routes_auth"
     ],
     "100": [
-      "views_2dc52bd36574b825f3187538318b96de"
+      "routes_console"
     ],
     "101": [
-      "views_2dda45621fe89bb092f494710a5582d4"
+      "routes_settings"
     ],
     "102": [
-      "views_2f85fea3844bed3789fe5a4142cacb0c"
+      "routes_web"
     ],
     "103": [
-      "views_32976a5fc1ae7228225dc63a6dffbd66_blade"
+      "types_vite_env_d"
     ],
     "104": [
-      "views_33114883a502e621f3b108a774dd683f"
+      "views_0737d3b26db093725173d7118bb02826"
     ],
     "105": [
-      "views_343ec62696419771fcde27a0d4304449"
+      "views_08ca5dc7f224de91c5679370a9ad32ab"
     ],
     "106": [
-      "views_34a320daf9511c3e61c9ebdd7d8f07a0"
+      "views_0ab93d59a8544002151bfacea869489a"
     ],
     "107": [
-      "views_3514bb02110aae36afcb550734e058e9"
+      "views_0c3aaf40a11d072a423a69439784ca62"
     ],
     "108": [
-      "views_3681a659d54d813e9a06d6c3cdfd24e0"
+      "views_0caa662244269dd2af8e553a66044c15"
     ],
     "109": [
-      "views_3aef0d145a2d1e06a54665a604997276_blade"
+      "views_0edfd6e4ed22df48f0abae834812a6cc"
     ],
     "110": [
-      "views_3eb5f30ba8334f669120c07ba4401cea"
+      "views_1419bd7cfb760f4886e71b1862b0f43c"
     ],
     "111": [
-      "views_42af0b658c07ea871f223733a039de48"
+      "views_153f35438b5b2a7c91374dbd3114fe87_blade"
     ],
     "112": [
-      "views_4aa6dc6b9b9fe1841652da4a1b3065c4"
+      "views_1afc33508056af3763d3848e35172830"
     ],
     "113": [
-      "views_4ae68e42e83e3e93bf26c6242f407ce6"
+      "views_1c4b0334bb65ebfe9f80fcaaef11a430"
     ],
     "114": [
-      "views_4ceed277c66501c42f794c1db3dd8d86"
+      "views_1f5000fdd2f1b9370a55becd55068bcb"
     ],
     "115": [
-      "views_56412a9aeb6f1e81a1c3ce244096a4cf_blade"
+      "views_244208cb6398e4fa45259ddd22acba41"
     ],
     "116": [
-      "views_56ae908dc2f2dccca2ae0933e2e1c757"
+      "views_2b3b75ec9892892981b355f1d066492b_blade"
     ],
     "117": [
-      "views_57de9e5f33ec9176a4ded23adb6e786e"
+      "views_2d21c7721a51fb6d42304f35ce55c99a_blade"
     ],
     "118": [
-      "views_586656c12c0d4f6deaf26dcb7258fe2a"
+      "views_2dc52bd36574b825f3187538318b96de"
     ],
     "119": [
-      "views_58f6b5ecbad88fc4da15879dbc7f6e69_blade"
+      "views_2dda45621fe89bb092f494710a5582d4"
     ],
     "120": [
-      "views_5c5c47784cdd3a28b7ff441ead39773b"
+      "views_2f85fea3844bed3789fe5a4142cacb0c"
     ],
     "121": [
-      "views_5f225b164af7385cea7b2cbd151cb891"
+      "views_32976a5fc1ae7228225dc63a6dffbd66_blade"
     ],
     "122": [
-      "views_67fad89036f44c9b2de63b1374f1012b"
+      "views_33114883a502e621f3b108a774dd683f"
     ],
     "123": [
-      "views_6fd9b311bcef874a05353bffd0419440"
+      "views_343ec62696419771fcde27a0d4304449"
     ],
     "124": [
-      "views_7067be0335b7e36275b804d53a0c0602"
+      "views_34a320daf9511c3e61c9ebdd7d8f07a0"
     ],
     "125": [
-      "views_7cf4b183ddaa8007049caf7711672772"
+      "views_3514bb02110aae36afcb550734e058e9"
     ],
     "126": [
-      "views_7d0fb4b805af8a5fcdfc195c9d99a273"
+      "views_3681a659d54d813e9a06d6c3cdfd24e0"
     ],
     "127": [
-      "views_7dd9fdc7dbeea02ea2c42e6b9bd50015"
+      "views_3aef0d145a2d1e06a54665a604997276_blade"
     ],
     "128": [
-      "views_878a951baed2638bb3d94847bb3c9841"
+      "views_3eb5f30ba8334f669120c07ba4401cea"
     ],
     "129": [
-      "views_88b9a4f68c7688cc6a0339ed43d1669f_blade"
+      "views_42af0b658c07ea871f223733a039de48"
     ],
     "130": [
-      "views_8e168a75ea0c7ceee49aea10d5835142"
+      "views_4aa6dc6b9b9fe1841652da4a1b3065c4"
     ],
     "131": [
-      "views_8e3ca65ab2d70f2b5c55c8c76faad11a"
+      "views_4ae68e42e83e3e93bf26c6242f407ce6"
     ],
     "132": [
-      "views_8e8c4dcf146d38c5394e504c20dc5e51"
+      "views_4ceed277c66501c42f794c1db3dd8d86"
     ],
     "133": [
-      "views_974dfebcf90e8b00680b470e4c838315"
+      "views_56412a9aeb6f1e81a1c3ce244096a4cf_blade"
     ],
     "134": [
-      "views_9aaddc377c3f9d965d43cc117b7ce98c"
+      "views_56ae908dc2f2dccca2ae0933e2e1c757"
     ],
     "135": [
-      "views_a5808f6c49014d5378329f99718af9c5"
+      "views_57de9e5f33ec9176a4ded23adb6e786e"
     ],
     "136": [
-      "views_ad027bc1f4f77db585097342990de57b_blade"
+      "views_586656c12c0d4f6deaf26dcb7258fe2a"
     ],
     "137": [
-      "views_app_blade"
+      "views_58f6b5ecbad88fc4da15879dbc7f6e69_blade"
     ],
     "138": [
-      "views_b2efede1730e6d11aa65efd3b9b88bed"
+      "views_5c5c47784cdd3a28b7ff441ead39773b"
     ],
     "139": [
-      "views_b5e0d598b2e1b181c834651dbd3c88fc"
+      "views_5f225b164af7385cea7b2cbd151cb891"
     ],
     "140": [
-      "views_b609ace7053b97ba3341a4483fa23dc1"
+      "views_67fad89036f44c9b2de63b1374f1012b"
     ],
     "141": [
-      "views_bc6b6eb4abd06d8910d466c14ccff047"
+      "views_6fd9b311bcef874a05353bffd0419440"
     ],
     "142": [
-      "views_c095064990d8bc4195f27bd56d6c4f49"
+      "views_7067be0335b7e36275b804d53a0c0602"
     ],
     "143": [
-      "views_c171fffd32ee4668d0f75682681d7fac_blade"
+      "views_7cf4b183ddaa8007049caf7711672772"
     ],
     "144": [
-      "views_c22627588617c4d02f86a54be59bf1a1"
+      "views_7d0fb4b805af8a5fcdfc195c9d99a273"
     ],
     "145": [
-      "views_cb7aab57286e05e4bf8ad5d56cd6d92b"
+      "views_7dd9fdc7dbeea02ea2c42e6b9bd50015"
     ],
     "146": [
-      "views_cd6d1de0fd041e6a423eec3a277a109d"
+      "views_878a951baed2638bb3d94847bb3c9841"
     ],
     "147": [
-      "views_d1640c796ea7d658f5d537a146d3b49c_blade"
+      "views_88b9a4f68c7688cc6a0339ed43d1669f_blade"
     ],
     "148": [
-      "views_d8451ad590d0ac6b1367e6ef78ac9d7f"
+      "views_8e168a75ea0c7ceee49aea10d5835142"
     ],
     "149": [
-      "views_da1290c043c35f6c227d7fe5bea6388f_blade"
+      "views_8e3ca65ab2d70f2b5c55c8c76faad11a"
     ],
     "150": [
-      "views_dca1a29b69452d307c2c30a7b9cc0a6e_blade"
+      "views_8e8c4dcf146d38c5394e504c20dc5e51"
     ],
     "151": [
-      "views_dce1ab759538e356c4e7c369a4b0d487"
+      "views_974dfebcf90e8b00680b470e4c838315"
     ],
     "152": [
-      "views_dfbe68a975ffca3fc04e96c6bd85e356"
+      "views_9aaddc377c3f9d965d43cc117b7ce98c"
     ],
     "153": [
-      "views_dff77802623a0a80b16cad1d9cac6a95"
+      "views_a5808f6c49014d5378329f99718af9c5"
     ],
     "154": [
-      "views_e10963ae701ee979decf09ab4ab36921"
+      "views_ad027bc1f4f77db585097342990de57b_blade"
     ],
     "155": [
-      "views_e2f94e1aa01e9bf5c9611ff8417187a2"
+      "views_app_blade"
     ],
     "156": [
-      "views_e3b9888097c7ff3c001c6cdebb490dc0_blade"
+      "views_b2efede1730e6d11aa65efd3b9b88bed"
     ],
     "157": [
-      "views_e43558d3eac53742fd48f7f1d016c89f"
+      "views_b5e0d598b2e1b181c834651dbd3c88fc"
     ],
     "158": [
-      "views_e60ba324b1bf2de15153ac7c0012e1d0"
+      "views_b609ace7053b97ba3341a4483fa23dc1"
     ],
     "159": [
-      "views_eb607378e375b6693291538550f6e00f"
+      "views_bc6b6eb4abd06d8910d466c14ccff047"
     ],
     "160": [
-      "views_ebe43f3dd76ad305a8a167d122bef29b"
+      "views_c095064990d8bc4195f27bd56d6c4f49"
     ],
     "161": [
-      "views_ee301f7f6897798ed990396a8b2eeed1"
+      "views_c171fffd32ee4668d0f75682681d7fac_blade"
     ],
     "162": [
-      "views_ee9fb8e35d225d5f83822e701264589f"
+      "views_c22627588617c4d02f86a54be59bf1a1"
     ],
     "163": [
-      "views_efe75c7c0953490022ba5bd3c31dea8d_blade"
+      "views_cb7aab57286e05e4bf8ad5d56cd6d92b"
     ],
     "164": [
-      "views_f0286c7956c5ad1190c8a6bed8327dd3"
+      "views_cd6d1de0fd041e6a423eec3a277a109d"
     ],
     "165": [
-      "views_f54dab5ebb62549974a70878bd4c9159"
+      "views_d1640c796ea7d658f5d537a146d3b49c_blade"
     ],
     "166": [
-      "views_f804ef16133a3549fb5b0821b1429915"
+      "views_d8451ad590d0ac6b1367e6ef78ac9d7f"
     ],
     "167": [
+      "views_da1290c043c35f6c227d7fe5bea6388f_blade"
+    ],
+    "168": [
+      "views_dca1a29b69452d307c2c30a7b9cc0a6e_blade"
+    ],
+    "169": [
+      "views_dce1ab759538e356c4e7c369a4b0d487"
+    ],
+    "170": [
+      "views_dfbe68a975ffca3fc04e96c6bd85e356"
+    ],
+    "171": [
+      "views_dff77802623a0a80b16cad1d9cac6a95"
+    ],
+    "172": [
+      "views_e10963ae701ee979decf09ab4ab36921"
+    ],
+    "173": [
+      "views_e2f94e1aa01e9bf5c9611ff8417187a2"
+    ],
+    "174": [
+      "views_e3b9888097c7ff3c001c6cdebb490dc0_blade"
+    ],
+    "175": [
+      "views_e43558d3eac53742fd48f7f1d016c89f"
+    ],
+    "176": [
+      "views_e60ba324b1bf2de15153ac7c0012e1d0"
+    ],
+    "177": [
+      "views_eb607378e375b6693291538550f6e00f"
+    ],
+    "178": [
+      "views_ebe43f3dd76ad305a8a167d122bef29b"
+    ],
+    "179": [
+      "views_ee301f7f6897798ed990396a8b2eeed1"
+    ],
+    "180": [
+      "views_ee9fb8e35d225d5f83822e701264589f"
+    ],
+    "181": [
+      "views_efe75c7c0953490022ba5bd3c31dea8d_blade"
+    ],
+    "182": [
+      "views_f0286c7956c5ad1190c8a6bed8327dd3"
+    ],
+    "183": [
+      "views_f54dab5ebb62549974a70878bd4c9159"
+    ],
+    "184": [
+      "views_f804ef16133a3549fb5b0821b1429915"
+    ],
+    "185": [
       "vite_config"
     ]
   },
   "cohesion": {
-    "0": 0.058941058941058944,
-    "1": 0.09743589743589744,
-    "2": 0.09176788124156546,
-    "3": 0.08232118758434548,
-    "4": 0.05555555555555555,
-    "5": 0.05714285714285714,
-    "6": 0.0946969696969697,
+    "0": 0.06436487638533675,
+    "1": 0.05794556628621598,
+    "2": 0.06599326599326599,
+    "3": 0.0603921568627451,
+    "4": 0.06290471785383904,
+    "5": 0.0953058321479374,
+    "6": 0.05555555555555555,
     "7": 0.0946969696969697,
     "8": 0.0946969696969697,
-    "9": 0.11895161290322581,
-    "10": 0.11576354679802955,
-    "11": 0.10052910052910052,
-    "12": 0.12535612535612536,
-    "13": 0.12615384615384614,
-    "14": 0.1225296442687747,
-    "15": 0.14210526315789473,
-    "16": 0.1286549707602339,
-    "17": 0.1111111111111111,
-    "18": 0.1111111111111111,
-    "19": 0.22058823529411764,
-    "20": 0.19230769230769232,
-    "21": 0.15384615384615385,
-    "22": 0.18181818181818182,
-    "23": 0.2222222222222222,
-    "24": 0.2222222222222222,
-    "25": 0.2222222222222222,
-    "26": 0.25,
-    "27": 0.25,
-    "28": 0.32142857142857145,
-    "29": 0.2857142857142857,
-    "30": 0.25,
-    "31": 0.39285714285714285,
-    "32": 0.42857142857142855,
-    "33": 0.42857142857142855,
-    "34": 0.2857142857142857,
-    "35": 0.2857142857142857,
-    "36": 0.2857142857142857,
-    "37": 0.2857142857142857,
-    "38": 0.5333333333333333,
-    "39": 0.3333333333333333,
-    "40": 0.3333333333333333,
-    "41": 0.4666666666666667,
-    "42": 0.6,
-    "43": 0.4,
-    "44": 0.4,
-    "45": 0.6,
-    "46": 0.4,
-    "47": 0.8333333333333334,
-    "48": 0.8333333333333334,
-    "49": 0.5,
-    "50": 0.6666666666666666,
-    "51": 0.6666666666666666,
-    "52": 0.6666666666666666,
-    "53": 0.6666666666666666,
-    "54": 0.6666666666666666,
-    "55": 0.6666666666666666,
-    "56": 0.6666666666666666,
-    "57": 0.6666666666666666,
+    "9": 0.0946969696969697,
+    "10": 0.14942528735632185,
+    "11": 0.11576354679802955,
+    "12": 0.12,
+    "13": 0.13333333333333333,
+    "14": 0.11333333333333333,
+    "15": 0.16666666666666666,
+    "16": 0.1523809523809524,
+    "17": 0.13333333333333333,
+    "18": 0.14035087719298245,
+    "19": 0.1111111111111111,
+    "20": 0.1111111111111111,
+    "21": 0.16176470588235295,
+    "22": 0.19852941176470587,
+    "23": 0.14705882352941177,
+    "24": 0.26666666666666666,
+    "25": 0.14285714285714285,
+    "26": 0.13333333333333333,
+    "27": 0.15384615384615385,
+    "28": 0.25757575757575757,
+    "29": 0.2909090909090909,
+    "30": 0.18181818181818182,
+    "31": 0.18181818181818182,
+    "32": 0.28888888888888886,
+    "33": 0.2222222222222222,
+    "34": 0.2777777777777778,
+    "35": 0.2222222222222222,
+    "36": 0.2222222222222222,
+    "37": 0.2777777777777778,
+    "38": 0.25,
+    "39": 0.25,
+    "40": 0.25,
+    "41": 0.39285714285714285,
+    "42": 0.35714285714285715,
+    "43": 0.42857142857142855,
+    "44": 0.42857142857142855,
+    "45": 0.2857142857142857,
+    "46": 0.47619047619047616,
+    "47": 0.2857142857142857,
+    "48": 0.3333333333333333,
+    "49": 0.2857142857142857,
+    "50": 0.2857142857142857,
+    "51": 0.2857142857142857,
+    "52": 0.3333333333333333,
+    "53": 0.4666666666666667,
+    "54": 0.5333333333333333,
+    "55": 0.6,
+    "56": 0.4,
+    "57": 0.4,
     "58": 0.6666666666666666,
-    "59": 0.6666666666666666,
-    "60": 0.6666666666666666,
-    "61": 1.0,
-    "62": 1.0,
-    "63": 1.0,
-    "64": 1.0,
-    "65": 1.0,
-    "66": 1.0,
-    "67": 1.0,
-    "68": 1.0,
-    "69": 1.0,
-    "70": 1.0,
-    "71": 1.0,
-    "72": 1.0,
-    "73": 1.0,
-    "74": 1.0,
-    "75": 1.0,
-    "76": 1.0,
-    "77": 1.0,
+    "59": 0.8333333333333334,
+    "60": 0.8333333333333334,
+    "61": 0.6666666666666666,
+    "62": 0.5,
+    "63": 0.6666666666666666,
+    "64": 0.6666666666666666,
+    "65": 0.6666666666666666,
+    "66": 0.6666666666666666,
+    "67": 0.6666666666666666,
+    "68": 0.6666666666666666,
+    "69": 0.6666666666666666,
+    "70": 0.6666666666666666,
+    "71": 0.6666666666666666,
+    "72": 0.6666666666666666,
+    "73": 0.6666666666666666,
+    "74": 0.6666666666666666,
+    "75": 0.6666666666666666,
+    "76": 0.6666666666666666,
+    "77": 0.6666666666666666,
     "78": 1.0,
     "79": 1.0,
     "80": 1.0,
@@ -1486,13 +1782,36 @@
     "164": 1.0,
     "165": 1.0,
     "166": 1.0,
-    "167": 1.0
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0
   },
   "gods": [
     {
       "id": "lib_utils_cn",
       "label": "cn()",
-      "degree": 114
+      "degree": 123
+    },
+    {
+      "id": "wallettransactiontype",
+      "label": "WalletTransactionType",
+      "degree": 30
     },
     {
       "id": "tests_testcase_testcase",
@@ -1502,7 +1821,12 @@
     {
       "id": "ui_button_button",
       "label": "Button()",
-      "degree": 19
+      "degree": 24
+    },
+    {
+      "id": "models_user_user",
+      "label": "User",
+      "degree": 15
     },
     {
       "id": "tsconfig_compileroptions",
@@ -1515,29 +1839,19 @@
       "degree": 13
     },
     {
-      "id": "models_user_user",
-      "label": "User",
-      "degree": 11
+      "id": "ui_input_input",
+      "label": "Input()",
+      "degree": 12
+    },
+    {
+      "id": "app_services_wallet_walletservice_php_model",
+      "label": "Model",
+      "degree": 12
     },
     {
       "id": "composer_require_dev",
       "label": "require-dev",
       "degree": 11
-    },
-    {
-      "id": "facades_sms_sms",
-      "label": "Sms",
-      "degree": 10
-    },
-    {
-      "id": "auth_registrationtest_registrationtest",
-      "label": "RegistrationTest",
-      "degree": 10
-    },
-    {
-      "id": "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority",
-      "label": "priority",
-      "degree": 9
     }
   ],
   "surprises": [
