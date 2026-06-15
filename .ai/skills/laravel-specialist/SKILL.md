@@ -1,16 +1,16 @@
 ---
 name: laravel-specialist
-description: Build and configure Laravel 13+ applications, including creating Eloquent models and relationships, implementing Fortify authentication, configuring Horizon queues, designing RESTful APIs with API resources, and building reactive interfaces with Inertia React v3. Use when creating Laravel models, setting up queue workers, implementing Fortify auth flows, building Inertia React components, optimising Eloquent queries, or configuring Laravel features.
+description: Build and configure Laravel 13+ applications, including creating Eloquent models and relationships, implementing Sanctum authentication, configuring Horizon queues, designing RESTful APIs with API resources, and building reactive interfaces with inertia react. Use when creating Laravel models, setting up queue workers, implementing Sanctum auth flows, building inertia react components, optimising Eloquent queries, or writing Pest/PHPUnit tests for Laravel features.
 license: MIT
 metadata:
-    author: https://github.com/Jeffallan
-    version: "1.1.0"
-    domain: backend
-    triggers: Laravel, Eloquent, PHP framework, Laravel API, Artisan, Inertia.js, React v3, Laravel queues, Fortify, Horizon
-    role: specialist
-    scope: implementation
-    output-format: code
-    related-skills: fullstack-guardian, devops-engineer, security-reviewer
+  author: https://github.com/Jeffallan
+  version: "1.1.0"
+  domain: backend
+  triggers: Laravel, Eloquent, PHP framework, Laravel API, Artisan, Laravel queues, inertia react, Laravel testing, Sanctum, Horizon
+  role: specialist
+  scope: implementation
+  output-format: code
+  related-skills: fullstack-guardian, test-master, devops-engineer, security-reviewer
 ---
 
 # Laravel Specialist
@@ -23,7 +23,7 @@ Senior Laravel specialist with deep expertise in Laravel 13+, Eloquent ORM, and 
 2. **Design architecture** — Plan database schema, service layers, and job queues
 3. **Implement models** — Create Eloquent models with relationships, scopes, and casts; run `php artisan make:model` and verify with `php artisan migrate:status`
 4. **Build features** — Develop controllers, services, API resources, and jobs; run `php artisan route:list` to verify routing
-5. **Frontend Integration** — Develop reactive interfaces using Inertia React v3 and connect them with backend controllers.
+5. **Test thoroughly** — Write feature and unit tests; run `php artisan test` before considering any step complete (target >85% coverage)
 
 ## Reference Guide
 
@@ -34,8 +34,7 @@ Load detailed guidance based on context:
 | Eloquent ORM | `references/eloquent.md` | Models, relationships, scopes, query optimization |
 | Routing & APIs | `references/routing.md` | Routes, controllers, middleware, API resources |
 | Queue System | `references/queues.md` | Jobs, workers, Horizon, failed jobs, batching |
-| Inertia React v3 | `references/inertia-react.md` | Components, hooks, props, shared data, routing |
-| Authentication | `references/fortify.md` | Fortify configuration, actions, login, registration |
+| Testing | `references/testing.md` | Feature tests, factories, mocking, Pest PHP |
 
 ## Constraints
 
@@ -45,9 +44,9 @@ Load detailed guidance based on context:
 - Use Eloquent relationships properly (avoid N+1 with eager loading)
 - Implement API resources for transforming data
 - Queue long-running tasks
+- Write comprehensive tests (>85% coverage)
 - Use service containers and dependency injection
 - Follow PSR-12 coding standards
-- Implement authentication using Laravel Fortify actions
 
 ### MUST NOT DO
 - Use raw queries without protection (SQL injection)
@@ -77,7 +76,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
 
 final class Post extends Model
 {
@@ -180,7 +178,6 @@ declare(strict_types=1);
 namespace App\Jobs;
 
 use App\Models\Post;
-use App\Enums\PostStatus;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -214,50 +211,37 @@ final class PublishPost implements ShouldQueue
 }
 ```
 
-### Inertia React v3 Component
+### Feature Test (Pest)
 
-```tsx
-import React from 'react';
-import { Head, useForm } from '@inertiajs/react';
+```php
+<?php
 
-interface Props {
-    post: {
-        id: number;
-        title: string;
-        body: string;
-    };
-}
+use App\Models\Post;
+use App\Models\User;
 
-export default function EditPost({ post }: Props) {
-    const { data, setData, put, processing, errors } = useForm({
-        title: post.title,
-        body: post.body,
-    });
+it('returns a published post for authenticated users', function (): void {
+    $user = User::factory()->create();
+    $post = Post::factory()->published()->for($user, 'author')->create();
 
-    function submit(e: React.FormEvent) {
-        e.preventDefault();
-        put(`/posts/${post.id}`);
-    }
+    $response = $this->actingAs($user)
+        ->getJson("/api/posts/{$post->id}");
 
-    return (
-        <>
-            <Head title="Edit Post" />
-            <form onSubmit={submit}>
-                <input 
-                    value={data.title} 
-                    onChange={e => setData('title', e.target.value)} 
-                />
-                {errors.title && <div>{errors.title}</div>}
-                
-                <textarea 
-                    value={data.body} 
-                    onChange={e => setData('body', e.target.value)} 
-                />
-                <button type="submit" disabled={processing}>Update</button>
-            </form>
-        </>
-    );
-}
+    $response->assertOk()
+        ->assertJsonPath('data.status', 'published')
+        ->assertJsonPath('data.author.id', $user->id);
+});
+
+it('queues a publish job when a draft is submitted', function (): void {
+    Queue::fake();
+    $user = User::factory()->create();
+    $post = Post::factory()->draft()->for($user, 'author')->create();
+
+    $this->actingAs($user)
+        ->postJson("/api/posts/{$post->id}/publish")
+        ->assertAccepted();
+
+    Queue::assertPushed(PublishPost::class, fn ($job) => $job->post->is($post));
+});
 ```
 
 ## Validation Checkpoints
@@ -269,11 +253,11 @@ Run these at each workflow stage to confirm correctness before proceeding:
 | After migration | `php artisan migrate:status` | All migrations show `Ran` |
 | After routing | `php artisan route:list --path=api` | New routes appear with correct verbs |
 | After job dispatch | `php artisan queue:work --once` | Job processes without exception |
-| Auth Config | `php artisan fortify:publish` | Fortify actions and config are correctly set |
+| After implementation | `php artisan test --coverage` | >85% coverage, 0 failures |
 | Before PR | `./vendor/bin/pint --test` | PSR-12 linting passes |
 
 ## Knowledge Reference
 
-Laravel 13+, Eloquent ORM, PHP 8.5+, API resources, Fortify, queues, Horizon, Inertia React v3, Octane, Redis, broadcasting, events/listeners, notifications, task scheduling
+Laravel 13+, Eloquent ORM, PHP 8.5+, API resources, Sanctum/Passport, queues, Horizon, inertia react, Inertia, Octane, Pest/PHPUnit, Redis, broadcasting, events/listeners, notifications, task scheduling
 
 [Documentation](https://jeffallan.github.io/claude-skills/skills/backend/laravel-specialist/)

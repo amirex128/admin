@@ -479,4 +479,4 @@ MIT License. This skill is provided as-is for educational and development purpos
 - **Last Updated**: 2026-01-17
 - **Maintainer**: Asyraf Hussin
 - **Rule Count**: 24 rules across 6 categories
-- **Tech Stack**: Laravel 10+, Inertia.js 1.0+, React 18+, TypeScript 5+
+- **Tech Stack**: Laravel 13+, Inertia.js 1.0+, React 18+, TypeScript 5+

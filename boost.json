@@ -1,8 +1,7 @@
 {
     "agents": [
         "claude_code",
-        "opencode",
-        "cursor"
+        "opencode"
     ],
     "cloud": false,
     "guidelines": true,
