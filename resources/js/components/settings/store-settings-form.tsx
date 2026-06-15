@@ -1,7 +1,11 @@
 import { router, useForm } from '@inertiajs/react';
-import { CreditCard, MapPin, Percent, Truck } from 'lucide-react';
+import { Boxes, CreditCard, FolderTree, MapPin, Percent, Truck } from 'lucide-react';
 
 import InputError from '@/components/input-error';
+import {
+    CategoryManager,
+    PackagingManager,
+} from '@/components/settings/store-taxonomy';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -21,7 +25,12 @@ import {
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import type { GeoOption, StoreSettings } from '@/types';
+import type {
+    Category,
+    GeoOption,
+    PackagingType,
+    StoreSettings,
+} from '@/types';
 
 const SHIPPING_LABELS: Record<string, string> = {
     tipax: 'تیپاکس',
@@ -62,12 +71,14 @@ export function StoreSettingsForm({
     cities,
     shippingMethods,
     updateUrl,
+    taxonomy,
 }: {
     settings: StoreSettings;
     provinces: GeoOption[];
     cities: GeoOption[];
     shippingMethods: string[];
     updateUrl: string;
+    taxonomy?: { categories: Category[]; packagingTypes: PackagingType[] };
 }) {
     const form = useForm<StoreForm>({
         province_id: settings.province_id,
@@ -152,6 +163,22 @@ export function StoreSettingsForm({
                     >
                         مالی و مالیات
                     </TabTrigger>
+                    {taxonomy && (
+                        <>
+                            <TabTrigger
+                                value="categories"
+                                icon={<FolderTree className="size-4" />}
+                            >
+                                دسته‌بندی‌ها
+                            </TabTrigger>
+                            <TabTrigger
+                                value="packaging"
+                                icon={<Boxes className="size-4" />}
+                            >
+                                بسته‌بندی‌ها
+                            </TabTrigger>
+                        </>
+                    )}
                 </TabsList>
 
                 <div className="flex-1 space-y-6">
@@ -453,6 +480,21 @@ export function StoreSettingsForm({
                             </CardContent>
                         </Card>
                     </TabsContent>
+
+                    {taxonomy && (
+                        <>
+                            <TabsContent value="categories">
+                                <CategoryManager
+                                    categories={taxonomy.categories}
+                                />
+                            </TabsContent>
+                            <TabsContent value="packaging">
+                                <PackagingManager
+                                    packagingTypes={taxonomy.packagingTypes}
+                                />
+                            </TabsContent>
+                        </>
+                    )}
 
                     <div className="flex justify-end">
                         <Button type="submit" disabled={form.processing}>
