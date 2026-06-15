@@ -238,3 +238,25 @@ Use Wayfinder to generate TypeScript functions for Laravel routes. Import from `
 - IMPORTANT: Activate `inertia-react-development` when working with Inertia React client-side patterns.
 
 </laravel-boost-guidelines>
+
+## Cursor Cloud specific instructions
+
+Stack: Laravel 13 + Inertia v3 + React 19 (Vite). Single web app, no external services required — DB/session/queue/cache all default to the local **SQLite** file `database/database.sqlite`. Mail uses the `log` driver. External integrations (ZarinPal payments, LimoSMS, AI providers OpenAI/Anthropic/Gemini) are all optional and degrade gracefully without API keys.
+
+### Environment prerequisites (installed outside the update script)
+- PHP **8.4+** with extensions: `mbstring xml curl sqlite3 bcmath gd zip intl gmp` (via `ppa:ondrej/php`), plus Composer. These are system-level and are NOT part of the update script.
+- Node 22 + npm are preinstalled.
+
+### Running the app (dev)
+- One-shot all-in-one: `composer dev` (runs `php artisan serve`, `queue:listen`, `pail`, and `npm run dev` concurrently). For long-lived background processes, run `php artisan serve --host=0.0.0.0 --port=8000` and `npm run dev` in separate tmux sessions instead.
+- The Vite dev server (`npm run dev`) provides SSR automatically; no separate Node SSR process is needed. If you don't run Vite, run `npm run build` once or you'll hit the "Vite manifest" error.
+- Login is by **phone**, not email. Seeded accounts (password `password`): admin `09120000000`, regular user `09120000001`. The demo categories/packaging/products are seeded onto the **regular** user (`test@example.com`), not the admin — log in as `09120000001` to see populated product data.
+- Reset to a clean state with `php artisan migrate:fresh --seed`.
+
+### Lint / types / test
+- Backend lint: `vendor/bin/pint` (the repo has 2 pre-existing Pint style violations in `bootstrap/providers.php` and `app/Console/Commands/graph.php`). Frontend lint: `npm run lint:check` (clean).
+- Types: `npm run types:check` (tsc, clean) and `vendor/bin/phpstan analyse` (has ~19 pre-existing errors, level config in `phpstan.neon`).
+- Tests: `php artisan test --compact` (88 tests pass on SQLite). Note `composer test` chains `lint:check` + `types:check` first, so it will report the pre-existing Pint/PHPStan failures before running PHPUnit; run `php artisan test` directly to just run the suite.
+
+### Gotchas
+- Inertia does NOT auto-unwrap Laravel API resources: passing `SomeResource::collection($x)` directly as an Inertia prop serializes to `{ "data": [...] }`, while `SomeResource::collection($x)->resolve()` (and `Resource::make($x)->resolve()`) yields a bare array. Match the shape the React page expects — some pages type props as `{ data: T[] }`, others as `T[]`.
