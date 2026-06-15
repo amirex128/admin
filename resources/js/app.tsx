@@ -14,6 +14,9 @@ createInertiaApp({
         switch (true) {
             case name === 'welcome':
                 return null;
+            // Storefront pages ship their own layout (no admin/seller shell).
+            case name.startsWith('storefront/'):
+                return null;
             case name.startsWith('auth/'):
                 return AuthLayout;
             case name.startsWith('settings/'):
