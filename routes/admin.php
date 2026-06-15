@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AiModelController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProductController;
@@ -28,6 +29,15 @@ Route::middleware(['auth', 'verified', 'admin'])
         Route::get('products', [ProductController::class, 'index'])->name('products.index');
         Route::patch('products/{product}/toggle', [ProductController::class, 'toggle'])->name('products.toggle');
         Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+        // Orders oversight (filter by owner name / id), with the same
+        // capabilities the seller has in their own panel.
+        Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/create', [OrderController::class, 'create'])->name('orders.create');
+        Route::post('orders', [OrderController::class, 'store'])->name('orders.store');
+        Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+        Route::get('orders/{order}/pdf', [OrderController::class, 'pdf'])->name('orders.pdf');
+        Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
 
         // Payments & transaction management (ZarinPal)
         Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');

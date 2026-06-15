@@ -19,6 +19,7 @@
         "laravel/tinker": "^3.0",
         "laravel/wayfinder": "^0.1.14",
         "maatwebsite/excel": "^3.1",
+        "mpdf/mpdf": "^8.3",
         "zarinpal/zarinpal-php-sdk": "^2.0"
     },
     "require-dev": {

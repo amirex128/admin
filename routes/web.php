@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PackagingTypeController;
 use App\Http\Controllers\User\PaymentCallbackController;
 use App\Http\Controllers\User\ProductAiController;
@@ -45,6 +46,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('products/{product}/toggle', [ProductController::class, 'toggle'])->name('products.toggle');
 
     Route::delete('media/{media}', [ProductMediaController::class, 'destroy'])->name('media.destroy');
+
+    // Order management — static segments before the {order} routes.
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('orders/{order}/pdf', [OrderController::class, 'pdf'])->name('orders.pdf');
+    Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
+    Route::patch('orders/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
 
     // Categories & packaging types (managed inline from the product form)
     Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
