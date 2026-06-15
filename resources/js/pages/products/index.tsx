@@ -7,6 +7,7 @@ import {
     Plus,
     Search,
     Trash2,
+    TriangleAlert,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -14,6 +15,7 @@ import ProductController from '@/actions/App/Http/Controllers/User/ProductContro
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
 import { ExcelImportDialog } from '@/components/products/excel-import-dialog';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -55,6 +57,10 @@ export default function ProductsIndex({
     filters,
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
+
+    const rejected = products.data.filter(
+        (product) => product.approval_status === 'rejected',
+    );
 
     useEffect(() => {
         if (search === (filters.search ?? '')) {
@@ -134,6 +140,24 @@ export default function ProductsIndex({
                     </div>
                 </div>
 
+                {rejected.length > 0 && (
+                    <Alert variant="destructive">
+                        <TriangleAlert />
+                        <AlertTitle>
+                            {rejected.length} محصول توسط مدیر رد شده است
+                        </AlertTitle>
+                        <AlertDescription>
+                            {rejected.map((product) => (
+                                <p key={product.id}>
+                                    «{product.name}»:{' '}
+                                    {product.rejection_reason ??
+                                        'بدون ذکر دلیل'}
+                                </p>
+                            ))}
+                        </AlertDescription>
+                    </Alert>
+                )}
+
                 <div className="flex flex-wrap items-center gap-3">
                     <div className="relative max-w-sm flex-1">
                         <Search className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -196,6 +220,7 @@ export default function ProductsIndex({
                                 <TableHead>قیمت</TableHead>
                                 <TableHead>موجودی</TableHead>
                                 <TableHead>تنوع</TableHead>
+                                <TableHead>ممیزی</TableHead>
                                 <TableHead>فعال</TableHead>
                                 <TableHead className="text-left">
                                     عملیات
@@ -206,7 +231,7 @@ export default function ProductsIndex({
                             {products.data.length === 0 && (
                                 <TableRow>
                                     <TableCell
-                                        colSpan={8}
+                                        colSpan={9}
                                         className="h-24 text-center text-muted-foreground"
                                     >
                                         محصولی یافت نشد.
@@ -249,6 +274,25 @@ export default function ProductsIndex({
                                     </TableCell>
                                     <TableCell className="tabular-nums">
                                         {product.variations_count ?? 0}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Badge
+                                            variant={
+                                                product.approval_status ===
+                                                'approved'
+                                                    ? 'secondary'
+                                                    : product.approval_status ===
+                                                        'rejected'
+                                                      ? 'destructive'
+                                                      : 'outline'
+                                            }
+                                            title={
+                                                product.rejection_reason ??
+                                                undefined
+                                            }
+                                        >
+                                            {product.approval_status_label}
+                                        </Badge>
                                     </TableCell>
                                     <TableCell>
                                         <Switch
