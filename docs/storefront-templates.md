@@ -39,6 +39,11 @@ export these page components (matching the controller's `render()` calls):
 | `checkout.tsx` | `storefront.checkout` / `.place` | Checkout form → creates an order |
 | `order.tsx` | `storefront.order` | Order receipt / status (also payment callback target) |
 | `track.tsx` | `storefront.track` / `.lookup` | Order tracking by code + phone |
+| `auth/login.tsx` | `storefront.login` / `.store` | Customer login |
+| `auth/register.tsx` | `storefront.register` / `.store` | Customer registration |
+| `account/orders.tsx` | `storefront.account` | Customer order history |
+| `account/order.tsx` | `storefront.account.order` | Single order with status timeline |
+| `account/profile.tsx` | `storefront.account.profile` / `.password` | Profile & password management |
 
 ## Shared building blocks (reuse these)
 
@@ -78,6 +83,17 @@ All pages receive `store: StorefrontStore`. Page-specific props:
 
 > Account top-ups for sellers use the platform ZarinPal (env/config); store
 > sales use each seller's own gateway from their store settings.
+
+## Customer accounts
+
+Storefront buyers authenticate with the dedicated `customer` guard (see
+`config/auth.php`), scoped to a single store: login matches `Customer` records
+by the seller's `user_id` + phone. Guests can still check out and track orders
+by code + phone, while registered customers get an account panel (order history,
+order detail with status timeline, profile and password management). Controllers
+`Storefront\AuthController` and `Storefront\AccountController` share the
+`ResolvesStorefront` trait. The header shows a login link or the customer's name
+based on `store.customer`.
 
 ## Steps to add a new template
 

@@ -16,6 +16,7 @@ export type StorefrontStore = {
     socials: StorefrontSocials;
     badges: StorefrontBadge[];
     categories: { id: number; name: string }[];
+    customer: { id: number; name: string } | null;
     pages: Record<string, boolean>;
 };
 

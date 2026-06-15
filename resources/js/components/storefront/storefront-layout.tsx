@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import { Menu, Phone, Search, ShoppingCart } from 'lucide-react';
+import { Menu, Phone, Search, ShoppingCart, User } from 'lucide-react';
 import { useState } from 'react';
 
 import { useCart } from '@/lib/storefront-cart';
@@ -82,6 +82,16 @@ export function StorefrontLayout({
                         >
                             <Search className="ms-1 size-4" />
                             پیگیری سفارش
+                        </Link>
+                        <Link
+                            href={shopUrl(
+                                store.key,
+                                store.customer ? '/account' : '/login',
+                            )}
+                            className="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm text-neutral-600 hover:bg-neutral-100"
+                        >
+                            <User className="size-4" />
+                            {store.customer ? store.customer.name : 'ورود'}
                         </Link>
                         <Link
                             href={shopUrl(store.key, '/cart')}
