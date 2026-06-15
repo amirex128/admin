@@ -1,0 +1,1 @@
+Add comprehensive comments/documentation for all classes, functions, methods, and sections you design for laravel side and react side. Include full details explaining what each method does, its functionality, use cases, where it can be used, how it works, etc., to ensure the project is well-documented and enriched.
