@@ -45,7 +45,7 @@ class ProductController extends Controller
 
         return Inertia::render('products/index', [
             'products' => $products,
-            'categories' => CategoryResource::collection($user->categories()->withCount('products')->orderBy('name')->get()),
+            'categories' => CategoryResource::collection($user->categories()->withCount('products')->orderBy('name')->get())->resolve(),
             'filters' => [
                 'search' => $request->string('search')->toString(),
                 'category_id' => $request->integer('category_id') ?: null,
@@ -156,8 +156,8 @@ class ProductController extends Controller
 
         return [
             'product' => null,
-            'categories' => CategoryResource::collection($user->categories()->orderBy('name')->get()),
-            'packagingTypes' => PackagingTypeResource::collection($user->packagingTypes()->orderBy('name')->get()),
+            'categories' => CategoryResource::collection($user->categories()->orderBy('name')->get())->resolve(),
+            'packagingTypes' => PackagingTypeResource::collection($user->packagingTypes()->orderBy('name')->get())->resolve(),
             'salesUnits' => SalesUnit::options(),
             'orderModes' => OrderMode::options(),
             'hasAiModel' => $user->ai_model_id !== null,
