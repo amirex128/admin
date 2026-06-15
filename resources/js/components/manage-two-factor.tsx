@@ -48,15 +48,15 @@ export default function ManageTwoFactor(props: Props) {
         <div className="space-y-6">
             <Heading
                 variant="small"
-                title="Two-factor authentication"
-                description="Manage your two-factor authentication settings"
+                title="احراز هویت دومرحله‌ای"
+                description="تنظیمات احراز هویت دومرحله‌ای خود را مدیریت کنید"
             />
             {twoFactorEnabled ? (
                 <div className="flex flex-col items-start justify-start space-y-4">
                     <p className="text-sm text-muted-foreground">
-                        You will be prompted for a secure, random pin during
-                        login, which you can retrieve from the TOTP-supported
-                        application on your phone.
+                        هنگام ورود از شما یک پین تصادفی و امن خواسته می‌شود که
+                        می‌توانید آن را از برنامه پشتیبانی‌کننده از TOTP روی
+                        تلفن خود دریافت کنید.
                     </p>
 
                     <div className="relative inline">
@@ -67,7 +67,7 @@ export default function ManageTwoFactor(props: Props) {
                                     type="submit"
                                     disabled={processing}
                                 >
-                                    Disable 2FA
+                                    غیرفعال‌سازی احراز هویت دومرحله‌ای
                                 </Button>
                             )}
                         </Form>
@@ -82,17 +82,16 @@ export default function ManageTwoFactor(props: Props) {
             ) : (
                 <div className="flex flex-col items-start justify-start space-y-4">
                     <p className="text-sm text-muted-foreground">
-                        When you enable two-factor authentication, you will be
-                        prompted for a secure pin during login. This pin can be
-                        retrieved from a TOTP-supported application on your
-                        phone.
+                        وقتی احراز هویت دومرحله‌ای را فعال کنید، هنگام ورود از
+                        شما یک پین امن خواسته می‌شود. این پین را می‌توانید از یک
+                        برنامه پشتیبانی‌کننده از TOTP روی تلفن خود دریافت کنید.
                     </p>
 
                     <div>
                         {hasSetupData ? (
                             <Button onClick={() => setShowSetupModal(true)}>
                                 <ShieldCheck />
-                                Continue setup
+                                ادامه راه‌اندازی
                             </Button>
                         ) : (
                             <Form
@@ -101,7 +100,7 @@ export default function ManageTwoFactor(props: Props) {
                             >
                                 {({ processing }) => (
                                     <Button type="submit" disabled={processing}>
-                                        Enable 2FA
+                                        فعال‌سازی احراز هویت دومرحله‌ای
                                     </Button>
                                 )}
                             </Form>

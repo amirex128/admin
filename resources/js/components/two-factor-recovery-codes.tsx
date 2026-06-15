@@ -57,11 +57,12 @@ export default function TwoFactorRecoveryCodes({
             <CardHeader>
                 <CardTitle className="flex gap-3">
                     <LockKeyhole className="size-4" aria-hidden="true" />
-                    2FA recovery codes
+                    کدهای بازیابی احراز هویت دومرحله‌ای
                 </CardTitle>
                 <CardDescription>
-                    Recovery codes let you regain access if you lose your 2FA
-                    device. Store them in a secure password manager.
+                    کدهای بازیابی به شما امکان می‌دهند در صورت از دست دادن
+                    دستگاه احراز هویت دومرحله‌ای خود، دوباره به حساب دسترسی پیدا
+                    کنید. آن‌ها را در یک مدیر رمز عبور امن ذخیره کنید.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -76,7 +77,8 @@ export default function TwoFactorRecoveryCodes({
                             className="size-4"
                             aria-hidden="true"
                         />
-                        {codesAreVisible ? 'Hide' : 'View'} recovery codes
+                        {codesAreVisible ? 'پنهان کردن' : 'مشاهده'} کدهای
+                        بازیابی
                     </Button>
 
                     {canRegenerateCodes && (
@@ -92,7 +94,7 @@ export default function TwoFactorRecoveryCodes({
                                     disabled={processing}
                                     aria-describedby="regenerate-warning"
                                 >
-                                    <RefreshCw /> Regenerate codes
+                                    <RefreshCw /> تولید مجدد کدها
                                 </Button>
                             )}
                         </Form>
@@ -112,7 +114,7 @@ export default function TwoFactorRecoveryCodes({
                                     ref={codesSectionRef}
                                     className="grid gap-1 rounded-lg bg-muted p-4 font-mono text-sm"
                                     role="list"
-                                    aria-label="Recovery codes"
+                                    aria-label="کدهای بازیابی"
                                 >
                                     {recoveryCodesList.length ? (
                                         recoveryCodesList.map((code, index) => (
@@ -127,7 +129,7 @@ export default function TwoFactorRecoveryCodes({
                                     ) : (
                                         <div
                                             className="space-y-2"
-                                            aria-label="Loading recovery codes"
+                                            aria-label="در حال بارگذاری کدهای بازیابی"
                                         >
                                             {Array.from(
                                                 { length: 8 },
@@ -145,13 +147,14 @@ export default function TwoFactorRecoveryCodes({
 
                                 <div className="text-xs text-muted-foreground select-none">
                                     <p id="regenerate-warning">
-                                        Each recovery code can be used once to
-                                        access your account and will be removed
-                                        after use. If you need more, click{' '}
+                                        هر کد بازیابی فقط یک‌بار برای دسترسی به
+                                        حساب شما قابل استفاده است و پس از
+                                        استفاده حذف می‌شود. اگر به کدهای بیشتری
+                                        نیاز دارید، روی{' '}
                                         <span className="font-bold">
-                                            Regenerate codes
+                                            تولید مجدد کدها
                                         </span>{' '}
-                                        above.
+                                        در بالا کلیک کنید.
                                     </p>
                                 </div>
                             </>

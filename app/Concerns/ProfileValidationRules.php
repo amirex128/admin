@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 trait ProfileValidationRules
 {
+    use PhoneValidationRules;
+
     /**
      * Get the validation rules used to validate user profiles.
      *
@@ -17,6 +19,7 @@ trait ProfileValidationRules
     {
         return [
             'name' => $this->nameRules(),
+            'phone' => $this->phoneRules($userId),
             'email' => $this->emailRules($userId),
         ];
     }
@@ -39,7 +42,7 @@ trait ProfileValidationRules
     protected function emailRules(?int $userId = null): array
     {
         return [
-            'required',
+            'nullable',
             'string',
             'email',
             'max:255',

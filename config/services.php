@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'limosms' => [
+        'api_key' => env('LIMOSMS_API_KEY'),
+        'base_url' => env('LIMOSMS_BASE_URL', 'https://api.limosms.com/api'),
+        'timeout' => (int) env('LIMOSMS_TIMEOUT', 30),
+        'patterns' => [
+            'welcome' => env('LIMOSMS_PATTERN_WELCOME'),
+        ],
+    ],
+
 ];
