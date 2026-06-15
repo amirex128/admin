@@ -34,6 +34,8 @@ Route::middleware(['auth', 'verified', 'admin'])
         // Products oversight (filter by owner name / id)
         Route::get('products', [ProductController::class, 'index'])->name('products.index');
         Route::patch('products/{product}/toggle', [ProductController::class, 'toggle'])->name('products.toggle');
+        Route::patch('products/{product}/approve', [ProductController::class, 'approve'])->name('products.approve');
+        Route::patch('products/{product}/reject', [ProductController::class, 'reject'])->name('products.reject');
         Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
         // Orders oversight (filter by owner name / id), with the same

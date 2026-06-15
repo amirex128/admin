@@ -40,5 +40,17 @@ class ProductSeeder extends Seeder
 
                 Product::factory()->variationOf($product)->count(2)->create();
             });
+
+        // A couple of products in non-approved states to exercise the
+        // admin moderation workflow and the seller-facing status alerts.
+        Product::factory()->for($user)->pendingReview()->create([
+            'name' => 'محصول در انتظار بررسی',
+            'category_id' => $category->id,
+        ]);
+
+        Product::factory()->for($user)->rejected()->create([
+            'name' => 'محصول رد شده',
+            'category_id' => $category->id,
+        ]);
     }
 }
