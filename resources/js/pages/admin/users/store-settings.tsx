@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import Heading from '@/components/heading';
 import { StoreSettingsForm } from '@/components/settings/store-settings-form';
 import { index as adminUsersIndex } from '@/routes/admin/users';
-import type { GeoOption, StoreSettings } from '@/types';
+import type { GeoOption, StoreSettings, StoreTemplateOption } from '@/types';
 
 type PageProps = {
     targetUser: { id: number; name: string; phone: string };
@@ -12,6 +12,9 @@ type PageProps = {
     cities: GeoOption[];
     shippingMethods: string[];
     updateUrl: string;
+    templates: StoreTemplateOption[];
+    storeBaseDomain: string;
+    nameservers: string[];
 };
 
 export default function AdminUserStoreSettings({
@@ -21,6 +24,9 @@ export default function AdminUserStoreSettings({
     cities,
     shippingMethods,
     updateUrl,
+    templates,
+    storeBaseDomain,
+    nameservers,
 }: PageProps) {
     return (
         <>
@@ -38,6 +44,9 @@ export default function AdminUserStoreSettings({
                     cities={cities}
                     shippingMethods={shippingMethods}
                     updateUrl={updateUrl}
+                    templates={templates}
+                    storeBaseDomain={storeBaseDomain}
+                    nameservers={nameservers}
                 />
             </div>
         </>
