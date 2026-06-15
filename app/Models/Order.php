@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
 /**
  * @property int $id
  * @property int $user_id
+ * @property int|null $customer_id
  * @property string $code
  * @property OrderStatus $status
  * @property OrderPaymentStatus $payment_status
@@ -50,6 +51,7 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
+        'customer_id',
         'code',
         'status',
         'payment_status',
@@ -101,6 +103,16 @@ class Order extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * The CRM customer who placed the order, if linked.
+     *
+     * @return BelongsTo<Customer, $this>
+     */
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
     }
 
     /**

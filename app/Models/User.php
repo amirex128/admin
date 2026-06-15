@@ -141,6 +141,16 @@ class User extends Authenticatable implements PasskeyUser
     }
 
     /**
+     * The CRM customers that belong to the user.
+     *
+     * @return HasMany<Customer, $this>
+     */
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    /**
      * The store configuration that belongs to the user.
      *
      * @return HasOne<StoreSetting, $this>
