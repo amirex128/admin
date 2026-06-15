@@ -21,6 +21,8 @@ trait ProfileValidationRules
             'name' => $this->nameRules(),
             'phone' => $this->phoneRules($userId),
             'email' => $this->emailRules($userId),
+            'province_id' => ['nullable', 'integer', Rule::exists('provinces', 'id')],
+            'city_id' => ['nullable', 'integer', Rule::exists('cities', 'id')],
         ];
     }
 
