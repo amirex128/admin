@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Enums\WalletTransactionReason;
 use App\Enums\WalletTransactionType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ChargeWalletRequest;
 use App\Http\Resources\WalletTransactionResource;
+use App\Services\Payment\GatewayException;
+use App\Services\Payment\PaymentService;
 use App\Services\Wallet\WalletService;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class WalletController extends Controller
 {
-    public function __construct(private readonly WalletService $walletService) {}
+    public function __construct(
+        private readonly WalletService $walletService,
+        private readonly PaymentService $paymentService,
+    ) {}
 
     /**
      * Display the wallet overview with balance and recent transactions.
@@ -43,22 +47,22 @@ class WalletController extends Controller
     }
 
     /**
-     * Charge (top up) the authenticated user's wallet.
-     *
-     * In production the amount would be confirmed by a payment gateway callback
-     * before crediting; here we credit directly through the WalletService.
+     * Start a wallet top-up by initiating a payment and redirecting the user to
+     * the gateway. The wallet is credited later, on the verified callback.
      */
-    public function charge(ChargeWalletRequest $request): RedirectResponse
+    public function charge(ChargeWalletRequest $request): SymfonyResponse
     {
-        $this->walletService->deposit(
-            user: $request->user(),
-            amount: (int) $request->validated('amount'),
-            reason: WalletTransactionReason::Charge,
-            description: 'شارژ کیف پول',
-        );
+        try {
+            $initiation = $this->paymentService->initiate(
+                user: $request->user(),
+                amount: (int) $request->validated('amount'),
+                callbackUrl: route('payment.callback'),
+            );
+        } catch (GatewayException $exception) {
+            return back()->withErrors(['amount' => $exception->getMessage()]);
+        }
 
-        Inertia::flash('toast', ['type' => 'success', 'message' => 'کیف پول شما با موفقیت شارژ شد.']);
-
-        return to_route('wallet.index');
+        // Send the user to the gateway with a full-page (external) redirect.
+        return Inertia::location($initiation->redirectUrl);
     }
 }

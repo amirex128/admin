@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\PackagingTypeController;
+use App\Http\Controllers\User\PaymentCallbackController;
 use App\Http\Controllers\User\ProductAiController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\ProductImportController;
@@ -20,6 +21,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('financial/wallet/charge', [WalletController::class, 'charge'])->name('wallet.charge');
     Route::get('financial/plans', [SubscriptionPlanController::class, 'index'])->name('plans.index');
     Route::post('financial/plans/{plan}/subscribe', [SubscriptionPlanController::class, 'subscribe'])->name('plans.subscribe');
+
+    // Payment gateway callback (ZarinPal returns the user here after payment).
+    Route::get('financial/payment/callback', PaymentCallbackController::class)->name('payment.callback');
 
     // Product management — static segments are registered before the
     // {product} routes so they take precedence during matching.

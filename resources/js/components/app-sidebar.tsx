@@ -5,6 +5,7 @@ import {
     FolderGit2,
     LayoutGrid,
     Package,
+    Receipt,
     Sparkles,
     Users,
     Wallet,
@@ -24,6 +25,7 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as adminAiModelsIndex } from '@/routes/admin/ai-models';
+import { index as adminPaymentsIndex } from '@/routes/admin/payments';
 import { index as adminPlansIndex } from '@/routes/admin/plans';
 import { index as adminProductsIndex } from '@/routes/admin/products';
 import { index as adminUsersIndex } from '@/routes/admin/users';
@@ -68,6 +70,11 @@ const adminNavItems: NavItem[] = [
         title: 'محصولات',
         href: adminProductsIndex(),
         icon: Package,
+    },
+    {
+        title: 'تراکنش‌های پرداخت',
+        href: adminPaymentsIndex(),
+        icon: Receipt,
     },
     {
         title: 'پلن‌های اشتراک',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AiModelController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -27,6 +28,13 @@ Route::middleware(['auth', 'verified', 'admin'])
         Route::get('products', [ProductController::class, 'index'])->name('products.index');
         Route::patch('products/{product}/toggle', [ProductController::class, 'toggle'])->name('products.toggle');
         Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+        // Payments & transaction management (ZarinPal)
+        Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
+        Route::get('payments/unverified', [PaymentController::class, 'unverified'])->name('payments.unverified');
+        Route::post('payments/{payment}/reverse', [PaymentController::class, 'reverse'])->name('payments.reverse');
+        Route::post('payments/{payment}/refund', [PaymentController::class, 'refund'])->name('payments.refund');
+        Route::post('payments/{payment}/inquiry', [PaymentController::class, 'inquiry'])->name('payments.inquiry');
 
         // AI settings — manage available AI models, providers and pricing
         Route::get('settings/ai', [AiModelController::class, 'index'])->name('ai-models.index');

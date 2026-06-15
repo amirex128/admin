@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\Ai\Contracts\ContentGenerator;
 use App\Services\Ai\LaravelAiContentGenerator;
+use App\Services\Payment\Contracts\PaymentGateway;
+use App\Services\Payment\ZarinPalGateway;
 use App\Services\Sms\Contracts\SmsProvider;
 use App\Services\Sms\Providers\LimoSmsProvider;
 use App\Services\Sms\SmsManager;
@@ -24,6 +26,16 @@ class AppServiceProvider extends ServiceProvider
         $this->registerSmsServices();
 
         $this->app->bind(ContentGenerator::class, LaravelAiContentGenerator::class);
+
+        $this->app->singleton(PaymentGateway::class, function ($app): ZarinPalGateway {
+            $config = $app->make('config')->get('services.zarinpal');
+
+            return new ZarinPalGateway(
+                merchantId: (string) ($config['merchant_id'] ?? ''),
+                accessToken: (string) ($config['access_token'] ?? ''),
+                sandbox: (bool) ($config['sandbox'] ?? false),
+            );
+        });
     }
 
     /**

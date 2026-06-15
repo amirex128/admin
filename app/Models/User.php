@@ -91,6 +91,16 @@ class User extends Authenticatable implements PasskeyUser
     }
 
     /**
+     * The gateway payments initiated by the user.
+     *
+     * @return HasMany<Payment, $this>
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
      * The subscriptions that belong to the user.
      *
      * @return HasMany<Subscription, $this>
