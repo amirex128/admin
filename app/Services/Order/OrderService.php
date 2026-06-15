@@ -6,6 +6,7 @@ use App\Enums\OrderPaymentStatus;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\User;
+use App\Notifications\NewOrderReceived;
 use App\Services\Customer\CustomerService;
 use App\Services\Store\StoreSettingService;
 use Illuminate\Support\Facades\DB;
@@ -77,6 +78,8 @@ class OrderService
             }
 
             $this->recordHistory($order, $status, $data['note'] ?? null, $performedBy);
+
+            $owner->notify(new NewOrderReceived($order));
 
             return $order;
         });

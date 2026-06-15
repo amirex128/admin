@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RejectProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Notifications\ProductApproved;
+use App\Notifications\ProductRejected;
 use App\Services\Product\ProductService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -67,6 +69,8 @@ class ProductController extends Controller
             'reviewed_at' => now(),
         ]);
 
+        $product->user->notify(new ProductApproved($product));
+
         Inertia::flash('toast', ['type' => 'success', 'message' => 'محصول تأیید شد.']);
 
         return back();
@@ -82,6 +86,8 @@ class ProductController extends Controller
             'rejection_reason' => $request->validated('reason'),
             'reviewed_at' => now(),
         ]);
+
+        $product->user->notify(new ProductRejected($product, $request->validated('reason')));
 
         Inertia::flash('toast', ['type' => 'success', 'message' => 'محصول رد شد.']);
 

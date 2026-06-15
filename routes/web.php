@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\CustomerController;
 use App\Http\Controllers\User\CustomerImportController;
+use App\Http\Controllers\User\NotificationController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PackagingTypeController;
 use App\Http\Controllers\User\PaymentCallbackController;
@@ -67,6 +68,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
     Route::patch('customers/{customer}/block', [CustomerController::class, 'toggleBlock'])->name('customers.block');
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+    // Notifications (in-app feed + header bell)
+    Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
+    Route::patch('notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::delete('notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
     // Categories & packaging types (managed inline from the product form)
     Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
