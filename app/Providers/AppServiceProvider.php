@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\Sms\Contracts\SmsProvider;
+use App\Services\Sms\Providers\LimoSmsProvider;
+use App\Services\Sms\SmsManager;
 use Carbon\CarbonImmutable;
+use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -15,7 +19,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->registerSmsServices();
+    }
+
+    /**
+     * Bind the central SMS service and its configured gateway.
+     */
+    protected function registerSmsServices(): void
+    {
+        $this->app->singleton(SmsProvider::class, fn ($app): LimoSmsProvider => new LimoSmsProvider(
+            $app->make(HttpClient::class),
+            $app->make('config')->get('services.limosms'),
+        ));
+
+        $this->app->singleton('sms', fn ($app): SmsManager => new SmsManager(
+            $app->make(SmsProvider::class),
+            $app->make('config')->get('services.limosms.patterns', []),
+        ));
+
+        $this->app->alias('sms', SmsManager::class);
     }
 
     /**

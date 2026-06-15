@@ -32,5 +32,7 @@
         <env name="PULSE_ENABLED" value="false"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="LIMOSMS_API_KEY" value="test-key"/>
+        <env name="LIMOSMS_PATTERN_WELCOME" value="1001"/>
     </php>
 </phpunit>

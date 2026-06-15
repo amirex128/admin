@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'username' => 'email',
+    'username' => 'phone',
 
     'email' => 'email',
 
@@ -162,7 +162,9 @@ return [
 
     'features' => [
         Features::registration(),
-        Features::resetPasswords(),
+        // Password resets are handled through a custom OTP flow (see routes/auth.php
+        // and App\Http\Controllers\Auth\PasswordResetController) rather than
+        // Fortify's email-link broker, so the built-in feature stays disabled.
         Features::emailVerification(),
         Features::twoFactorAuthentication([
             'confirm' => true,

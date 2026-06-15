@@ -96,14 +96,8 @@
 /* ====================== تنظیم فونت در تم Tailwind v4 ====================== */
 @theme {
     --font-sans:
-        'IRANSansX',
-        'Instrument Sans',
-        ui-sans-serif,
-        system-ui,
-        sans-serif,
-        'Apple Color Emoji',
-        'Segoe UI Emoji',
-        'Segoe UI Symbol',
+        'IRANSansX', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
 
     /* فونت اختصاصی IRANSansX (برای استفاده با کلاس font-iransansx) */
@@ -237,6 +231,6 @@
     }
 
     body {
-        @apply bg-background text-foreground font-sans;
+        @apply bg-background font-sans text-foreground;
     }
 }

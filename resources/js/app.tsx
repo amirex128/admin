@@ -25,13 +25,10 @@ createInertiaApp({
     strictMode: true,
     withApp(app) {
         return (
-            <div>
-                سلام
-                <TooltipProvider delayDuration={0}>
-                    {app}
-                    <Toaster />
-                </TooltipProvider>
-            </div>
+            <TooltipProvider delayDuration={0}>
+                {app}
+                <Toaster />
+            </TooltipProvider>
         );
     },
     progress: {

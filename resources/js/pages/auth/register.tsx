@@ -16,7 +16,7 @@ type Props = {
 export default function Register({ passwordRules }: Props) {
     return (
         <>
-            <Head title="Register" />
+            <Head title="ثبت نام" />
             <Form
                 {...store.form()}
                 resetOnSuccess={['password', 'password_confirmation']}
@@ -27,7 +27,7 @@ export default function Register({ passwordRules }: Props) {
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">نام و نام خانوادگی</Label>
                                 <Input
                                     id="name"
                                     type="text"
@@ -36,7 +36,7 @@ export default function Register({ passwordRules }: Props) {
                                     tabIndex={1}
                                     autoComplete="name"
                                     name="name"
-                                    placeholder="Full name"
+                                    placeholder="نام کامل"
                                 />
                                 <InputError
                                     message={errors.name}
@@ -45,28 +45,30 @@ export default function Register({ passwordRules }: Props) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label htmlFor="phone">شماره موبایل</Label>
                                 <Input
-                                    id="email"
-                                    type="email"
+                                    id="phone"
+                                    type="tel"
                                     required
                                     tabIndex={2}
-                                    autoComplete="email"
-                                    name="email"
-                                    placeholder="email@example.com"
+                                    autoComplete="tel"
+                                    inputMode="numeric"
+                                    dir="ltr"
+                                    name="phone"
+                                    placeholder="09xxxxxxxxx"
                                 />
-                                <InputError message={errors.email} />
+                                <InputError message={errors.phone} />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">رمز عبور</Label>
                                 <PasswordInput
                                     id="password"
                                     required
                                     tabIndex={3}
                                     autoComplete="new-password"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder="رمز عبور"
                                     passwordrules={passwordRules}
                                 />
                                 <InputError message={errors.password} />
@@ -74,7 +76,7 @@ export default function Register({ passwordRules }: Props) {
 
                             <div className="grid gap-2">
                                 <Label htmlFor="password_confirmation">
-                                    Confirm password
+                                    تکرار رمز عبور
                                 </Label>
                                 <PasswordInput
                                     id="password_confirmation"
@@ -82,7 +84,7 @@ export default function Register({ passwordRules }: Props) {
                                     tabIndex={4}
                                     autoComplete="new-password"
                                     name="password_confirmation"
-                                    placeholder="Confirm password"
+                                    placeholder="تکرار رمز عبور"
                                     passwordrules={passwordRules}
                                 />
                                 <InputError
@@ -90,21 +92,36 @@ export default function Register({ passwordRules }: Props) {
                                 />
                             </div>
 
+                            <div className="grid gap-2">
+                                <Label htmlFor="referral_code">
+                                    کد معرف (اختیاری)
+                                </Label>
+                                <Input
+                                    id="referral_code"
+                                    type="text"
+                                    tabIndex={5}
+                                    name="referral_code"
+                                    dir="ltr"
+                                    placeholder="کد معرف"
+                                />
+                                <InputError message={errors.referral_code} />
+                            </div>
+
                             <Button
                                 type="submit"
                                 className="mt-2 w-full"
-                                tabIndex={5}
+                                tabIndex={6}
                                 data-test="register-user-button"
                             >
                                 {processing && <Spinner />}
-                                Create account
+                                ساخت حساب کاربری
                             </Button>
                         </div>
 
                         <div className="text-center text-sm text-muted-foreground">
-                            Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
-                                Log in
+                            قبلاً ثبت نام کرده‌اید؟{' '}
+                            <TextLink href={login()} tabIndex={7}>
+                                ورود
                             </TextLink>
                         </div>
                     </>
@@ -115,6 +132,6 @@ export default function Register({ passwordRules }: Props) {
 }
 
 Register.layout = {
-    title: 'Create an account',
-    description: 'Enter your details below to create your account',
+    title: 'ساخت حساب کاربری',
+    description: 'برای ساخت حساب کاربری اطلاعات خود را وارد کنید',
 };

@@ -2,94 +2,112 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Mail\PasswordResetCodeMail;
+use App\Models\PasswordResetCode;
 use App\Models\User;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Notification;
-use Laravel\Fortify\Features;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->skipUnlessFortifyHas(Features::resetPasswords());
-    }
-
-    public function test_reset_password_link_screen_can_be_rendered()
+    public function test_forgot_password_screen_can_be_rendered()
     {
         $response = $this->get(route('password.request'));
 
         $response->assertOk();
     }
 
-    public function test_reset_password_link_can_be_requested()
+    public function test_a_reset_code_is_sent_over_sms()
     {
-        Notification::fake();
+        Http::fake(['*' => Http::response(['Success' => true])]);
 
-        $user = User::factory()->create();
+        $user = User::factory()->create(['phone' => '09121112233', 'email' => null]);
 
-        $this->post(route('password.email'), ['email' => $user->email]);
+        $this->post(route('password.store'), ['phone' => $user->phone])
+            ->assertSessionHasNoErrors();
 
-        Notification::assertSentTo($user, ResetPassword::class);
+        Http::assertSent(fn ($request) => str_contains($request->url(), 'sendcode')
+            && $request['Mobile'] === '09121112233',
+        );
     }
 
-    public function test_reset_password_screen_can_be_rendered()
+    public function test_a_reset_code_is_emailed_when_the_user_has_an_email()
     {
-        Notification::fake();
+        Http::fake(['*' => Http::response(['Success' => true])]);
+        Mail::fake();
 
-        $user = User::factory()->create();
+        $user = User::factory()->create(['phone' => '09121112244', 'email' => 'reset@example.com']);
 
-        $this->post(route('password.email'), ['email' => $user->email]);
+        $this->post(route('password.store'), ['phone' => $user->phone]);
 
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-            $response = $this->get(route('password.reset', $notification->token));
+        Mail::assertSent(PasswordResetCodeMail::class);
+        $this->assertDatabaseHas('password_reset_codes', ['user_id' => $user->id]);
+    }
 
-            $response->assertOk();
+    public function test_password_can_be_reset_with_a_valid_sms_code()
+    {
+        Http::fake(function ($request) {
+            $success = ! str_contains($request->url(), 'checkcode') || $request['Code'] === '12345';
 
-            return true;
+            return Http::response(['Success' => $success]);
         });
-    }
 
-    public function test_password_can_be_reset_with_valid_token()
-    {
-        Notification::fake();
-
-        $user = User::factory()->create();
-
-        $this->post(route('password.email'), ['email' => $user->email]);
-
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
-            $response = $this->post(route('password.update'), [
-                'token' => $notification->token,
-                'email' => $user->email,
-                'password' => 'password',
-                'password_confirmation' => 'password',
-            ]);
-
-            $response
-                ->assertSessionHasNoErrors()
-                ->assertRedirect(route('login'));
-
-            return true;
-        });
-    }
-
-    public function test_password_cannot_be_reset_with_invalid_token(): void
-    {
-        $user = User::factory()->create();
+        $user = User::factory()->create(['phone' => '09121112255']);
 
         $response = $this->post(route('password.update'), [
-            'token' => 'invalid-token',
-            'email' => $user->email,
-            'password' => 'newpassword123',
-            'password_confirmation' => 'newpassword123',
+            'phone' => $user->phone,
+            'code' => '12345',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
         ]);
 
-        $response->assertSessionHasErrors('email');
+        $response->assertSessionHasNoErrors()->assertRedirect(route('login'));
+        $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+    }
+
+    public function test_password_can_be_reset_with_a_valid_email_code()
+    {
+        Http::fake(['*' => Http::response(['Success' => false])]);
+
+        $user = User::factory()->create(['phone' => '09121112266', 'email' => 'reset@example.com']);
+
+        PasswordResetCode::create([
+            'user_id' => $user->id,
+            'code_hash' => Hash::make('54321'),
+            'expires_at' => now()->addMinutes(10),
+        ]);
+
+        $response = $this->post(route('password.update'), [
+            'phone' => $user->phone,
+            'code' => '54321',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ]);
+
+        $response->assertSessionHasNoErrors()->assertRedirect(route('login'));
+        $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+        $this->assertDatabaseMissing('password_reset_codes', ['user_id' => $user->id]);
+    }
+
+    public function test_password_cannot_be_reset_with_an_invalid_code()
+    {
+        Http::fake(['*' => Http::response(['Success' => false])]);
+
+        $user = User::factory()->create(['phone' => '09121112277']);
+
+        $response = $this->from(route('password.request'))->post(route('password.update'), [
+            'phone' => $user->phone,
+            'code' => '00000',
+            'password' => 'new-password',
+            'password_confirmation' => 'new-password',
+        ]);
+
+        $response->assertSessionHasErrors('code');
+        $this->assertFalse(Hash::check('new-password', $user->fresh()->password));
     }
 }
