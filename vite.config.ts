@@ -3,7 +3,7 @@ import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
-import { bunny } from 'laravel-vite-plugin/fonts';
+import { bunny, local } from 'laravel-vite-plugin/fonts';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -12,6 +12,10 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
             fonts: [
+                local('IRANSansX', {
+                    alias: 'iransansx',
+                    src: 'resources/fonts/woff2',
+                }),
                 bunny('Instrument Sans', {
                     weights: [400, 500, 600],
                 }),
@@ -28,4 +32,15 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
+    server: {
+        host: '127.0.0.1',
+        port: 5173,
+        strictPort: true,
+        hmr: {
+            host: '127.0.0.1',
+        },
+        watch: {
+            ignored: ['**/.junie/**', '**/.cursor/**', '**/.claude/**'],
+        },
+    },
 });

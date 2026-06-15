@@ -1,4 +1,8 @@
 <laravel-boost-guidelines>
+=== .ai/shadcn rules ===
+
+enforces a consistent frontend architecture using **shadcn/ui**, **React Hook Form**, **Zod**, and **Zustand** in a Laravel Inertia React project.
+
 === foundation rules ===
 
 # Laravel Boost Guidelines
@@ -14,6 +18,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/fortify (FORTIFY) - v1
 - laravel/framework (LARAVEL) - v13
 - laravel/prompts (PROMPTS) - v0
+- laravel/telescope (TELESCOPE) - v5
 - laravel/wayfinder (WAYFINDER) - v0
 - larastan/larastan (LARASTAN) - v3
 - laravel/boost (BOOST) - v2
