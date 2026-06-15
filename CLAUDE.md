@@ -1,4 +1,8 @@
 <laravel-boost-guidelines>
+=== .ai/context7 rules ===
+
+for get new document for packages use context7 mcp
+
 === .ai/graphify rules ===
 
 ## graphify
