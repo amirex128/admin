@@ -1,81 +1,11 @@
 {
   "communities": {
     "0": [
-      "auth_auth_card_layout",
-      "components_pagination_nav",
-      "components_pagination_nav_paginationnav",
-      "components_two_factor_recovery_codes",
-      "components_two_factor_recovery_codes_props",
-      "financial_plans",
-      "financial_plans_pageprops",
-      "financial_plans_period_labels",
-      "financial_plans_planspage",
-      "financial_transactions_table",
-      "financial_wallet",
-      "financial_wallet_pageprops",
-      "financial_wallet_quick_amounts",
-      "financial_wallet_walletpage",
-      "lib_format",
-      "lib_format_formatdate",
-      "lib_format_formatdatetime",
-      "lib_format_formattoman",
-      "lib_format_formattomanlabel",
-      "plans_index",
-      "plans_index_adminplansindex",
-      "plans_index_pageprops",
-      "types_financial",
-      "types_financial_adminuserrow",
-      "types_financial_plan",
-      "types_financial_subscription",
-      "types_financial_wallettransaction",
-      "types_pagination",
-      "types_pagination_paginated",
-      "types_pagination_paginationlink",
-      "ui_badge",
-      "ui_badge_badge",
-      "ui_badge_badgevariants",
-      "ui_card",
-      "ui_card_card",
-      "ui_card_cardcontent",
-      "ui_card_carddescription",
-      "ui_card_cardfooter",
-      "ui_card_cardheader",
-      "ui_card_cardtitle",
-      "ui_table",
-      "ui_table_table",
-      "ui_table_tablebody",
-      "ui_table_tablecaption",
-      "ui_table_tablecell",
-      "ui_table_tablefooter",
-      "ui_table_tablehead",
-      "ui_table_tableheader",
-      "ui_table_tablerow",
-      "ui_tabs",
-      "ui_tabs_tabs",
-      "ui_tabs_tabscontent",
-      "ui_tabs_tabscontentprops",
-      "ui_tabs_tabscontext",
-      "ui_tabs_tabscontextvalue",
-      "ui_tabs_tabslist",
-      "ui_tabs_tabsprops",
-      "ui_tabs_tabstrigger",
-      "ui_tabs_tabstriggerprops",
-      "ui_tabs_usetabs",
-      "users_index",
-      "users_index_adminusersindex",
-      "users_index_pageprops",
-      "users_show",
-      "users_show_adminuser",
-      "users_show_adminusershow",
-      "users_show_info",
-      "users_show_pageprops",
-      "users_show_typebutton"
-    ],
-    "1": [
       "app_http_resources_wallettransactionresource_php_request",
       "app_models_plan_php_hasmany",
       "app_models_subscription_php_belongsto",
       "app_models_user_php_belongsto",
+      "app_models_user_php_hasmany",
       "app_models_wallet_php_belongsto",
       "app_models_wallet_php_hasmany",
       "app_models_wallettransaction_php_belongsto",
@@ -90,7 +20,6 @@
       "factories_wallettransactionfactory_wallettransactionfactory",
       "factories_wallettransactionfactory_wallettransactionfactory_definition",
       "hasfactory",
-      "hasmany",
       "hasone",
       "models_plan",
       "models_plan_plan",
@@ -107,6 +36,7 @@
       "models_user",
       "models_user_user",
       "models_user_user_casts",
+      "models_user_user_generatereferralcode",
       "models_user_user_isadmin",
       "models_user_user_referrals",
       "models_user_user_referrer",
@@ -128,6 +58,12 @@
       "passkeyauthenticatable",
       "passkeyuser",
       "resources_wallettransactionresource_wallettransactionresource_toarray",
+      "self",
+      "sms_smsresult",
+      "sms_smsresult_smsresult",
+      "sms_smsresult_smsresult_construct",
+      "sms_smsresult_smsresult_failure",
+      "sms_smsresult_smsresult_success",
       "twofactorauthenticatable",
       "wallet",
       "wallet_walletservice",
@@ -141,67 +77,133 @@
       "wallettransaction",
       "wallettransactiontype"
     ],
+    "1": [
+      "auth_two_factor_challenge",
+      "auth_twofactorchallengetest",
+      "auth_twofactorchallengetest_twofactorchallengetest_setup",
+      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_can_be_rendered",
+      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_redirects_to_login_when_not_authenticated",
+      "components_alert_error",
+      "components_alert_error_alerterror",
+      "components_delete_user",
+      "components_delete_user_deleteuser",
+      "components_passkey_item",
+      "components_passkey_item_passkeyitem",
+      "components_passkey_item_props",
+      "components_two_factor_setup_modal",
+      "components_two_factor_setup_modal_gridscanicon",
+      "components_two_factor_setup_modal_props",
+      "components_two_factor_setup_modal_twofactorsetupstep",
+      "components_two_factor_setup_modal_twofactorverificationstep",
+      "hooks_use_clipboard",
+      "hooks_use_clipboard_copiedvalue",
+      "hooks_use_clipboard_copyfn",
+      "hooks_use_clipboard_useclipboardreturn",
+      "hooks_use_two_factor_auth",
+      "hooks_use_two_factor_auth_usetwofactorauthreturn",
+      "two_factor_index",
+      "two_factor_index_confirm",
+      "two_factor_index_confirmform",
+      "two_factor_index_disable",
+      "two_factor_index_disableform",
+      "two_factor_index_enable",
+      "two_factor_index_enableform",
+      "two_factor_index_login",
+      "two_factor_index_loginform",
+      "two_factor_index_qrcode",
+      "two_factor_index_qrcodeform",
+      "two_factor_index_recoverycodes",
+      "two_factor_index_recoverycodesform",
+      "two_factor_index_regeneraterecoverycodes",
+      "two_factor_index_regeneraterecoverycodesform",
+      "two_factor_index_secretkey",
+      "two_factor_index_secretkeyform",
+      "two_factor_index_twofactor",
+      "ui_alert",
+      "ui_alert_alert",
+      "ui_alert_alertdescription",
+      "ui_alert_alerttitle",
+      "ui_alert_alertvariants",
+      "ui_dialog",
+      "ui_dialog_dialog",
+      "ui_dialog_dialogclose",
+      "ui_dialog_dialogcontent",
+      "ui_dialog_dialogdescription",
+      "ui_dialog_dialogfooter",
+      "ui_dialog_dialogheader",
+      "ui_dialog_dialogoverlay",
+      "ui_dialog_dialogportal",
+      "ui_dialog_dialogtitle",
+      "ui_dialog_dialogtrigger",
+      "ui_input_otp",
+      "ui_input_otp_inputotp",
+      "ui_input_otp_inputotpgroup",
+      "ui_input_otp_inputotpseparator",
+      "ui_input_otp_inputotpslot"
+    ],
     "2": [
-      "adjustwalletrequest",
-      "admin_plancontroller",
-      "admin_plancontroller_plancontroller",
-      "admin_plancontroller_plancontroller_destroy",
-      "admin_plancontroller_plancontroller_index",
-      "admin_plancontroller_plancontroller_store",
-      "admin_plancontroller_plancontroller_toggle",
-      "admin_plancontroller_plancontroller_update",
-      "admin_usercontroller",
-      "admin_usercontroller_usercontroller",
-      "admin_usercontroller_usercontroller_construct",
-      "admin_usercontroller_usercontroller_index",
-      "admin_usercontroller_usercontroller_show",
-      "admin_userwalletcontroller",
-      "admin_userwalletcontroller_userwalletcontroller",
-      "admin_userwalletcontroller_userwalletcontroller_construct",
-      "admin_userwalletcontroller_userwalletcontroller_store",
-      "app_http_controllers_admin_plancontroller_php_plan",
-      "app_http_controllers_admin_plancontroller_php_redirectresponse",
-      "app_http_controllers_admin_plancontroller_php_response",
-      "app_http_controllers_admin_usercontroller_php_request",
-      "app_http_controllers_admin_usercontroller_php_response",
-      "app_http_controllers_admin_usercontroller_php_user",
-      "app_http_controllers_admin_userwalletcontroller_php_redirectresponse",
-      "app_http_controllers_admin_userwalletcontroller_php_user",
-      "app_http_controllers_user_subscriptionplancontroller_php_plan",
-      "app_http_controllers_user_subscriptionplancontroller_php_redirectresponse",
-      "app_http_controllers_user_subscriptionplancontroller_php_request",
-      "app_http_controllers_user_subscriptionplancontroller_php_response",
-      "app_http_controllers_user_walletcontroller_php_redirectresponse",
-      "app_http_controllers_user_walletcontroller_php_request",
-      "app_http_controllers_user_walletcontroller_php_response",
-      "app_http_resources_planresource_php_request",
-      "app_http_resources_subscriptionresource_php_request",
-      "chargewalletrequest",
-      "controller",
-      "jsonresource",
-      "resources_planresource",
-      "resources_planresource_planresource",
-      "resources_planresource_planresource_toarray",
-      "resources_subscriptionresource",
-      "resources_subscriptionresource_subscriptionresource",
-      "resources_subscriptionresource_subscriptionresource_toarray",
-      "storeplanrequest",
-      "updateplanrequest",
-      "user_subscriptionplancontroller",
-      "user_subscriptionplancontroller_subscriptionplancontroller",
-      "user_subscriptionplancontroller_subscriptionplancontroller_construct",
-      "user_subscriptionplancontroller_subscriptionplancontroller_index",
-      "user_subscriptionplancontroller_subscriptionplancontroller_subscribe",
-      "user_walletcontroller",
-      "user_walletcontroller_walletcontroller",
-      "user_walletcontroller_walletcontroller_charge",
-      "user_walletcontroller_walletcontroller_construct",
-      "user_walletcontroller_walletcontroller_index"
+      "admin_adjustwalletrequest",
+      "admin_adjustwalletrequest_adjustwalletrequest",
+      "admin_adjustwalletrequest_adjustwalletrequest_authorize",
+      "admin_adjustwalletrequest_adjustwalletrequest_rules",
+      "admin_adjustwalletrequest_adjustwalletrequest_signedamount",
+      "admin_storeplanrequest",
+      "admin_storeplanrequest_storeplanrequest",
+      "admin_storeplanrequest_storeplanrequest_authorize",
+      "admin_storeplanrequest_storeplanrequest_planattributes",
+      "admin_storeplanrequest_storeplanrequest_rules",
+      "admin_updateplanrequest",
+      "admin_updateplanrequest_updateplanrequest",
+      "admin_updateplanrequest_updateplanrequest_authorize",
+      "admin_updateplanrequest_updateplanrequest_planattributes",
+      "admin_updateplanrequest_updateplanrequest_rules",
+      "app_actions_fortify_createnewuser_php_user",
+      "app_actions_fortify_resetuserpassword_php_user",
+      "app_http_controllers_auth_passwordresetcontroller_php_auth_passwordresetcontroller",
+      "app_http_controllers_auth_passwordresetcontroller_php_auth_passwordresetcontroller_passwordresetcontroller",
+      "app_http_controllers_auth_passwordresetcontroller_php_redirectresponse",
+      "app_http_controllers_auth_passwordresetcontroller_php_request",
+      "app_http_controllers_auth_passwordresetcontroller_php_response",
+      "auth_passwordresetcontroller_passwordresetcontroller_construct",
+      "auth_passwordresetcontroller_passwordresetcontroller_create",
+      "auth_passwordresetcontroller_passwordresetcontroller_store",
+      "auth_passwordresetcontroller_passwordresetcontroller_update",
+      "createsnewusers",
+      "formrequest",
+      "fortify_createnewuser",
+      "fortify_createnewuser_createnewuser",
+      "fortify_createnewuser_createnewuser_create",
+      "fortify_resetuserpassword",
+      "fortify_resetuserpassword_resetuserpassword",
+      "fortify_resetuserpassword_resetuserpassword_reset",
+      "interactswithtwofactorstate",
+      "passwordvalidationrules",
+      "phonevalidationrules",
+      "profilevalidationrules",
+      "resetsuserpasswords",
+      "settings_passwordupdaterequest",
+      "settings_passwordupdaterequest_passwordupdaterequest",
+      "settings_passwordupdaterequest_passwordupdaterequest_rules",
+      "settings_profiledeleterequest",
+      "settings_profiledeleterequest_profiledeleterequest",
+      "settings_profiledeleterequest_profiledeleterequest_rules",
+      "settings_profileupdaterequest",
+      "settings_profileupdaterequest_profileupdaterequest",
+      "settings_profileupdaterequest_profileupdaterequest_rules",
+      "settings_twofactorauthenticationrequest",
+      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest",
+      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest_rules",
+      "user_chargewalletrequest",
+      "user_chargewalletrequest_chargewalletrequest",
+      "user_chargewalletrequest_chargewalletrequest_authorize",
+      "user_chargewalletrequest_chargewalletrequest_messages",
+      "user_chargewalletrequest_chargewalletrequest_rules"
     ],
     "3": [
       "app_services_sms_providers_limosmsprovider_php_smsresult",
       "app_services_sms_smsmanager_php_smsresult",
       "database_factories_planfactory_php_static",
+      "database_factories_userfactory_php_static",
       "factories_planfactory",
       "factories_planfactory_planfactory",
       "factories_planfactory_planfactory_definition",
@@ -248,99 +250,180 @@
       "sms_smsmanager_smsmanager_sendpattern",
       "sms_smsmanager_smsmanager_sendwelcome",
       "sms_smsmanager_smsmanager_verifyotp",
-      "smsprovider",
-      "static"
+      "smsprovider"
     ],
     "4": [
-      "admin_adjustwalletrequest",
-      "admin_adjustwalletrequest_adjustwalletrequest",
-      "admin_adjustwalletrequest_adjustwalletrequest_authorize",
-      "admin_adjustwalletrequest_adjustwalletrequest_rules",
-      "admin_adjustwalletrequest_adjustwalletrequest_signedamount",
-      "admin_storeplanrequest",
-      "admin_storeplanrequest_storeplanrequest",
-      "admin_storeplanrequest_storeplanrequest_authorize",
-      "admin_storeplanrequest_storeplanrequest_planattributes",
-      "admin_storeplanrequest_storeplanrequest_rules",
-      "admin_updateplanrequest",
-      "admin_updateplanrequest_updateplanrequest",
-      "admin_updateplanrequest_updateplanrequest_authorize",
-      "admin_updateplanrequest_updateplanrequest_planattributes",
-      "admin_updateplanrequest_updateplanrequest_rules",
-      "app_actions_fortify_createnewuser_php_user",
-      "app_actions_fortify_resetuserpassword_php_user",
-      "createsnewusers",
-      "formrequest",
-      "fortify_createnewuser",
-      "fortify_createnewuser_createnewuser",
-      "fortify_createnewuser_createnewuser_create",
-      "fortify_resetuserpassword",
-      "fortify_resetuserpassword_resetuserpassword",
-      "fortify_resetuserpassword_resetuserpassword_reset",
-      "interactswithtwofactorstate",
-      "passwordvalidationrules",
-      "phonevalidationrules",
-      "profilevalidationrules",
-      "resetsuserpasswords",
-      "settings_passwordupdaterequest",
-      "settings_passwordupdaterequest_passwordupdaterequest",
-      "settings_passwordupdaterequest_passwordupdaterequest_rules",
-      "settings_profiledeleterequest",
-      "settings_profiledeleterequest_profiledeleterequest",
-      "settings_profiledeleterequest_profiledeleterequest_rules",
-      "settings_profileupdaterequest",
-      "settings_profileupdaterequest_profileupdaterequest",
-      "settings_profileupdaterequest_profileupdaterequest_rules",
-      "settings_twofactorauthenticationrequest",
-      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest",
-      "settings_twofactorauthenticationrequest_twofactorauthenticationrequest_rules",
-      "user_chargewalletrequest",
-      "user_chargewalletrequest_chargewalletrequest",
-      "user_chargewalletrequest_chargewalletrequest_authorize",
-      "user_chargewalletrequest_chargewalletrequest_messages",
-      "user_chargewalletrequest_chargewalletrequest_rules"
-    ],
-    "5": [
-      "app_app_header_layout",
-      "app_app_sidebar_layout",
-      "auth_auth_simple_layout",
-      "auth_auth_split_layout",
-      "auth_login_login",
-      "components_app_content",
-      "components_app_content_appcontent",
-      "components_app_content_props",
-      "components_app_header_appheader",
-      "components_app_logo_icon",
-      "components_app_logo_icon_applogoicon",
-      "components_app_shell",
-      "components_app_shell_appshell",
-      "components_app_shell_props",
-      "components_app_sidebar_appsidebar",
-      "components_app_sidebar_header",
+      "components_app_header",
+      "components_app_header_mainnavitems",
+      "components_app_header_props",
+      "components_app_header_rightnavitems",
       "components_breadcrumbs",
       "components_breadcrumbs_breadcrumbs",
-      "layouts_app_layout",
-      "layouts_app_layout_applayout",
-      "pages_dashboard_dashboard",
-      "pages_welcome",
-      "pages_welcome_welcome",
-      "types_index",
-      "types_navigation",
-      "types_navigation_breadcrumbitem",
-      "types_ui",
-      "types_ui_applayoutprops",
-      "types_ui_appvariant",
-      "types_ui_authlayoutprops",
-      "types_ui_flashtoast",
+      "lib_utils_cn",
       "ui_breadcrumb",
       "ui_breadcrumb_breadcrumb",
       "ui_breadcrumb_breadcrumbellipsis",
       "ui_breadcrumb_breadcrumbitem",
       "ui_breadcrumb_breadcrumblist",
       "ui_breadcrumb_breadcrumbpage",
-      "ui_breadcrumb_breadcrumbseparator"
+      "ui_breadcrumb_breadcrumbseparator",
+      "ui_card_cardfooter",
+      "ui_navigation_menu",
+      "ui_navigation_menu_navigationmenucontent",
+      "ui_navigation_menu_navigationmenuindicator",
+      "ui_navigation_menu_navigationmenulist",
+      "ui_navigation_menu_navigationmenutriggerstyle",
+      "ui_navigation_menu_navigationmenuviewport",
+      "ui_sheet",
+      "ui_sheet_sheet",
+      "ui_sheet_sheetclose",
+      "ui_sheet_sheetcontent",
+      "ui_sheet_sheetdescription",
+      "ui_sheet_sheetfooter",
+      "ui_sheet_sheetheader",
+      "ui_sheet_sheetoverlay",
+      "ui_sheet_sheetportal",
+      "ui_sheet_sheettitle",
+      "ui_sheet_sheettrigger",
+      "ui_sidebar_sidebargroupaction",
+      "ui_sidebar_sidebarinput",
+      "ui_sidebar_sidebarmenuaction",
+      "ui_sidebar_sidebarmenubadge",
+      "ui_sidebar_sidebarmenuskeleton",
+      "ui_sidebar_sidebarmenusub",
+      "ui_sidebar_sidebarmenusubbutton",
+      "ui_sidebar_sidebarmenusubitem",
+      "ui_sidebar_sidebarseparator",
+      "ui_skeleton",
+      "ui_skeleton_skeleton",
+      "ui_tooltip",
+      "ui_tooltip_tooltip",
+      "ui_tooltip_tooltipcontent",
+      "ui_tooltip_tooltiptrigger"
+    ],
+    "5": [
+      "app_app_header_layout",
+      "app_app_sidebar_layout",
+      "appearance_index_edit",
+      "components_app_content",
+      "components_app_content_appcontent",
+      "components_app_content_props",
+      "components_app_shell",
+      "components_app_shell_appshell",
+      "components_app_shell_props",
+      "components_app_sidebar_appsidebar",
+      "components_appearance_tabs",
+      "components_appearance_tabs_appearancetoggletab",
+      "hooks_use_appearance",
+      "hooks_use_appearance_appearance",
+      "hooks_use_appearance_applytheme",
+      "hooks_use_appearance_getstoredappearance",
+      "hooks_use_appearance_handlesystemthemechange",
+      "hooks_use_appearance_initializetheme",
+      "hooks_use_appearance_isdarkmode",
+      "hooks_use_appearance_listeners",
+      "hooks_use_appearance_mediaquery",
+      "hooks_use_appearance_notify",
+      "hooks_use_appearance_prefersdark",
+      "hooks_use_appearance_resolvedappearance",
+      "hooks_use_appearance_setcookie",
+      "hooks_use_appearance_subscribe",
+      "hooks_use_appearance_useappearancereturn",
+      "hooks_use_flash_toast",
+      "js_app",
+      "js_app_withapp",
+      "settings_appearance",
+      "settings_appearance_appearance",
+      "types_ui",
+      "types_ui_applayoutprops",
+      "types_ui_appvariant",
+      "types_ui_flashtoast",
+      "ui_sidebar_sidebarinset",
+      "ui_sidebar_sidebarprovider",
+      "ui_sonner",
+      "ui_sonner_toaster",
+      "ui_tooltip_tooltipprovider"
     ],
     "6": [
+      "controllers_authenticatedsessioncontroller",
+      "controllers_authenticatedsessioncontroller_authenticatedsessioncontroller",
+      "controllers_authenticatedsessioncontroller_create",
+      "controllers_authenticatedsessioncontroller_createform",
+      "controllers_authenticatedsessioncontroller_destroy",
+      "controllers_authenticatedsessioncontroller_destroyform",
+      "controllers_authenticatedsessioncontroller_store",
+      "controllers_authenticatedsessioncontroller_storeform",
+      "controllers_confirmedpasswordstatuscontroller",
+      "controllers_confirmedpasswordstatuscontroller_confirmedpasswordstatuscontroller",
+      "controllers_confirmedpasswordstatuscontroller_show",
+      "controllers_confirmedpasswordstatuscontroller_showform",
+      "controllers_confirmedtwofactorauthenticationcontroller",
+      "controllers_confirmedtwofactorauthenticationcontroller_confirmedtwofactorauthenticationcontroller",
+      "controllers_confirmedtwofactorauthenticationcontroller_store",
+      "controllers_confirmedtwofactorauthenticationcontroller_storeform",
+      "controllers_emailverificationnotificationcontroller",
+      "controllers_emailverificationnotificationcontroller_emailverificationnotificationcontroller",
+      "controllers_emailverificationnotificationcontroller_store",
+      "controllers_emailverificationnotificationcontroller_storeform",
+      "controllers_emailverificationpromptcontroller",
+      "controllers_emailverificationpromptcontroller_emailverificationpromptcontroller",
+      "controllers_emailverificationpromptcontroller_invoke",
+      "controllers_emailverificationpromptcontroller_invokeform",
+      "controllers_recoverycodecontroller",
+      "controllers_recoverycodecontroller_index",
+      "controllers_recoverycodecontroller_indexform",
+      "controllers_recoverycodecontroller_recoverycodecontroller",
+      "controllers_recoverycodecontroller_store",
+      "controllers_recoverycodecontroller_storeform",
+      "controllers_twofactorauthenticationcontroller",
+      "controllers_twofactorauthenticationcontroller_destroy",
+      "controllers_twofactorauthenticationcontroller_destroyform",
+      "controllers_twofactorauthenticationcontroller_store",
+      "controllers_twofactorauthenticationcontroller_storeform",
+      "controllers_twofactorauthenticationcontroller_twofactorauthenticationcontroller",
+      "resources_js_actions_laravel_fortify_http_controllers_index_ts_controllers_index",
+      "resources_js_actions_laravel_fortify_http_controllers_index_ts_controllers_index_controllers"
+    ],
+    "7": [
+      "auth_login",
+      "auth_login_login",
+      "auth_login_props",
+      "auth_register",
+      "auth_register_props",
+      "auth_register_register",
+      "auth_verify_email",
+      "components_input_error",
+      "components_input_error_inputerror",
+      "components_manage_two_factor",
+      "components_manage_two_factor_props",
+      "components_passkey_register",
+      "components_passkey_register_passkeyregistration",
+      "components_passkey_register_props",
+      "components_passkey_verify",
+      "components_passkey_verify_props",
+      "components_text_link",
+      "components_text_link_props",
+      "components_text_link_textlink",
+      "settings_profile",
+      "settings_profile_pageprops",
+      "settings_profile_profile",
+      "settings_security",
+      "settings_security_props",
+      "settings_security_security",
+      "ui_button",
+      "ui_button_button",
+      "ui_button_buttonvariants",
+      "ui_checkbox",
+      "ui_checkbox_checkbox",
+      "ui_input",
+      "ui_input_input",
+      "ui_label",
+      "ui_label_label",
+      "ui_spinner",
+      "ui_spinner_spinner",
+      "verification_index_send"
+    ],
+    "8": [
       "package_dependencies",
       "package_dependencies_class_variance_authority",
       "package_dependencies_clsx",
@@ -378,203 +461,228 @@
       "package_dependencies_vite",
       "package_dependencies_vitejs_plugin_react"
     ],
-    "7": [
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_author",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_categories",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_inertiajs_inertia_laravel",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_inertiajs_react",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_laravel",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_php",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_react",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_typescript",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_description",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_displayname",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_forms_rules",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_forms_title",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_keywords",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_laravelversion",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_license",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_name",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_phpversion",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_critical",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_high",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_medium",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_references",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_forms",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_layouts",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_navigation",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_page_components",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_shared_data",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_tags",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_updatedat",
-      "agents_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_version"
-    ],
-    "8": [
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_author",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_categories",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_inertiajs_inertia_laravel",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_inertiajs_react",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_laravel",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_php",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_react",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_typescript",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_description",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_displayname",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_forms_rules",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_forms_title",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_keywords",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_laravelversion",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_license",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_name",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_phpversion",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_critical",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_high",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_medium",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_references",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_forms",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_layouts",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_navigation",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_page_components",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_shared_data",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_tags",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_updatedat",
-      "ai_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_version"
-    ],
     "9": [
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_author",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_categories",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_inertiajs_inertia_laravel",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_inertiajs_react",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_laravel",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_php",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_react",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_dependencies_typescript",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_description",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_displayname",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_forms_rules",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_forms_title",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_keywords",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_laravelversion",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_license",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_name",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_phpversion",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_critical",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_high",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_priority_medium",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_references",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_forms",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_layouts",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_navigation",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_page_components",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_sections_shared_data",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_tags",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_updatedat",
-      "claude_skills_laravel_inertia_react_metadata_json_laravel_inertia_react_metadata_version"
+      "controllers_homecontroller",
+      "controllers_homecontroller_homecontroller",
+      "controllers_homecontroller_index",
+      "controllers_homecontroller_indexform",
+      "controllers_twofactorqrcodecontroller",
+      "controllers_twofactorqrcodecontroller_show",
+      "controllers_twofactorqrcodecontroller_showform",
+      "controllers_twofactorqrcodecontroller_twofactorqrcodecontroller",
+      "local_index",
+      "local_index_local",
+      "local_index_upload",
+      "local_index_uploadform",
+      "storage_index",
+      "storage_index_local",
+      "storage_index_localform",
+      "storage_index_storage",
+      "user_password_index",
+      "user_password_index_update",
+      "user_password_index_updateform",
+      "user_password_index_userpassword",
+      "wayfinder_index",
+      "wayfinder_index_addnestedparams",
+      "wayfinder_index_addurldefault",
+      "wayfinder_index_clearparamfamily",
+      "wayfinder_index_getvalue",
+      "wayfinder_index_method",
+      "wayfinder_index_queryparams",
+      "wayfinder_index_seturldefaults",
+      "wayfinder_index_validateparameters",
+      "well_known_index",
+      "well_known_index_passkeys",
+      "well_known_index_passkeysform",
+      "well_known_index_wellknown"
     ],
     "10": [
-      "auth_login",
-      "auth_login_props",
-      "auth_register",
-      "auth_register_props",
-      "auth_register_register",
-      "auth_verify_email",
-      "components_input_error",
-      "components_input_error_inputerror",
-      "components_passkey_register",
-      "components_passkey_register_passkeyregistration",
-      "components_passkey_register_props",
-      "components_passkey_verify",
-      "components_passkey_verify_props",
-      "components_text_link",
-      "components_text_link_props",
-      "components_text_link_textlink",
-      "settings_profile",
-      "settings_profile_pageprops",
-      "settings_profile_profile",
-      "ui_button",
-      "ui_button_button",
-      "ui_button_buttonvariants",
-      "ui_checkbox",
-      "ui_checkbox_checkbox",
-      "ui_input",
-      "ui_input_input",
-      "ui_label",
-      "ui_label_label",
-      "ui_spinner",
-      "ui_spinner_spinner"
+      "financial_plans",
+      "financial_plans_pageprops",
+      "financial_plans_period_labels",
+      "financial_plans_planspage",
+      "financial_transactions_table",
+      "financial_wallet_walletpage",
+      "lib_format",
+      "lib_format_formatdate",
+      "lib_format_formatdatetime",
+      "lib_format_formattoman",
+      "lib_format_formattomanlabel",
+      "resources_js_pages_admin_users_index_tsx_users_index",
+      "types_financial",
+      "types_financial_adminuserrow",
+      "types_financial_plan",
+      "types_financial_subscription",
+      "types_financial_wallettransaction",
+      "ui_badge",
+      "ui_badge_badge",
+      "ui_badge_badgevariants",
+      "ui_table",
+      "ui_table_table",
+      "ui_table_tablebody",
+      "ui_table_tablecaption",
+      "ui_table_tablecell",
+      "ui_table_tablefooter",
+      "ui_table_tablehead",
+      "ui_table_tableheader",
+      "ui_table_tablerow",
+      "users_index_adminusersindex",
+      "users_index_pageprops",
+      "users_show_adminusershow"
     ],
     "11": [
-      "app_http_controllers_auth_passwordresetcontroller_php_redirectresponse",
-      "app_http_controllers_auth_passwordresetcontroller_php_request",
-      "app_http_controllers_auth_passwordresetcontroller_php_response",
-      "app_http_controllers_settings_profilecontroller_php_redirectresponse",
-      "app_http_controllers_settings_profilecontroller_php_request",
-      "app_http_controllers_settings_profilecontroller_php_response",
-      "app_http_controllers_settings_securitycontroller_php_redirectresponse",
-      "app_http_controllers_settings_securitycontroller_php_response",
-      "auth_passwordresetcontroller",
-      "auth_passwordresetcontroller_passwordresetcontroller",
-      "auth_passwordresetcontroller_passwordresetcontroller_construct",
-      "auth_passwordresetcontroller_passwordresetcontroller_create",
-      "auth_passwordresetcontroller_passwordresetcontroller_store",
-      "auth_passwordresetcontroller_passwordresetcontroller_update",
-      "controllers_controller",
-      "controllers_controller_controller",
-      "passwordupdaterequest",
-      "profiledeleterequest",
-      "profileupdaterequest",
-      "settings_profilecontroller",
-      "settings_profilecontroller_profilecontroller",
-      "settings_profilecontroller_profilecontroller_destroy",
-      "settings_profilecontroller_profilecontroller_edit",
-      "settings_profilecontroller_profilecontroller_update",
-      "settings_securitycontroller",
-      "settings_securitycontroller_securitycontroller",
-      "settings_securitycontroller_securitycontroller_edit",
-      "settings_securitycontroller_securitycontroller_update",
-      "twofactorauthenticationrequest"
+      "components_app_sidebar",
+      "components_app_sidebar_adminnavitems",
+      "components_app_sidebar_financialnavitems",
+      "components_app_sidebar_footernavitems",
+      "components_app_sidebar_header",
+      "components_app_sidebar_mainnavitems",
+      "components_nav_footer",
+      "components_nav_footer_navfooter",
+      "components_nav_main",
+      "components_nav_main_navmain",
+      "layouts_app_layout",
+      "layouts_app_layout_applayout",
+      "types_index",
+      "types_navigation",
+      "types_navigation_breadcrumbitem",
+      "types_navigation_navitem",
+      "ui_sidebar",
+      "ui_sidebar_sidebar",
+      "ui_sidebar_sidebarcontext",
+      "ui_sidebar_sidebarfooter",
+      "ui_sidebar_sidebargroup",
+      "ui_sidebar_sidebargroupcontent",
+      "ui_sidebar_sidebargrouplabel",
+      "ui_sidebar_sidebarheader",
+      "ui_sidebar_sidebarmenu",
+      "ui_sidebar_sidebarmenubutton",
+      "ui_sidebar_sidebarmenubuttonvariants",
+      "ui_sidebar_sidebarmenuitem",
+      "ui_sidebar_sidebarrail",
+      "ui_sidebar_sidebartrigger",
+      "ui_sidebar_usesidebar"
     ],
     "12": [
-      "components_appearance_tabs",
-      "components_appearance_tabs_appearancetoggletab",
-      "hooks_use_appearance",
-      "hooks_use_appearance_appearance",
-      "hooks_use_appearance_applytheme",
-      "hooks_use_appearance_getstoredappearance",
-      "hooks_use_appearance_handlesystemthemechange",
-      "hooks_use_appearance_initializetheme",
-      "hooks_use_appearance_isdarkmode",
-      "hooks_use_appearance_listeners",
-      "hooks_use_appearance_mediaquery",
-      "hooks_use_appearance_notify",
-      "hooks_use_appearance_prefersdark",
-      "hooks_use_appearance_resolvedappearance",
-      "hooks_use_appearance_setcookie",
-      "hooks_use_appearance_subscribe",
-      "hooks_use_appearance_useappearancereturn",
-      "hooks_use_flash_toast",
-      "js_app",
-      "js_app_withapp",
-      "layouts_auth_layout",
-      "layouts_auth_layout_authlayout",
-      "settings_appearance",
-      "settings_appearance_appearance",
-      "ui_sonner",
-      "ui_sonner_toaster"
+      "controllers_dumpcontroller",
+      "controllers_dumpcontroller_dumpcontroller",
+      "controllers_dumpcontroller_index",
+      "controllers_dumpcontroller_indexform",
+      "controllers_entriescontroller",
+      "controllers_entriescontroller_destroy",
+      "controllers_entriescontroller_destroyform",
+      "controllers_entriescontroller_entriescontroller",
+      "controllers_eventscontroller",
+      "controllers_eventscontroller_eventscontroller",
+      "controllers_eventscontroller_index",
+      "controllers_eventscontroller_indexform",
+      "controllers_eventscontroller_show",
+      "controllers_eventscontroller_showform",
+      "controllers_mailhtmlcontroller",
+      "controllers_mailhtmlcontroller_mailhtmlcontroller",
+      "controllers_mailhtmlcontroller_show",
+      "controllers_mailhtmlcontroller_showform",
+      "controllers_notificationscontroller",
+      "controllers_notificationscontroller_index",
+      "controllers_notificationscontroller_indexform",
+      "controllers_notificationscontroller_notificationscontroller",
+      "controllers_notificationscontroller_show",
+      "controllers_notificationscontroller_showform",
+      "controllers_recordingcontroller",
+      "controllers_recordingcontroller_recordingcontroller",
+      "controllers_recordingcontroller_toggle",
+      "controllers_recordingcontroller_toggleform",
+      "resources_js_actions_laravel_telescope_http_controllers_index_ts_controllers_index",
+      "resources_js_actions_laravel_telescope_http_controllers_index_ts_controllers_index_controllers"
     ],
     "13": [
+      "passkey_index",
+      "passkey_index_confirm",
+      "passkey_index_confirmform",
+      "passkey_index_confirmoptions",
+      "passkey_index_confirmoptionsform",
+      "passkey_index_destroy",
+      "passkey_index_destroyform",
+      "passkey_index_login",
+      "passkey_index_loginform",
+      "passkey_index_loginoptions",
+      "passkey_index_loginoptionsform",
+      "passkey_index_passkey",
+      "passkey_index_registrationoptions",
+      "passkey_index_registrationoptionsform",
+      "passkey_index_store",
+      "passkey_index_storeform",
+      "plans_index_destroy",
+      "plans_index_destroyform",
+      "plans_index_store",
+      "plans_index_storeform",
+      "plans_index_toggle",
+      "plans_index_toggleform",
+      "plans_index_update",
+      "plans_index_updateform",
+      "resources_js_routes_admin_plans_index_ts_plans_index",
+      "resources_js_routes_admin_plans_index_ts_plans_index_index",
+      "resources_js_routes_admin_plans_index_ts_plans_index_indexform",
+      "resources_js_routes_admin_plans_index_ts_plans_index_plans"
+    ],
+    "14": [
+      "auth_auth_card_layout",
+      "components_heading",
+      "components_heading_heading",
+      "components_pagination_nav",
+      "components_pagination_nav_paginationnav",
+      "components_two_factor_recovery_codes",
+      "components_two_factor_recovery_codes_props",
+      "financial_wallet",
+      "financial_wallet_pageprops",
+      "financial_wallet_quick_amounts",
+      "plans_index_adminplansindex",
+      "plans_index_pageprops",
+      "resources_js_pages_admin_plans_index_tsx_plans_index",
+      "types_pagination",
+      "types_pagination_paginated",
+      "types_pagination_paginationlink",
+      "ui_card",
+      "ui_card_card",
+      "ui_card_cardcontent",
+      "ui_card_carddescription",
+      "ui_card_cardheader",
+      "ui_card_cardtitle",
+      "users_show",
+      "users_show_adminuser",
+      "users_show_info",
+      "users_show_pageprops",
+      "users_show_typebutton"
+    ],
+    "15": [
+      "admin_userwalletcontroller_store",
+      "admin_userwalletcontroller_storeform",
+      "controllers_clientrequestcontroller",
+      "controllers_clientrequestcontroller_clientrequestcontroller",
+      "controllers_clientrequestcontroller_index",
+      "controllers_clientrequestcontroller_indexform",
+      "controllers_clientrequestcontroller_show",
+      "controllers_clientrequestcontroller_showform",
+      "controllers_mailemlcontroller",
+      "controllers_mailemlcontroller_mailemlcontroller",
+      "controllers_mailemlcontroller_show",
+      "controllers_mailemlcontroller_showform",
+      "controllers_queriescontroller",
+      "controllers_queriescontroller_index",
+      "controllers_queriescontroller_indexform",
+      "controllers_queriescontroller_queriescontroller",
+      "controllers_queriescontroller_show",
+      "controllers_queriescontroller_showform",
+      "controllers_verifyemailcontroller",
+      "controllers_verifyemailcontroller_invoke",
+      "controllers_verifyemailcontroller_invokeform",
+      "controllers_verifyemailcontroller_verifyemailcontroller",
+      "resources_js_actions_app_http_controllers_admin_userwalletcontroller_ts_admin_userwalletcontroller",
+      "resources_js_actions_app_http_controllers_admin_userwalletcontroller_ts_admin_userwalletcontroller_userwalletcontroller",
+      "wayfinder_index_applyurldefaults",
+      "wayfinder_index_urldefaults"
+    ],
+    "16": [
       "app_models_passwordresetcode_php_belongsto",
       "app_services_auth_passwordresetcodeservice_php_user",
       "auth_passwordresetcodeservice",
@@ -588,7 +696,6 @@
       "facades_sms",
       "facades_sms_sms",
       "facades_sms_sms_getfacadeaccessor",
-      "model",
       "models_passwordresetcode",
       "models_passwordresetcode_passwordresetcode",
       "models_passwordresetcode_passwordresetcode_casts",
@@ -601,105 +708,30 @@
       "sms_smsmanagertest_smsmanagertest_test_it_sends_a_named_pattern_resolved_from_config",
       "sms_smsmanagertest_smsmanagertest_test_it_sends_a_pattern_message_with_replace_tokens"
     ],
-    "14": [
-      "components_app_header",
-      "components_app_header_mainnavitems",
-      "components_app_header_props",
-      "components_app_header_rightnavitems",
-      "ui_navigation_menu",
-      "ui_navigation_menu_navigationmenucontent",
-      "ui_navigation_menu_navigationmenuindicator",
-      "ui_navigation_menu_navigationmenulist",
-      "ui_navigation_menu_navigationmenutriggerstyle",
-      "ui_navigation_menu_navigationmenuviewport",
-      "ui_sheet",
-      "ui_sheet_sheet",
-      "ui_sheet_sheetclose",
-      "ui_sheet_sheetcontent",
-      "ui_sheet_sheetfooter",
-      "ui_sheet_sheetheader",
-      "ui_sheet_sheetoverlay",
-      "ui_sheet_sheetportal",
-      "ui_sheet_sheettitle",
-      "ui_sheet_sheettrigger",
-      "ui_tooltip",
-      "ui_tooltip_tooltip",
-      "ui_tooltip_tooltipcontent",
-      "ui_tooltip_tooltipprovider",
-      "ui_tooltip_tooltiptrigger"
-    ],
-    "15": [
-      "lib_utils_cn",
-      "ui_sheet_sheetdescription",
-      "ui_sidebar",
-      "ui_sidebar_sidebar",
-      "ui_sidebar_sidebarcontext",
-      "ui_sidebar_sidebarfooter",
-      "ui_sidebar_sidebargroupaction",
-      "ui_sidebar_sidebargroupcontent",
-      "ui_sidebar_sidebargrouplabel",
-      "ui_sidebar_sidebarheader",
-      "ui_sidebar_sidebarinput",
-      "ui_sidebar_sidebarinset",
-      "ui_sidebar_sidebarmenuaction",
-      "ui_sidebar_sidebarmenubadge",
-      "ui_sidebar_sidebarmenuskeleton",
-      "ui_sidebar_sidebarmenusub",
-      "ui_sidebar_sidebarmenusubbutton",
-      "ui_sidebar_sidebarmenusubitem",
-      "ui_sidebar_sidebarprovider",
-      "ui_sidebar_sidebarrail",
-      "ui_sidebar_sidebarseparator",
-      "ui_sidebar_sidebartrigger",
-      "ui_sidebar_usesidebar",
-      "ui_skeleton",
-      "ui_skeleton_skeleton"
-    ],
-    "16": [
-      "auth_passwordconfirmationtest",
-      "auth_passwordconfirmationtest_passwordconfirmationtest",
-      "auth_passwordconfirmationtest_passwordconfirmationtest_test_confirm_password_screen_can_be_rendered",
-      "auth_passwordconfirmationtest_passwordconfirmationtest_test_password_confirmation_requires_authentication",
-      "auth_twofactorchallengetest",
-      "basetestcase",
-      "feature_dashboardtest",
-      "feature_dashboardtest_dashboardtest_test_authenticated_users_can_visit_the_dashboard",
-      "feature_dashboardtest_dashboardtest_test_guests_are_redirected_to_the_login_page",
-      "feature_exampletest",
-      "feature_exampletest_exampletest",
-      "feature_exampletest_exampletest_test_returns_a_successful_response",
-      "pages_dashboard",
-      "refreshdatabase",
-      "tests_testcase",
-      "tests_testcase_testcase",
-      "tests_testcase_testcase_skipunlessfortifyhas",
-      "ui_placeholder_pattern",
-      "unit_exampletest",
-      "unit_exampletest_exampletest",
-      "unit_exampletest_exampletest_test_that_true_is_true"
-    ],
     "17": [
-      "auth_two_factor_challenge",
-      "auth_twofactorchallengetest_twofactorchallengetest_setup",
-      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_can_be_rendered",
-      "auth_twofactorchallengetest_twofactorchallengetest_test_two_factor_challenge_redirects_to_login_when_not_authenticated",
-      "components_two_factor_setup_modal",
-      "components_two_factor_setup_modal_gridscanicon",
-      "components_two_factor_setup_modal_props",
-      "components_two_factor_setup_modal_twofactorsetupstep",
-      "components_two_factor_setup_modal_twofactorverificationstep",
-      "hooks_use_clipboard",
-      "hooks_use_clipboard_copiedvalue",
-      "hooks_use_clipboard_copyfn",
-      "hooks_use_clipboard_useclipboardreturn",
-      "hooks_use_two_factor_auth",
-      "hooks_use_two_factor_auth_usetwofactorauthreturn",
-      "ui_dialog_dialogheader",
-      "ui_input_otp",
-      "ui_input_otp_inputotp",
-      "ui_input_otp_inputotpgroup",
-      "ui_input_otp_inputotpseparator",
-      "ui_input_otp_inputotpslot"
+      "auth_auth_simple_layout",
+      "auth_auth_split_layout",
+      "components_app_logo",
+      "components_app_logo_applogo",
+      "components_app_logo_icon",
+      "components_app_logo_icon_applogoicon",
+      "layouts_auth_layout",
+      "layouts_auth_layout_authlayout",
+      "pages_welcome",
+      "pages_welcome_welcome",
+      "routes_index",
+      "routes_index_dashboard",
+      "routes_index_dashboardform",
+      "routes_index_home",
+      "routes_index_homeform",
+      "routes_index_login",
+      "routes_index_loginform",
+      "routes_index_logoutform",
+      "routes_index_register",
+      "routes_index_registerform",
+      "routes_index_telescope",
+      "routes_index_telescopeform",
+      "types_ui_authlayoutprops"
     ],
     "18": [
       "admin_plan_form_dialog",
@@ -723,88 +755,31 @@
       "ui_textarea_textarea"
     ],
     "19": [
-      "components",
-      "components_aliases",
-      "components_aliases_components",
-      "components_aliases_hooks",
-      "components_aliases_lib",
-      "components_aliases_ui",
-      "components_aliases_utils",
-      "components_iconlibrary",
-      "components_rsc",
-      "components_schema",
-      "components_style",
-      "components_tailwind",
-      "components_tailwind_basecolor",
-      "components_tailwind_config",
-      "components_tailwind_css",
-      "components_tailwind_cssvariables",
-      "components_tailwind_prefix",
-      "components_tsx"
+      "appearance_index",
+      "appearance_index_appearance",
+      "appearance_index_editform",
+      "controllers_twofactorsecretkeycontroller",
+      "controllers_twofactorsecretkeycontroller_show",
+      "controllers_twofactorsecretkeycontroller_showform",
+      "controllers_twofactorsecretkeycontroller_twofactorsecretkeycontroller",
+      "resources_js_actions_app_http_controllers_user_walletcontroller_ts_user_walletcontroller",
+      "resources_js_actions_app_http_controllers_user_walletcontroller_ts_user_walletcontroller_walletcontroller",
+      "resources_js_routes_admin_users_wallet_index_ts_wallet_index",
+      "resources_js_routes_admin_users_wallet_index_ts_wallet_index_wallet",
+      "user_walletcontroller_charge",
+      "user_walletcontroller_chargeform",
+      "user_walletcontroller_index",
+      "user_walletcontroller_indexform",
+      "wallet_index_store",
+      "wallet_index_storeform",
+      "wayfinder_index_routedefinition"
     ],
     "20": [
-      "tsconfig",
-      "tsconfig_compileroptions",
-      "tsconfig_compileroptions_allowjs",
-      "tsconfig_compileroptions_baseurl",
-      "tsconfig_compileroptions_esmoduleinterop",
-      "tsconfig_compileroptions_forceconsistentcasinginfilenames",
-      "tsconfig_compileroptions_isolatedmodules",
-      "tsconfig_compileroptions_jsx",
-      "tsconfig_compileroptions_module",
-      "tsconfig_compileroptions_moduleresolution",
-      "tsconfig_compileroptions_noemit",
-      "tsconfig_compileroptions_noimplicitany",
-      "tsconfig_compileroptions_paths",
-      "tsconfig_compileroptions_skiplibcheck",
-      "tsconfig_compileroptions_strict",
-      "tsconfig_compileroptions_target",
-      "tsconfig_include",
-      "tsconfig_paths"
-    ],
-    "21": [
-      "admin_adminaccesstest",
-      "financial_subscriptionplantest",
-      "financial_subscriptionplantest_subscriptionplantest",
-      "financial_subscriptionplantest_subscriptionplantest_test_user_can_charge_their_wallet",
-      "financial_subscriptionplantest_subscriptionplantest_test_user_can_subscribe_to_a_plan_paying_from_their_wallet",
-      "financial_subscriptionplantest_subscriptionplantest_test_user_cannot_subscribe_without_enough_balance",
-      "testcase",
-      "wallet_walletservicetest",
-      "wallet_walletservicetest_walletservicetest",
-      "wallet_walletservicetest_walletservicetest_setup",
-      "wallet_walletservicetest_walletservicetest_test_a_new_user_starts_with_a_zero_balance",
-      "wallet_walletservicetest_walletservicetest_test_admin_adjustment_supports_positive_and_negative_amounts",
-      "wallet_walletservicetest_walletservicetest_test_amount_must_be_positive",
-      "wallet_walletservicetest_walletservicetest_test_deposit_increases_balance_and_records_a_credit",
-      "wallet_walletservicetest_walletservicetest_test_withdraw_decreases_balance_and_records_a_debit",
-      "wallet_walletservicetest_walletservicetest_test_withdraw_fails_when_balance_is_insufficient",
-      "walletservice"
-    ],
-    "22": [
-      "components_app_logo",
-      "components_app_logo_applogo",
-      "components_app_sidebar",
-      "components_app_sidebar_adminnavitems",
-      "components_app_sidebar_financialnavitems",
-      "components_app_sidebar_footernavitems",
-      "components_app_sidebar_mainnavitems",
-      "components_nav_footer",
-      "components_nav_footer_navfooter",
-      "components_nav_main",
-      "components_nav_main_navmain",
-      "types_navigation_navitem",
-      "ui_sidebar_sidebargroup",
-      "ui_sidebar_sidebarmenu",
-      "ui_sidebar_sidebarmenubutton",
-      "ui_sidebar_sidebarmenubuttonvariants",
-      "ui_sidebar_sidebarmenuitem"
-    ],
-    "23": [
       "components_user_menu_content",
       "components_user_menu_content_props",
       "hooks_use_mobile_navigation",
       "hooks_use_mobile_navigation_cleanupfn",
+      "routes_index_logout",
       "ui_dropdown_menu",
       "ui_dropdown_menu_dropdownmenucheckboxitem",
       "ui_dropdown_menu_dropdownmenugroup",
@@ -819,24 +794,103 @@
       "ui_dropdown_menu_dropdownmenusubcontent",
       "ui_dropdown_menu_dropdownmenusubtrigger"
     ],
+    "21": [
+      "hooks_use_current_url",
+      "hooks_use_current_url_iscurrentorparenturlfn",
+      "hooks_use_current_url_iscurrenturlfn",
+      "hooks_use_current_url_usecurrenturlreturn",
+      "hooks_use_current_url_whencurrenturlfn",
+      "lib_utils",
+      "lib_utils_tourl",
+      "settings_layout",
+      "settings_layout_settingslayout",
+      "settings_layout_sidebarnavitems",
+      "ui_separator",
+      "ui_separator_separator",
+      "ui_toggle",
+      "ui_toggle_group",
+      "ui_toggle_group_togglegroupcontext",
+      "ui_toggle_group_togglegroupitem",
+      "ui_toggle_toggle",
+      "ui_toggle_togglevariants"
+    ],
+    "22": [
+      "admin_adminaccesstest",
+      "admin_adminaccesstest_adminaccesstest",
+      "admin_adminaccesstest_adminaccesstest_test_admin_can_adjust_a_user_wallet_balance",
+      "admin_adminaccesstest_adminaccesstest_test_admin_can_create_a_plan",
+      "admin_adminaccesstest_adminaccesstest_test_admin_can_toggle_a_plan_active_state",
+      "admin_adminaccesstest_adminaccesstest_test_admins_can_view_the_users_list",
+      "admin_adminaccesstest_adminaccesstest_test_non_admins_cannot_access_the_admin_users_page",
+      "wallet_walletservicetest",
+      "wallet_walletservicetest_walletservicetest",
+      "wallet_walletservicetest_walletservicetest_setup",
+      "wallet_walletservicetest_walletservicetest_test_a_new_user_starts_with_a_zero_balance",
+      "wallet_walletservicetest_walletservicetest_test_admin_adjustment_supports_positive_and_negative_amounts",
+      "wallet_walletservicetest_walletservicetest_test_amount_must_be_positive",
+      "wallet_walletservicetest_walletservicetest_test_deposit_increases_balance_and_records_a_credit",
+      "wallet_walletservicetest_walletservicetest_test_withdraw_decreases_balance_and_records_a_debit",
+      "wallet_walletservicetest_walletservicetest_test_withdraw_fails_when_balance_is_insufficient",
+      "walletservice"
+    ],
+    "23": [
+      "app_http_controllers_settings_profilecontroller_php_redirectresponse",
+      "app_http_controllers_settings_profilecontroller_php_request",
+      "app_http_controllers_settings_profilecontroller_php_response",
+      "app_http_controllers_settings_profilecontroller_php_settings_profilecontroller",
+      "app_http_controllers_settings_profilecontroller_php_settings_profilecontroller_profilecontroller",
+      "profiledeleterequest",
+      "profileupdaterequest",
+      "resources_js_actions_app_http_controllers_settings_profilecontroller_ts_settings_profilecontroller_profilecontroller",
+      "settings_profilecontroller_destroy",
+      "settings_profilecontroller_destroyform",
+      "settings_profilecontroller_edit",
+      "settings_profilecontroller_editform",
+      "settings_profilecontroller_profilecontroller_destroy",
+      "settings_profilecontroller_profilecontroller_edit",
+      "settings_profilecontroller_profilecontroller_update",
+      "settings_profilecontroller_update",
+      "settings_profilecontroller_updateform"
+    ],
     "24": [
-      "components_delete_user",
-      "components_delete_user_deleteuser",
-      "components_passkey_item",
-      "components_passkey_item_passkeyitem",
-      "components_passkey_item_props",
-      "ui_dialog",
-      "ui_dialog_dialog",
-      "ui_dialog_dialogclose",
-      "ui_dialog_dialogcontent",
-      "ui_dialog_dialogdescription",
-      "ui_dialog_dialogfooter",
-      "ui_dialog_dialogoverlay",
-      "ui_dialog_dialogportal",
-      "ui_dialog_dialogtitle",
-      "ui_dialog_dialogtrigger"
+      "boost_index",
+      "boost_index_boost",
+      "boost_index_browserlogs",
+      "boost_index_browserlogsform",
+      "confirm_index",
+      "confirm_index_confirm",
+      "confirm_index_store",
+      "confirm_index_storeform",
+      "register_index",
+      "register_index_register",
+      "register_index_store",
+      "register_index_storeform",
+      "resources_js_routes_two_factor_login_index_ts_login_index",
+      "resources_js_routes_two_factor_login_index_ts_login_index_login",
+      "resources_js_routes_two_factor_login_index_ts_login_index_store",
+      "resources_js_routes_two_factor_login_index_ts_login_index_storeform",
+      "wayfinder_index_routeformdefinition"
     ],
     "25": [
+      "controllers_passkeyconfirmationcontroller",
+      "controllers_passkeyconfirmationcontroller_index",
+      "controllers_passkeyconfirmationcontroller_indexform",
+      "controllers_passkeyconfirmationcontroller_passkeyconfirmationcontroller",
+      "controllers_passkeyconfirmationcontroller_store",
+      "controllers_passkeyconfirmationcontroller_storeform",
+      "resources_js_routes_login_index_ts_login_index",
+      "resources_js_routes_login_index_ts_login_index_login",
+      "resources_js_routes_login_index_ts_login_index_store",
+      "resources_js_routes_login_index_ts_login_index_storeform",
+      "routing_redirectcontroller",
+      "routing_redirectcontroller_redirectcontroller",
+      "security_index",
+      "security_index_edit",
+      "security_index_editform",
+      "security_index_security",
+      "wayfinder_index_routequeryoptions"
+    ],
+    "26": [
       "composer",
       "composer_autoload",
       "composer_autoload_dev",
@@ -853,7 +907,7 @@
       "composer_schema",
       "composer_type"
     ],
-    "26": [
+    "27": [
       "package_devdependencies",
       "package_devdependencies_babel_plugin_react_compiler",
       "package_devdependencies_eslint",
@@ -870,7 +924,38 @@
       "package_devdependencies_types_node",
       "package_devdependencies_typescript_eslint"
     ],
-    "27": [
+    "28": [
+      "app_http_controllers_user_subscriptionplancontroller_php_plan",
+      "app_http_controllers_user_subscriptionplancontroller_php_redirectresponse",
+      "app_http_controllers_user_subscriptionplancontroller_php_request",
+      "app_http_controllers_user_subscriptionplancontroller_php_response",
+      "app_http_controllers_user_subscriptionplancontroller_php_user_subscriptionplancontroller",
+      "app_http_controllers_user_subscriptionplancontroller_php_user_subscriptionplancontroller_subscriptionplancontroller",
+      "resources_js_actions_app_http_controllers_user_subscriptionplancontroller_ts_user_subscriptionplancontroller_subscriptionplancontroller",
+      "user_subscriptionplancontroller_index",
+      "user_subscriptionplancontroller_indexform",
+      "user_subscriptionplancontroller_subscribe",
+      "user_subscriptionplancontroller_subscribeform",
+      "user_subscriptionplancontroller_subscriptionplancontroller_construct",
+      "user_subscriptionplancontroller_subscriptionplancontroller_index",
+      "user_subscriptionplancontroller_subscriptionplancontroller_subscribe"
+    ],
+    "29": [
+      "components_manage_passkeys",
+      "components_manage_passkeys_emptystate",
+      "components_manage_passkeys_props",
+      "controllers_passkeyregistrationcontroller",
+      "controllers_passkeyregistrationcontroller_destroy",
+      "controllers_passkeyregistrationcontroller_destroyform",
+      "controllers_passkeyregistrationcontroller_index",
+      "controllers_passkeyregistrationcontroller_indexform",
+      "controllers_passkeyregistrationcontroller_passkeyregistrationcontroller",
+      "controllers_passkeyregistrationcontroller_store",
+      "controllers_passkeyregistrationcontroller_storeform",
+      "resources_js_actions_laravel_passkeys_http_controllers_index_ts_controllers_index",
+      "resources_js_actions_laravel_passkeys_http_controllers_index_ts_controllers_index_controllers"
+    ],
+    "30": [
       "composer_scripts",
       "composer_scripts_ci_check",
       "composer_scripts_dev",
@@ -885,34 +970,77 @@
       "composer_scripts_test",
       "composer_scripts_types_check"
     ],
-    "28": [
-      "hooks_use_current_url",
-      "hooks_use_current_url_iscurrentorparenturlfn",
-      "hooks_use_current_url_iscurrenturlfn",
-      "hooks_use_current_url_usecurrenturlreturn",
-      "hooks_use_current_url_whencurrenturlfn",
-      "lib_utils",
-      "lib_utils_tourl",
-      "settings_layout",
-      "settings_layout_settingslayout",
-      "settings_layout_sidebarnavitems",
-      "ui_separator",
-      "ui_separator_separator"
+    "31": [
+      "admin_plancontroller_destroy",
+      "admin_plancontroller_destroyform",
+      "admin_plancontroller_index",
+      "admin_plancontroller_indexform",
+      "admin_plancontroller_store",
+      "admin_plancontroller_storeform",
+      "admin_plancontroller_toggle",
+      "admin_plancontroller_toggleform",
+      "admin_plancontroller_update",
+      "admin_plancontroller_updateform",
+      "resources_js_actions_app_http_controllers_admin_plancontroller_ts_admin_plancontroller",
+      "resources_js_actions_app_http_controllers_admin_plancontroller_ts_admin_plancontroller_plancontroller"
     ],
-    "29": [
-      "app_http_middleware_ensureuserisadmin_php_request",
-      "app_http_middleware_ensureuserisadmin_php_response",
-      "app_http_middleware_handleappearance_php_request",
-      "app_http_middleware_handleappearance_php_response",
-      "closure",
-      "middleware_ensureuserisadmin",
-      "middleware_ensureuserisadmin_ensureuserisadmin",
-      "middleware_ensureuserisadmin_ensureuserisadmin_handle",
-      "middleware_handleappearance",
-      "middleware_handleappearance_handleappearance",
-      "middleware_handleappearance_handleappearance_handle"
+    "32": [
+      "admin_plancontroller_plancontroller_destroy",
+      "admin_plancontroller_plancontroller_index",
+      "admin_plancontroller_plancontroller_store",
+      "admin_plancontroller_plancontroller_toggle",
+      "admin_plancontroller_plancontroller_update",
+      "app_http_controllers_admin_plancontroller_php_admin_plancontroller",
+      "app_http_controllers_admin_plancontroller_php_admin_plancontroller_plancontroller",
+      "app_http_controllers_admin_plancontroller_php_plan",
+      "app_http_controllers_admin_plancontroller_php_redirectresponse",
+      "app_http_controllers_admin_plancontroller_php_response",
+      "storeplanrequest",
+      "updateplanrequest"
     ],
-    "30": [
+    "33": [
+      "auth_verificationnotificationtest",
+      "auth_verificationnotificationtest_verificationnotificationtest",
+      "auth_verificationnotificationtest_verificationnotificationtest_setup",
+      "auth_verificationnotificationtest_verificationnotificationtest_test_does_not_send_verification_notification_if_email_is_verified",
+      "auth_verificationnotificationtest_verificationnotificationtest_test_sends_verification_notification",
+      "basetestcase",
+      "feature_exampletest",
+      "feature_exampletest_exampletest",
+      "feature_exampletest_exampletest_test_returns_a_successful_response",
+      "tests_testcase",
+      "tests_testcase_testcase",
+      "tests_testcase_testcase_skipunlessfortifyhas"
+    ],
+    "34": [
+      "controllers_passkeylogincontroller",
+      "controllers_passkeylogincontroller_index",
+      "controllers_passkeylogincontroller_indexform",
+      "controllers_passkeylogincontroller_passkeylogincontroller",
+      "controllers_passkeylogincontroller_store",
+      "controllers_passkeylogincontroller_storeform",
+      "resources_js_actions_app_http_controllers_settings_securitycontroller_ts_settings_securitycontroller",
+      "resources_js_actions_app_http_controllers_settings_securitycontroller_ts_settings_securitycontroller_securitycontroller",
+      "settings_securitycontroller_edit",
+      "settings_securitycontroller_editform",
+      "settings_securitycontroller_update",
+      "settings_securitycontroller_updateform"
+    ],
+    "35": [
+      "password_index",
+      "password_index_confirm",
+      "password_index_confirmation",
+      "password_index_confirmationform",
+      "password_index_confirmform",
+      "password_index_password",
+      "password_index_request",
+      "password_index_requestform",
+      "password_index_store",
+      "password_index_storeform",
+      "password_index_update",
+      "password_index_updateform"
+    ],
+    "36": [
       "composer_require_dev",
       "composer_require_dev_fakerphp_faker",
       "composer_require_dev_larastan_larastan",
@@ -925,7 +1053,7 @@
       "composer_require_dev_nunomaduro_collision",
       "composer_require_dev_phpunit_phpunit"
     ],
-    "31": [
+    "37": [
       "package",
       "package_optionaldependencies",
       "package_optionaldependencies_lightningcss_linux_x64_gnu",
@@ -938,19 +1066,65 @@
       "package_schema",
       "package_type"
     ],
-    "32": [
-      "components_heading",
-      "components_heading_heading",
-      "components_manage_passkeys",
-      "components_manage_passkeys_emptystate",
-      "components_manage_passkeys_props",
-      "components_manage_two_factor",
-      "components_manage_two_factor_props",
-      "settings_security",
-      "settings_security_props",
-      "settings_security_security"
+    "38": [
+      "ui_tabs",
+      "ui_tabs_tabs",
+      "ui_tabs_tabscontent",
+      "ui_tabs_tabscontentprops",
+      "ui_tabs_tabscontext",
+      "ui_tabs_tabscontextvalue",
+      "ui_tabs_tabslist",
+      "ui_tabs_tabsprops",
+      "ui_tabs_tabstrigger",
+      "ui_tabs_tabstriggerprops",
+      "ui_tabs_usetabs"
     ],
-    "33": [
+    "39": [
+      "inertia_controller",
+      "inertia_controller_controller",
+      "inertia_controller_controller42a740574ecbfbac32f8cc353fc32db9",
+      "inertia_controller_controller42a740574ecbfbac32f8cc353fc32db9form",
+      "inertia_controller_controller980bb49ee7ae63891f1d891d2fbcf1c9",
+      "inertia_controller_controller980bb49ee7ae63891f1d891d2fbcf1c9form",
+      "inertia_controller_controllere19ee86e9cf603ce1a59a1ec5d21dec5",
+      "inertia_controller_controllere19ee86e9cf603ce1a59a1ec5d21dec5form",
+      "inertia_index",
+      "inertia_index_inertia"
+    ],
+    "40": [
+      "app_http_controllers_settings_securitycontroller_php_redirectresponse",
+      "app_http_controllers_settings_securitycontroller_php_response",
+      "app_http_controllers_settings_securitycontroller_php_settings_securitycontroller",
+      "app_http_controllers_settings_securitycontroller_php_settings_securitycontroller_securitycontroller",
+      "controller",
+      "passwordupdaterequest",
+      "settings_securitycontroller_securitycontroller_edit",
+      "settings_securitycontroller_securitycontroller_update",
+      "twofactorauthenticationrequest"
+    ],
+    "41": [
+      "app_http_controllers_user_walletcontroller_php_redirectresponse",
+      "app_http_controllers_user_walletcontroller_php_request",
+      "app_http_controllers_user_walletcontroller_php_response",
+      "app_http_controllers_user_walletcontroller_php_user_walletcontroller",
+      "app_http_controllers_user_walletcontroller_php_user_walletcontroller_walletcontroller",
+      "chargewalletrequest",
+      "user_walletcontroller_walletcontroller_charge",
+      "user_walletcontroller_walletcontroller_construct",
+      "user_walletcontroller_walletcontroller_index"
+    ],
+    "42": [
+      "app_http_resources_planresource_php_request",
+      "app_http_resources_subscriptionresource_php_request",
+      "jsonresource",
+      "resources_planresource",
+      "resources_planresource_planresource",
+      "resources_planresource_planresource_toarray",
+      "resources_subscriptionresource",
+      "resources_subscriptionresource_subscriptionresource",
+      "resources_subscriptionresource_subscriptionresource_toarray"
+    ],
+    "43": [
       "auth_registrationtest",
       "auth_registrationtest_registrationtest",
       "auth_registrationtest_registrationtest_setup",
@@ -961,7 +1135,18 @@
       "auth_registrationtest_registrationtest_test_registration_requires_a_valid_iranian_mobile_number",
       "auth_registrationtest_registrationtest_test_registration_screen_can_be_rendered"
     ],
-    "34": [
+    "44": [
+      "components_app_header_appheader",
+      "components_user_info",
+      "components_user_info_userinfo",
+      "hooks_use_initials",
+      "hooks_use_initials_getinitialsfn",
+      "ui_avatar",
+      "ui_avatar_avatar",
+      "ui_avatar_avatarfallback",
+      "ui_avatar_avatarimage"
+    ],
+    "45": [
       "components_nav_user",
       "components_nav_user_navuser",
       "hooks_use_mobile",
@@ -972,7 +1157,7 @@
       "ui_dropdown_menu_dropdownmenucontent",
       "ui_dropdown_menu_dropdownmenutrigger"
     ],
-    "35": [
+    "46": [
       "composer_require",
       "composer_require_inertiajs_inertia_laravel",
       "composer_require_laravel_chisel",
@@ -983,7 +1168,7 @@
       "composer_require_laravel_wayfinder",
       "composer_require_php"
     ],
-    "36": [
+    "47": [
       "package_scripts",
       "package_scripts_build",
       "package_scripts_build_ssr",
@@ -994,7 +1179,7 @@
       "package_scripts_lint_check",
       "package_scripts_types_check"
     ],
-    "37": [
+    "48": [
       "types_auth",
       "types_auth_auth",
       "types_auth_passkey",
@@ -1005,7 +1190,17 @@
       "types_global_d_inertiaconfig",
       "types_global_d_inputhtmlattributes"
     ],
-    "38": [
+    "49": [
+      "admin_usercontroller_usercontroller_construct",
+      "admin_usercontroller_usercontroller_index",
+      "admin_usercontroller_usercontroller_show",
+      "app_http_controllers_admin_usercontroller_php_admin_usercontroller",
+      "app_http_controllers_admin_usercontroller_php_admin_usercontroller_usercontroller",
+      "app_http_controllers_admin_usercontroller_php_request",
+      "app_http_controllers_admin_usercontroller_php_response",
+      "app_http_controllers_admin_usercontroller_php_user"
+    ],
+    "50": [
       "auth_authenticationtest",
       "auth_authenticationtest_authenticationtest",
       "auth_authenticationtest_authenticationtest_test_login_screen_can_be_rendered",
@@ -1015,7 +1210,7 @@
       "auth_authenticationtest_authenticationtest_test_users_can_not_authenticate_with_invalid_password",
       "auth_authenticationtest_authenticationtest_test_users_with_two_factor_enabled_are_redirected_to_two_factor_challenge"
     ],
-    "39": [
+    "51": [
       "auth_emailverificationtest",
       "auth_emailverificationtest_emailverificationtest",
       "auth_emailverificationtest_emailverificationtest_setup",
@@ -1025,27 +1220,37 @@
       "auth_emailverificationtest_emailverificationtest_test_email_verification_screen_can_be_rendered",
       "auth_emailverificationtest_emailverificationtest_test_verified_user_is_redirected_to_dashboard_from_verification_prompt"
     ],
-    "40": [
-      "boost",
-      "boost_agents",
-      "boost_cloud",
-      "boost_guidelines",
-      "boost_mcp",
-      "boost_nightwatch",
-      "boost_sail",
-      "boost_skills"
+    "52": [
+      "auth_index",
+      "auth_index_auth",
+      "resources_js_actions_app_http_controllers_index_ts_controllers_index",
+      "resources_js_actions_app_http_controllers_index_ts_controllers_index_controllers",
+      "settings_index",
+      "settings_index_settings",
+      "user_index",
+      "user_index_user"
     ],
-    "41": [
-      "components_user_info",
-      "components_user_info_userinfo",
-      "hooks_use_initials",
-      "hooks_use_initials_getinitialsfn",
-      "ui_avatar",
-      "ui_avatar_avatar",
-      "ui_avatar_avatarfallback",
-      "ui_avatar_avatarimage"
+    "53": [
+      "auth_passwordconfirmationtest",
+      "auth_passwordconfirmationtest_passwordconfirmationtest",
+      "auth_passwordconfirmationtest_passwordconfirmationtest_test_confirm_password_screen_can_be_rendered",
+      "auth_passwordconfirmationtest_passwordconfirmationtest_test_password_confirmation_requires_authentication",
+      "refreshdatabase",
+      "unit_exampletest",
+      "unit_exampletest_exampletest",
+      "unit_exampletest_exampletest_test_that_true_is_true"
     ],
-    "42": [
+    "54": [
+      "auth_passwordresetcontroller_create",
+      "auth_passwordresetcontroller_createform",
+      "auth_passwordresetcontroller_store",
+      "auth_passwordresetcontroller_storeform",
+      "auth_passwordresetcontroller_update",
+      "auth_passwordresetcontroller_updateform",
+      "resources_js_actions_app_http_controllers_auth_passwordresetcontroller_ts_auth_passwordresetcontroller",
+      "resources_js_actions_app_http_controllers_auth_passwordresetcontroller_ts_auth_passwordresetcontroller_passwordresetcontroller"
+    ],
+    "55": [
       "composer_psr_4_database_seeders",
       "seeder",
       "seeders_databaseseeder",
@@ -1055,7 +1260,7 @@
       "seeders_planseeder_planseeder_run",
       "withoutmodelevents"
     ],
-    "43": [
+    "56": [
       "content",
       "envelope",
       "mail_passwordresetcodemail",
@@ -1065,7 +1270,56 @@
       "queueable",
       "serializesmodels"
     ],
-    "44": [
+    "57": [
+      "controllers_exceptioncontroller",
+      "controllers_exceptioncontroller_exceptioncontroller",
+      "controllers_exceptioncontroller_index",
+      "controllers_exceptioncontroller_indexform",
+      "controllers_exceptioncontroller_show",
+      "controllers_exceptioncontroller_showform",
+      "controllers_exceptioncontroller_update",
+      "controllers_exceptioncontroller_updateform"
+    ],
+    "58": [
+      "controllers_monitoredtagcontroller",
+      "controllers_monitoredtagcontroller_destroy",
+      "controllers_monitoredtagcontroller_destroyform",
+      "controllers_monitoredtagcontroller_index",
+      "controllers_monitoredtagcontroller_indexform",
+      "controllers_monitoredtagcontroller_monitoredtagcontroller",
+      "controllers_monitoredtagcontroller_store",
+      "controllers_monitoredtagcontroller_storeform"
+    ],
+    "59": [
+      "fortify_index",
+      "fortify_index_fortify",
+      "laravel_index",
+      "laravel_index_laravel",
+      "passkeys_index",
+      "passkeys_index_passkeys",
+      "telescope_index",
+      "telescope_index_telescope"
+    ],
+    "60": [
+      "profile_index",
+      "profile_index_destroy",
+      "profile_index_destroyform",
+      "profile_index_edit",
+      "profile_index_editform",
+      "profile_index_profile",
+      "profile_index_update",
+      "profile_index_updateform"
+    ],
+    "61": [
+      "adjustwalletrequest",
+      "admin_userwalletcontroller_userwalletcontroller_construct",
+      "admin_userwalletcontroller_userwalletcontroller_store",
+      "app_http_controllers_admin_userwalletcontroller_php_admin_userwalletcontroller",
+      "app_http_controllers_admin_userwalletcontroller_php_admin_userwalletcontroller_userwalletcontroller",
+      "app_http_controllers_admin_userwalletcontroller_php_redirectresponse",
+      "app_http_controllers_admin_userwalletcontroller_php_user"
+    ],
+    "62": [
       "app_http_middleware_handleinertiarequests_php_request",
       "bootstrap_app",
       "middleware",
@@ -1074,7 +1328,7 @@
       "middleware_handleinertiarequests_handleinertiarequests_share",
       "middleware_handleinertiarequests_handleinertiarequests_version"
     ],
-    "45": [
+    "63": [
       "auth_passwordresettest",
       "auth_passwordresettest_passwordresettest",
       "auth_passwordresettest_passwordresettest_test_a_reset_code_is_emailed_when_the_user_has_an_email",
@@ -1083,16 +1337,7 @@
       "auth_passwordresettest_passwordresettest_test_password_can_be_reset_with_a_valid_sms_code",
       "auth_passwordresettest_passwordresettest_test_password_cannot_be_reset_with_an_invalid_code"
     ],
-    "46": [
-      "components_alert_error",
-      "components_alert_error_alerterror",
-      "ui_alert",
-      "ui_alert_alert",
-      "ui_alert_alertdescription",
-      "ui_alert_alerttitle",
-      "ui_alert_alertvariants"
-    ],
-    "47": [
+    "64": [
       "composer_allow_plugins_pestphp_pest_plugin",
       "composer_allow_plugins_php_http_discovery",
       "composer_config",
@@ -1101,25 +1346,7 @@
       "composer_config_preferred_install",
       "composer_config_sort_packages"
     ],
-    "48": [
-      "models_user_user_generatereferralcode",
-      "self",
-      "sms_smsresult",
-      "sms_smsresult_smsresult",
-      "sms_smsresult_smsresult_construct",
-      "sms_smsresult_smsresult_failure",
-      "sms_smsresult_smsresult_success"
-    ],
-    "49": [
-      "opencode",
-      "opencode_laravel_boost_command",
-      "opencode_laravel_boost_enabled",
-      "opencode_laravel_boost_type",
-      "opencode_mcp",
-      "opencode_mcp_laravel_boost",
-      "opencode_schema"
-    ],
-    "50": [
+    "65": [
       "settings_profileupdatetest",
       "settings_profileupdatetest_profileupdatetest",
       "settings_profileupdatetest_profileupdatetest_test_correct_password_must_be_provided_to_delete_account",
@@ -1128,7 +1355,7 @@
       "settings_profileupdatetest_profileupdatetest_test_profile_page_is_displayed",
       "settings_profileupdatetest_profileupdatetest_test_user_can_delete_their_account"
     ],
-    "51": [
+    "66": [
       "settings_securitytest",
       "settings_securitytest_securitytest",
       "settings_securitytest_securitytest_test_correct_password_must_be_provided_to_update_password",
@@ -1137,15 +1364,176 @@
       "settings_securitytest_securitytest_test_security_page_renders_without_two_factor_when_feature_is_disabled",
       "settings_securitytest_securitytest_test_security_page_requires_password_confirmation_when_enabled"
     ],
-    "52": [
-      "admin_adminaccesstest_adminaccesstest",
-      "admin_adminaccesstest_adminaccesstest_test_admin_can_adjust_a_user_wallet_balance",
-      "admin_adminaccesstest_adminaccesstest_test_admin_can_create_a_plan",
-      "admin_adminaccesstest_adminaccesstest_test_admin_can_toggle_a_plan_active_state",
-      "admin_adminaccesstest_adminaccesstest_test_admins_can_view_the_users_list",
-      "admin_adminaccesstest_adminaccesstest_test_non_admins_cannot_access_the_admin_users_page"
+    "67": [
+      "verification_index",
+      "verification_index_notice",
+      "verification_index_noticeform",
+      "verification_index_sendform",
+      "verification_index_verification",
+      "verification_index_verify",
+      "verification_index_verifyform"
     ],
-    "53": [
+    "68": [
+      "admin_usercontroller_index",
+      "admin_usercontroller_indexform",
+      "admin_usercontroller_show",
+      "admin_usercontroller_showform",
+      "resources_js_actions_app_http_controllers_admin_usercontroller_ts_admin_usercontroller",
+      "resources_js_actions_app_http_controllers_admin_usercontroller_ts_admin_usercontroller_usercontroller"
+    ],
+    "69": [
+      "app_http_middleware_ensureuserisadmin_php_closure",
+      "app_http_middleware_ensureuserisadmin_php_request",
+      "app_http_middleware_ensureuserisadmin_php_response",
+      "middleware_ensureuserisadmin",
+      "middleware_ensureuserisadmin_ensureuserisadmin",
+      "middleware_ensureuserisadmin_ensureuserisadmin_handle"
+    ],
+    "70": [
+      "app_http_middleware_handleappearance_php_closure",
+      "app_http_middleware_handleappearance_php_request",
+      "app_http_middleware_handleappearance_php_response",
+      "middleware_handleappearance",
+      "middleware_handleappearance_handleappearance",
+      "middleware_handleappearance_handleappearance_handle"
+    ],
+    "71": [
+      "controllers_cachecontroller",
+      "controllers_cachecontroller_cachecontroller",
+      "controllers_cachecontroller_index",
+      "controllers_cachecontroller_indexform",
+      "controllers_cachecontroller_show",
+      "controllers_cachecontroller_showform"
+    ],
+    "72": [
+      "controllers_commandscontroller",
+      "controllers_commandscontroller_commandscontroller",
+      "controllers_commandscontroller_index",
+      "controllers_commandscontroller_indexform",
+      "controllers_commandscontroller_show",
+      "controllers_commandscontroller_showform"
+    ],
+    "73": [
+      "controllers_confirmablepasswordcontroller",
+      "controllers_confirmablepasswordcontroller_confirmablepasswordcontroller",
+      "controllers_confirmablepasswordcontroller_show",
+      "controllers_confirmablepasswordcontroller_showform",
+      "controllers_confirmablepasswordcontroller_store",
+      "controllers_confirmablepasswordcontroller_storeform"
+    ],
+    "74": [
+      "controllers_gatescontroller",
+      "controllers_gatescontroller_gatescontroller",
+      "controllers_gatescontroller_index",
+      "controllers_gatescontroller_indexform",
+      "controllers_gatescontroller_show",
+      "controllers_gatescontroller_showform"
+    ],
+    "75": [
+      "controllers_logcontroller",
+      "controllers_logcontroller_index",
+      "controllers_logcontroller_indexform",
+      "controllers_logcontroller_logcontroller",
+      "controllers_logcontroller_show",
+      "controllers_logcontroller_showform"
+    ],
+    "76": [
+      "controllers_mailcontroller",
+      "controllers_mailcontroller_index",
+      "controllers_mailcontroller_indexform",
+      "controllers_mailcontroller_mailcontroller",
+      "controllers_mailcontroller_show",
+      "controllers_mailcontroller_showform"
+    ],
+    "77": [
+      "controllers_modelscontroller",
+      "controllers_modelscontroller_index",
+      "controllers_modelscontroller_indexform",
+      "controllers_modelscontroller_modelscontroller",
+      "controllers_modelscontroller_show",
+      "controllers_modelscontroller_showform"
+    ],
+    "78": [
+      "controllers_queuebatchescontroller",
+      "controllers_queuebatchescontroller_index",
+      "controllers_queuebatchescontroller_indexform",
+      "controllers_queuebatchescontroller_queuebatchescontroller",
+      "controllers_queuebatchescontroller_show",
+      "controllers_queuebatchescontroller_showform"
+    ],
+    "79": [
+      "controllers_queuecontroller",
+      "controllers_queuecontroller_index",
+      "controllers_queuecontroller_indexform",
+      "controllers_queuecontroller_queuecontroller",
+      "controllers_queuecontroller_show",
+      "controllers_queuecontroller_showform"
+    ],
+    "80": [
+      "controllers_rediscontroller",
+      "controllers_rediscontroller_index",
+      "controllers_rediscontroller_indexform",
+      "controllers_rediscontroller_rediscontroller",
+      "controllers_rediscontroller_show",
+      "controllers_rediscontroller_showform"
+    ],
+    "81": [
+      "controllers_registeredusercontroller",
+      "controllers_registeredusercontroller_create",
+      "controllers_registeredusercontroller_createform",
+      "controllers_registeredusercontroller_registeredusercontroller",
+      "controllers_registeredusercontroller_store",
+      "controllers_registeredusercontroller_storeform"
+    ],
+    "82": [
+      "controllers_requestscontroller",
+      "controllers_requestscontroller_index",
+      "controllers_requestscontroller_indexform",
+      "controllers_requestscontroller_requestscontroller",
+      "controllers_requestscontroller_show",
+      "controllers_requestscontroller_showform"
+    ],
+    "83": [
+      "controllers_schedulecontroller",
+      "controllers_schedulecontroller_index",
+      "controllers_schedulecontroller_indexform",
+      "controllers_schedulecontroller_schedulecontroller",
+      "controllers_schedulecontroller_show",
+      "controllers_schedulecontroller_showform"
+    ],
+    "84": [
+      "controllers_twofactorauthenticatedsessioncontroller",
+      "controllers_twofactorauthenticatedsessioncontroller_create",
+      "controllers_twofactorauthenticatedsessioncontroller_createform",
+      "controllers_twofactorauthenticatedsessioncontroller_store",
+      "controllers_twofactorauthenticatedsessioncontroller_storeform",
+      "controllers_twofactorauthenticatedsessioncontroller_twofactorauthenticatedsessioncontroller"
+    ],
+    "85": [
+      "controllers_viewscontroller",
+      "controllers_viewscontroller_index",
+      "controllers_viewscontroller_indexform",
+      "controllers_viewscontroller_show",
+      "controllers_viewscontroller_showform",
+      "controllers_viewscontroller_viewscontroller"
+    ],
+    "86": [
+      "feature_dashboardtest",
+      "feature_dashboardtest_dashboardtest_test_authenticated_users_can_visit_the_dashboard",
+      "feature_dashboardtest_dashboardtest_test_guests_are_redirected_to_the_login_page",
+      "pages_dashboard",
+      "pages_dashboard_dashboard",
+      "ui_placeholder_pattern"
+    ],
+    "87": [
+      "plans_index_subscribe",
+      "plans_index_subscribeform",
+      "resources_js_routes_plans_index_ts_plans_index",
+      "resources_js_routes_plans_index_ts_plans_index_index",
+      "resources_js_routes_plans_index_ts_plans_index_indexform",
+      "resources_js_routes_plans_index_ts_plans_index_plans"
+    ],
+    "88": [
       "providers_telescopeserviceprovider",
       "providers_telescopeserviceprovider_telescopeserviceprovider",
       "providers_telescopeserviceprovider_telescopeserviceprovider_gate",
@@ -1153,581 +1541,370 @@
       "providers_telescopeserviceprovider_telescopeserviceprovider_register",
       "telescopeapplicationserviceprovider"
     ],
-    "54": [
-      "ui_toggle",
-      "ui_toggle_group",
-      "ui_toggle_group_togglegroupcontext",
-      "ui_toggle_group_togglegroupitem",
-      "ui_toggle_toggle",
-      "ui_toggle_togglevariants"
+    "89": [
+      "resources_js_routes_admin_users_index_ts_users_index",
+      "users_index_index",
+      "users_index_indexform",
+      "users_index_show",
+      "users_index_showform",
+      "users_index_users"
     ],
-    "55": [
+    "90": [
+      "resources_js_routes_wallet_index_ts_wallet_index",
+      "resources_js_routes_wallet_index_ts_wallet_index_wallet",
+      "wallet_index_charge",
+      "wallet_index_chargeform",
+      "wallet_index_index",
+      "wallet_index_indexform"
+    ],
+    "91": [
       "app_services_sms_contracts_smsprovider_php_smsresult",
       "contracts_smsprovider",
       "contracts_smsprovider_sendotp",
       "contracts_smsprovider_sendpattern",
       "contracts_smsprovider_verifyotp"
     ],
-    "56": [
-      "auth_verificationnotificationtest",
-      "auth_verificationnotificationtest_verificationnotificationtest",
-      "auth_verificationnotificationtest_verificationnotificationtest_setup",
-      "auth_verificationnotificationtest_verificationnotificationtest_test_does_not_send_verification_notification_if_email_is_verified",
-      "auth_verificationnotificationtest_verificationnotificationtest_test_sends_verification_notification"
-    ],
-    "57": [
+    "92": [
       "composer_extra",
       "composer_extra_laravel",
       "composer_installer_post_create_project",
       "composer_laravel_dont_discover",
       "composer_laravel_installer"
     ],
-    "58": [
+    "93": [
+      "financial_subscriptionplantest",
+      "financial_subscriptionplantest_subscriptionplantest",
+      "financial_subscriptionplantest_subscriptionplantest_test_user_can_charge_their_wallet",
+      "financial_subscriptionplantest_subscriptionplantest_test_user_can_subscribe_to_a_plan_paying_from_their_wallet",
+      "financial_subscriptionplantest_subscriptionplantest_test_user_cannot_subscribe_without_enough_balance"
+    ],
+    "94": [
       "command",
       "commands_graph",
       "commands_graph_graph",
       "commands_graph_graph_handle"
     ],
-    "59": [
+    "95": [
       "concerns_profilevalidationrules",
       "concerns_profilevalidationrules_emailrules",
       "concerns_profilevalidationrules_namerules",
       "concerns_profilevalidationrules_profilerules"
     ],
-    "60": [
+    "96": [
+      "illuminate_index",
+      "illuminate_index_illuminate",
+      "routing_index",
+      "routing_index_routing"
+    ],
+    "97": [
       "migrations_2026_06_15_081328_create_telescope_entries_table",
       "migrations_2026_06_15_081328_create_telescope_entries_table_down",
       "migrations_2026_06_15_081328_create_telescope_entries_table_getconnection",
       "migrations_2026_06_15_081328_create_telescope_entries_table_up"
     ],
-    "61": [
+    "98": [
       "runtimeexception",
       "wallet_insufficientbalanceexception",
       "wallet_insufficientbalanceexception_insufficientbalanceexception",
       "wallet_insufficientbalanceexception_insufficientbalanceexception_construct"
     ],
-    "62": [
+    "99": [
       "ui_collapsible",
       "ui_collapsible_collapsible",
       "ui_collapsible_collapsiblecontent",
       "ui_collapsible_collapsibletrigger"
     ],
-    "63": [
+    "100": [
       "concerns_passwordvalidationrules",
       "concerns_passwordvalidationrules_currentpasswordrules",
       "concerns_passwordvalidationrules_passwordrules"
     ],
-    "64": [
-      "eslint_config",
-      "eslint_config_controlstatements",
-      "eslint_config_paddingaroundcontrol"
-    ],
-    "65": [
-      "mcp",
-      "mcp_command_php",
-      "mcp_mcp_server_laravel_boost"
-    ],
-    "66": [
+    "101": [
       "migrations_0001_01_01_000000_create_users_table",
       "migrations_0001_01_01_000000_create_users_table_down",
       "migrations_0001_01_01_000000_create_users_table_up"
     ],
-    "67": [
+    "102": [
       "migrations_0001_01_01_000001_create_cache_table",
       "migrations_0001_01_01_000001_create_cache_table_down",
       "migrations_0001_01_01_000001_create_cache_table_up"
     ],
-    "68": [
+    "103": [
       "migrations_0001_01_01_000002_create_jobs_table",
       "migrations_0001_01_01_000002_create_jobs_table_down",
       "migrations_0001_01_01_000002_create_jobs_table_up"
     ],
-    "69": [
+    "104": [
       "migrations_2024_01_01_000000_create_passkeys_table",
       "migrations_2024_01_01_000000_create_passkeys_table_down",
       "migrations_2024_01_01_000000_create_passkeys_table_up"
     ],
-    "70": [
+    "105": [
       "migrations_2025_08_14_170933_add_two_factor_columns_to_users_table",
       "migrations_2025_08_14_170933_add_two_factor_columns_to_users_table_down",
       "migrations_2025_08_14_170933_add_two_factor_columns_to_users_table_up"
     ],
-    "71": [
+    "106": [
       "migrations_2026_06_15_093420_create_password_reset_codes_table",
       "migrations_2026_06_15_093420_create_password_reset_codes_table_down",
       "migrations_2026_06_15_093420_create_password_reset_codes_table_up"
     ],
-    "72": [
+    "107": [
       "migrations_2026_06_15_105110_create_plans_table",
       "migrations_2026_06_15_105110_create_plans_table_down",
       "migrations_2026_06_15_105110_create_plans_table_up"
     ],
-    "73": [
+    "108": [
       "migrations_2026_06_15_105111_create_wallets_table",
       "migrations_2026_06_15_105111_create_wallets_table_down",
       "migrations_2026_06_15_105111_create_wallets_table_up"
     ],
-    "74": [
+    "109": [
       "migrations_2026_06_15_105112_create_wallet_transactions_table",
       "migrations_2026_06_15_105112_create_wallet_transactions_table_down",
       "migrations_2026_06_15_105112_create_wallet_transactions_table_up"
     ],
-    "75": [
+    "110": [
       "migrations_2026_06_15_105113_create_subscriptions_table",
       "migrations_2026_06_15_105113_create_subscriptions_table_down",
       "migrations_2026_06_15_105113_create_subscriptions_table_up"
     ],
-    "76": [
+    "111": [
       "migrations_2026_06_15_105115_add_is_admin_to_users_table",
       "migrations_2026_06_15_105115_add_is_admin_to_users_table_down",
       "migrations_2026_06_15_105115_add_is_admin_to_users_table_up"
     ],
-    "77": [
+    "112": [
       "ui_icon",
       "ui_icon_icon",
       "ui_icon_iconprops"
     ],
-    "78": [
+    "113": [
+      "app_index",
+      "app_index_app"
+    ],
+    "114": [
       "concerns_phonevalidationrules",
       "concerns_phonevalidationrules_phonerules"
     ],
-    "79": [
-      "pint",
-      "pint_preset"
-    ],
-    "80": [
-      "bootstrap_providers"
-    ],
-    "81": [
-      "cache_packages"
-    ],
-    "82": [
-      "cache_services"
-    ],
-    "83": [
-      "config_app"
-    ],
-    "84": [
-      "config_auth"
-    ],
-    "85": [
-      "config_cache"
-    ],
-    "86": [
-      "config_database"
-    ],
-    "87": [
-      "config_filesystems"
-    ],
-    "88": [
-      "config_fortify"
-    ],
-    "89": [
-      "config_inertia"
-    ],
-    "90": [
-      "config_logging"
-    ],
-    "91": [
-      "config_mail"
-    ],
-    "92": [
-      "config_queue"
-    ],
-    "93": [
-      "config_services"
-    ],
-    "94": [
-      "config_session"
-    ],
-    "95": [
-      "config_telescope"
-    ],
-    "96": [
-      "mail_password_reset_code_blade"
-    ],
-    "97": [
-      "public_index"
-    ],
-    "98": [
-      "routes_admin"
-    ],
-    "99": [
-      "routes_auth"
-    ],
-    "100": [
-      "routes_console"
-    ],
-    "101": [
-      "routes_settings"
-    ],
-    "102": [
-      "routes_web"
-    ],
-    "103": [
-      "types_vite_env_d"
-    ],
-    "104": [
-      "views_0737d3b26db093725173d7118bb02826"
-    ],
-    "105": [
-      "views_08ca5dc7f224de91c5679370a9ad32ab"
-    ],
-    "106": [
-      "views_0ab93d59a8544002151bfacea869489a"
-    ],
-    "107": [
-      "views_0c3aaf40a11d072a423a69439784ca62"
-    ],
-    "108": [
-      "views_0caa662244269dd2af8e553a66044c15"
-    ],
-    "109": [
-      "views_0edfd6e4ed22df48f0abae834812a6cc"
-    ],
-    "110": [
-      "views_1419bd7cfb760f4886e71b1862b0f43c"
-    ],
-    "111": [
-      "views_153f35438b5b2a7c91374dbd3114fe87_blade"
-    ],
-    "112": [
-      "views_1afc33508056af3763d3848e35172830"
-    ],
-    "113": [
-      "views_1c4b0334bb65ebfe9f80fcaaef11a430"
-    ],
-    "114": [
-      "views_1f5000fdd2f1b9370a55becd55068bcb"
-    ],
     "115": [
-      "views_244208cb6398e4fa45259ddd22acba41"
+      "controllers_controller",
+      "controllers_controller_controller"
     ],
     "116": [
-      "views_2b3b75ec9892892981b355f1d066492b_blade"
+      "resources_js_actions_app_http_controllers_admin_index_ts_admin_index",
+      "resources_js_actions_app_http_controllers_admin_index_ts_admin_index_admin"
     ],
     "117": [
-      "views_2d21c7721a51fb6d42304f35ce55c99a_blade"
+      "resources_js_actions_app_http_index_ts_http_index",
+      "resources_js_actions_app_http_index_ts_http_index_http"
     ],
     "118": [
-      "views_2dc52bd36574b825f3187538318b96de"
+      "resources_js_actions_laravel_fortify_http_index_ts_http_index",
+      "resources_js_actions_laravel_fortify_http_index_ts_http_index_http"
     ],
     "119": [
-      "views_2dda45621fe89bb092f494710a5582d4"
+      "resources_js_actions_laravel_passkeys_http_index_ts_http_index",
+      "resources_js_actions_laravel_passkeys_http_index_ts_http_index_http"
     ],
     "120": [
-      "views_2f85fea3844bed3789fe5a4142cacb0c"
+      "resources_js_actions_laravel_telescope_http_index_ts_http_index",
+      "resources_js_actions_laravel_telescope_http_index_ts_http_index_http"
     ],
     "121": [
-      "views_32976a5fc1ae7228225dc63a6dffbd66_blade"
+      "resources_js_routes_admin_index_ts_admin_index",
+      "resources_js_routes_admin_index_ts_admin_index_admin"
     ],
     "122": [
-      "views_33114883a502e621f3b108a774dd683f"
+      "bootstrap_providers"
     ],
     "123": [
-      "views_343ec62696419771fcde27a0d4304449"
+      "cache_packages"
     ],
     "124": [
-      "views_34a320daf9511c3e61c9ebdd7d8f07a0"
+      "cache_services"
     ],
     "125": [
-      "views_3514bb02110aae36afcb550734e058e9"
+      "config_app"
     ],
     "126": [
-      "views_3681a659d54d813e9a06d6c3cdfd24e0"
+      "config_auth"
     ],
     "127": [
-      "views_3aef0d145a2d1e06a54665a604997276_blade"
+      "config_cache"
     ],
     "128": [
-      "views_3eb5f30ba8334f669120c07ba4401cea"
+      "config_database"
     ],
     "129": [
-      "views_42af0b658c07ea871f223733a039de48"
+      "config_filesystems"
     ],
     "130": [
-      "views_4aa6dc6b9b9fe1841652da4a1b3065c4"
+      "config_fortify"
     ],
     "131": [
-      "views_4ae68e42e83e3e93bf26c6242f407ce6"
+      "config_inertia"
     ],
     "132": [
-      "views_4ceed277c66501c42f794c1db3dd8d86"
+      "config_logging"
     ],
     "133": [
-      "views_56412a9aeb6f1e81a1c3ce244096a4cf_blade"
+      "config_mail"
     ],
     "134": [
-      "views_56ae908dc2f2dccca2ae0933e2e1c757"
+      "config_queue"
     ],
     "135": [
-      "views_57de9e5f33ec9176a4ded23adb6e786e"
+      "config_services"
     ],
     "136": [
-      "views_586656c12c0d4f6deaf26dcb7258fe2a"
+      "config_session"
     ],
     "137": [
-      "views_58f6b5ecbad88fc4da15879dbc7f6e69_blade"
+      "config_telescope"
     ],
     "138": [
-      "views_5c5c47784cdd3a28b7ff441ead39773b"
+      "mail_password_reset_code_blade"
     ],
     "139": [
-      "views_5f225b164af7385cea7b2cbd151cb891"
+      "routes_admin"
     ],
     "140": [
-      "views_67fad89036f44c9b2de63b1374f1012b"
+      "routes_auth"
     ],
     "141": [
-      "views_6fd9b311bcef874a05353bffd0419440"
+      "routes_console"
     ],
     "142": [
-      "views_7067be0335b7e36275b804d53a0c0602"
+      "routes_settings"
     ],
     "143": [
-      "views_7cf4b183ddaa8007049caf7711672772"
+      "routes_web"
     ],
     "144": [
-      "views_7d0fb4b805af8a5fcdfc195c9d99a273"
+      "types_vite_env_d"
     ],
     "145": [
-      "views_7dd9fdc7dbeea02ea2c42e6b9bd50015"
-    ],
-    "146": [
-      "views_878a951baed2638bb3d94847bb3c9841"
-    ],
-    "147": [
-      "views_88b9a4f68c7688cc6a0339ed43d1669f_blade"
-    ],
-    "148": [
-      "views_8e168a75ea0c7ceee49aea10d5835142"
-    ],
-    "149": [
-      "views_8e3ca65ab2d70f2b5c55c8c76faad11a"
-    ],
-    "150": [
-      "views_8e8c4dcf146d38c5394e504c20dc5e51"
-    ],
-    "151": [
-      "views_974dfebcf90e8b00680b470e4c838315"
-    ],
-    "152": [
-      "views_9aaddc377c3f9d965d43cc117b7ce98c"
-    ],
-    "153": [
-      "views_a5808f6c49014d5378329f99718af9c5"
-    ],
-    "154": [
-      "views_ad027bc1f4f77db585097342990de57b_blade"
-    ],
-    "155": [
       "views_app_blade"
     ],
-    "156": [
-      "views_b2efede1730e6d11aa65efd3b9b88bed"
-    ],
-    "157": [
-      "views_b5e0d598b2e1b181c834651dbd3c88fc"
-    ],
-    "158": [
-      "views_b609ace7053b97ba3341a4483fa23dc1"
-    ],
-    "159": [
-      "views_bc6b6eb4abd06d8910d466c14ccff047"
-    ],
-    "160": [
-      "views_c095064990d8bc4195f27bd56d6c4f49"
-    ],
-    "161": [
-      "views_c171fffd32ee4668d0f75682681d7fac_blade"
-    ],
-    "162": [
-      "views_c22627588617c4d02f86a54be59bf1a1"
-    ],
-    "163": [
-      "views_cb7aab57286e05e4bf8ad5d56cd6d92b"
-    ],
-    "164": [
-      "views_cd6d1de0fd041e6a423eec3a277a109d"
-    ],
-    "165": [
-      "views_d1640c796ea7d658f5d537a146d3b49c_blade"
-    ],
-    "166": [
-      "views_d8451ad590d0ac6b1367e6ef78ac9d7f"
-    ],
-    "167": [
-      "views_da1290c043c35f6c227d7fe5bea6388f_blade"
-    ],
-    "168": [
-      "views_dca1a29b69452d307c2c30a7b9cc0a6e_blade"
-    ],
-    "169": [
-      "views_dce1ab759538e356c4e7c369a4b0d487"
-    ],
-    "170": [
-      "views_dfbe68a975ffca3fc04e96c6bd85e356"
-    ],
-    "171": [
-      "views_dff77802623a0a80b16cad1d9cac6a95"
-    ],
-    "172": [
-      "views_e10963ae701ee979decf09ab4ab36921"
-    ],
-    "173": [
-      "views_e2f94e1aa01e9bf5c9611ff8417187a2"
-    ],
-    "174": [
-      "views_e3b9888097c7ff3c001c6cdebb490dc0_blade"
-    ],
-    "175": [
-      "views_e43558d3eac53742fd48f7f1d016c89f"
-    ],
-    "176": [
-      "views_e60ba324b1bf2de15153ac7c0012e1d0"
-    ],
-    "177": [
-      "views_eb607378e375b6693291538550f6e00f"
-    ],
-    "178": [
-      "views_ebe43f3dd76ad305a8a167d122bef29b"
-    ],
-    "179": [
-      "views_ee301f7f6897798ed990396a8b2eeed1"
-    ],
-    "180": [
-      "views_ee9fb8e35d225d5f83822e701264589f"
-    ],
-    "181": [
-      "views_efe75c7c0953490022ba5bd3c31dea8d_blade"
-    ],
-    "182": [
-      "views_f0286c7956c5ad1190c8a6bed8327dd3"
-    ],
-    "183": [
-      "views_f54dab5ebb62549974a70878bd4c9159"
-    ],
-    "184": [
-      "views_f804ef16133a3549fb5b0821b1429915"
-    ],
-    "185": [
+    "146": [
       "vite_config"
     ]
   },
   "cohesion": {
-    "0": 0.06436487638533675,
-    "1": 0.05794556628621598,
-    "2": 0.06599326599326599,
+    "0": 0.05045045045045045,
+    "1": 0.05129561078794289,
+    "2": 0.05454545454545454,
     "3": 0.0603921568627451,
-    "4": 0.06290471785383904,
-    "5": 0.0953058321479374,
-    "6": 0.05555555555555555,
-    "7": 0.0946969696969697,
-    "8": 0.0946969696969697,
-    "9": 0.0946969696969697,
-    "10": 0.14942528735632185,
-    "11": 0.11576354679802955,
-    "12": 0.12,
-    "13": 0.13333333333333333,
-    "14": 0.11333333333333333,
-    "15": 0.16666666666666666,
-    "16": 0.1523809523809524,
-    "17": 0.13333333333333333,
-    "18": 0.14035087719298245,
+    "4": 0.07678075855689177,
+    "5": 0.07682926829268293,
+    "6": 0.05263157894736842,
+    "7": 0.12012012012012012,
+    "8": 0.05555555555555555,
+    "9": 0.08143939393939394,
+    "10": 0.12903225806451613,
+    "11": 0.13978494623655913,
+    "12": 0.06666666666666667,
+    "13": 0.06878306878306878,
+    "14": 0.16524216524216523,
+    "15": 0.07692307692307693,
+    "16": 0.13768115942028986,
+    "17": 0.11462450592885376,
+    "18": 0.14619883040935672,
     "19": 0.1111111111111111,
-    "20": 0.1111111111111111,
-    "21": 0.16176470588235295,
-    "22": 0.19852941176470587,
-    "23": 0.14705882352941177,
-    "24": 0.26666666666666666,
-    "25": 0.14285714285714285,
-    "26": 0.13333333333333333,
-    "27": 0.15384615384615385,
-    "28": 0.25757575757575757,
-    "29": 0.2909090909090909,
-    "30": 0.18181818181818182,
-    "31": 0.18181818181818182,
-    "32": 0.28888888888888886,
-    "33": 0.2222222222222222,
-    "34": 0.2777777777777778,
-    "35": 0.2222222222222222,
-    "36": 0.2222222222222222,
-    "37": 0.2777777777777778,
-    "38": 0.25,
-    "39": 0.25,
-    "40": 0.25,
-    "41": 0.39285714285714285,
-    "42": 0.35714285714285715,
-    "43": 0.42857142857142855,
-    "44": 0.42857142857142855,
-    "45": 0.2857142857142857,
-    "46": 0.47619047619047616,
-    "47": 0.2857142857142857,
-    "48": 0.3333333333333333,
-    "49": 0.2857142857142857,
-    "50": 0.2857142857142857,
-    "51": 0.2857142857142857,
-    "52": 0.3333333333333333,
-    "53": 0.4666666666666667,
-    "54": 0.5333333333333333,
-    "55": 0.6,
-    "56": 0.4,
-    "57": 0.4,
-    "58": 0.6666666666666666,
-    "59": 0.8333333333333334,
-    "60": 0.8333333333333334,
-    "61": 0.6666666666666666,
-    "62": 0.5,
-    "63": 0.6666666666666666,
-    "64": 0.6666666666666666,
-    "65": 0.6666666666666666,
-    "66": 0.6666666666666666,
-    "67": 0.6666666666666666,
-    "68": 0.6666666666666666,
-    "69": 0.6666666666666666,
-    "70": 0.6666666666666666,
-    "71": 0.6666666666666666,
-    "72": 0.6666666666666666,
-    "73": 0.6666666666666666,
-    "74": 0.6666666666666666,
-    "75": 0.6666666666666666,
-    "76": 0.6666666666666666,
-    "77": 0.6666666666666666,
-    "78": 1.0,
-    "79": 1.0,
-    "80": 1.0,
-    "81": 1.0,
-    "82": 1.0,
-    "83": 1.0,
-    "84": 1.0,
-    "85": 1.0,
-    "86": 1.0,
-    "87": 1.0,
-    "88": 1.0,
-    "89": 1.0,
-    "90": 1.0,
-    "91": 1.0,
-    "92": 1.0,
-    "93": 1.0,
-    "94": 1.0,
-    "95": 1.0,
-    "96": 1.0,
-    "97": 1.0,
-    "98": 1.0,
-    "99": 1.0,
-    "100": 1.0,
-    "101": 1.0,
-    "102": 1.0,
-    "103": 1.0,
-    "104": 1.0,
-    "105": 1.0,
-    "106": 1.0,
-    "107": 1.0,
-    "108": 1.0,
-    "109": 1.0,
-    "110": 1.0,
-    "111": 1.0,
-    "112": 1.0,
+    "20": 0.13725490196078433,
+    "21": 0.17647058823529413,
+    "22": 0.1323529411764706,
+    "23": 0.16176470588235295,
+    "24": 0.11764705882352941,
+    "25": 0.11764705882352941,
+    "26": 0.14285714285714285,
+    "27": 0.13333333333333333,
+    "28": 0.2087912087912088,
+    "29": 0.16666666666666666,
+    "30": 0.15384615384615385,
+    "31": 0.16666666666666666,
+    "32": 0.36363636363636365,
+    "33": 0.19696969696969696,
+    "34": 0.15151515151515152,
+    "35": 0.16666666666666666,
+    "36": 0.18181818181818182,
+    "37": 0.18181818181818182,
+    "38": 0.21818181818181817,
+    "39": 0.2,
+    "40": 0.3611111111111111,
+    "41": 0.3333333333333333,
+    "42": 0.3333333333333333,
+    "43": 0.2222222222222222,
+    "44": 0.3333333333333333,
+    "45": 0.2777777777777778,
+    "46": 0.2222222222222222,
+    "47": 0.2222222222222222,
+    "48": 0.2777777777777778,
+    "49": 0.4642857142857143,
+    "50": 0.25,
+    "51": 0.25,
+    "52": 0.25,
+    "53": 0.32142857142857145,
+    "54": 0.25,
+    "55": 0.35714285714285715,
+    "56": 0.42857142857142855,
+    "57": 0.25,
+    "58": 0.25,
+    "59": 0.25,
+    "60": 0.25,
+    "61": 0.42857142857142855,
+    "62": 0.42857142857142855,
+    "63": 0.2857142857142857,
+    "64": 0.2857142857142857,
+    "65": 0.2857142857142857,
+    "66": 0.2857142857142857,
+    "67": 0.2857142857142857,
+    "68": 0.3333333333333333,
+    "69": 0.5333333333333333,
+    "70": 0.5333333333333333,
+    "71": 0.3333333333333333,
+    "72": 0.3333333333333333,
+    "73": 0.3333333333333333,
+    "74": 0.3333333333333333,
+    "75": 0.3333333333333333,
+    "76": 0.3333333333333333,
+    "77": 0.3333333333333333,
+    "78": 0.3333333333333333,
+    "79": 0.3333333333333333,
+    "80": 0.3333333333333333,
+    "81": 0.3333333333333333,
+    "82": 0.3333333333333333,
+    "83": 0.3333333333333333,
+    "84": 0.3333333333333333,
+    "85": 0.3333333333333333,
+    "86": 0.3333333333333333,
+    "87": 0.3333333333333333,
+    "88": 0.4666666666666667,
+    "89": 0.3333333333333333,
+    "90": 0.3333333333333333,
+    "91": 0.6,
+    "92": 0.4,
+    "93": 0.4,
+    "94": 0.6666666666666666,
+    "95": 0.8333333333333334,
+    "96": 0.5,
+    "97": 0.8333333333333334,
+    "98": 0.6666666666666666,
+    "99": 0.5,
+    "100": 0.6666666666666666,
+    "101": 0.6666666666666666,
+    "102": 0.6666666666666666,
+    "103": 0.6666666666666666,
+    "104": 0.6666666666666666,
+    "105": 0.6666666666666666,
+    "106": 0.6666666666666666,
+    "107": 0.6666666666666666,
+    "108": 0.6666666666666666,
+    "109": 0.6666666666666666,
+    "110": 0.6666666666666666,
+    "111": 0.6666666666666666,
+    "112": 0.6666666666666666,
     "113": 1.0,
     "114": 1.0,
     "115": 1.0,
@@ -1761,62 +1938,48 @@
     "143": 1.0,
     "144": 1.0,
     "145": 1.0,
-    "146": 1.0,
-    "147": 1.0,
-    "148": 1.0,
-    "149": 1.0,
-    "150": 1.0,
-    "151": 1.0,
-    "152": 1.0,
-    "153": 1.0,
-    "154": 1.0,
-    "155": 1.0,
-    "156": 1.0,
-    "157": 1.0,
-    "158": 1.0,
-    "159": 1.0,
-    "160": 1.0,
-    "161": 1.0,
-    "162": 1.0,
-    "163": 1.0,
-    "164": 1.0,
-    "165": 1.0,
-    "166": 1.0,
-    "167": 1.0,
-    "168": 1.0,
-    "169": 1.0,
-    "170": 1.0,
-    "171": 1.0,
-    "172": 1.0,
-    "173": 1.0,
-    "174": 1.0,
-    "175": 1.0,
-    "176": 1.0,
-    "177": 1.0,
-    "178": 1.0,
-    "179": 1.0,
-    "180": 1.0,
-    "181": 1.0,
-    "182": 1.0,
-    "183": 1.0,
-    "184": 1.0,
-    "185": 1.0
+    "146": 1.0
   },
   "gods": [
     {
       "id": "lib_utils_cn",
       "label": "cn()",
-      "degree": 123
+      "degree": 139
+    },
+    {
+      "id": "wayfinder_index_queryparams",
+      "label": "QueryParams",
+      "degree": 76
+    },
+    {
+      "id": "wayfinder_index_routedefinition",
+      "label": "RouteDefinition",
+      "degree": 73
+    },
+    {
+      "id": "wayfinder_index_routeformdefinition",
+      "label": "RouteFormDefinition",
+      "degree": 73
+    },
+    {
+      "id": "wayfinder_index_routequeryoptions",
+      "label": "RouteQueryOptions",
+      "degree": 73
+    },
+    {
+      "id": "wayfinder_index_applyurldefaults",
+      "label": "applyUrlDefaults()",
+      "degree": 37
+    },
+    {
+      "id": "tests_testcase_testcase",
+      "label": "TestCase",
+      "degree": 35
     },
     {
       "id": "wallettransactiontype",
       "label": "WalletTransactionType",
       "degree": 30
-    },
-    {
-      "id": "tests_testcase_testcase",
-      "label": "TestCase",
-      "degree": 29
     },
     {
       "id": "ui_button_button",
@@ -1827,31 +1990,6 @@
       "id": "models_user_user",
       "label": "User",
       "degree": 15
-    },
-    {
-      "id": "tsconfig_compileroptions",
-      "label": "compilerOptions",
-      "degree": 15
-    },
-    {
-      "id": "composer_scripts",
-      "label": "scripts",
-      "degree": 13
-    },
-    {
-      "id": "ui_input_input",
-      "label": "Input()",
-      "degree": 12
-    },
-    {
-      "id": "app_services_wallet_walletservice_php_model",
-      "label": "Model",
-      "degree": 12
-    },
-    {
-      "id": "composer_require_dev",
-      "label": "require-dev",
-      "degree": 11
     }
   ],
   "surprises": [
@@ -1878,28 +2016,6 @@
       "why": "bridges separate communities; peripheral node `TextLink()` unexpectedly reaches hub `cn()`"
     },
     {
-      "source": "BreadcrumbEllipsis()",
-      "target": "cn()",
-      "source_files": [
-        "resources/js/components/ui/breadcrumb.tsx",
-        "resources/js/lib/utils.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities; peripheral node `BreadcrumbEllipsis()` unexpectedly reaches hub `cn()`"
-    },
-    {
-      "source": "CardFooter()",
-      "target": "cn()",
-      "source_files": [
-        "resources/js/components/ui/card.tsx",
-        "resources/js/lib/utils.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities; peripheral node `CardFooter()` unexpectedly reaches hub `cn()`"
-    },
-    {
       "source": "DialogOverlay()",
       "target": "cn()",
       "source_files": [
@@ -1909,10 +2025,32 @@
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "bridges separate communities; peripheral node `DialogOverlay()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "DropdownMenuCheckboxItem()",
+      "target": "cn()",
+      "source_files": [
+        "resources/js/components/ui/dropdown-menu.tsx",
+        "resources/js/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `DropdownMenuCheckboxItem()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "DropdownMenuRadioItem()",
+      "target": "cn()",
+      "source_files": [
+        "resources/js/components/ui/dropdown-menu.tsx",
+        "resources/js/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `DropdownMenuRadioItem()` unexpectedly reaches hub `cn()`"
     }
   ],
   "tokens": {
-    "input": 131040,
-    "output": 32
+    "input": 0,
+    "output": 0
   }
 }

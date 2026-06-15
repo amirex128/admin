@@ -1,0 +1,35 @@
+# .graphifyignore
+node_modules/
+dist/
+*.generated.py
+
+# only index src/, ignore everything else
+*
+!app/
+!app/**
+
+!bootstrap/
+!bootstrap/**
+
+!config/
+!config/**
+
+
+!database/
+!database/**
+
+
+!resources/
+!resources/**
+
+!routes/
+!routes/**
+
+!tests/
+!tests/**
+
+!composer.json
+
+!package.json
+
+!vite.config.ts

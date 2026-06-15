@@ -15,6 +15,8 @@ class graph extends Command
      */
     public function handle()
     {
-        $this->run("graphify . --backend ollama --model qwen3.5:4b");
+        $this->run("graphify exract . --backend ollama --model qwen3.5:4b --wiki --update --mode deep --directed --obsidian  --dedup-llm ");
+        $this->run("graphify cluster-only . --wiki --obsidian --update");
+        $this->run("graphify update .");
     }
 }

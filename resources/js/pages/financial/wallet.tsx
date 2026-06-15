@@ -109,7 +109,7 @@ export default function WalletPage({
                     <CardContent>
                         <form
                             onSubmit={submit}
-                            className="flex flex-col gap-4 sm:flex-row sm:items-end"
+                            className="flex flex-col gap-4"
                         >
                             <div className="grid flex-1 gap-2">
                                 <Label htmlFor="amount">مبلغ (تومان)</Label>
@@ -150,7 +150,7 @@ export default function WalletPage({
                             <Button
                                 type="submit"
                                 disabled={form.processing}
-                                className="gap-1.5"
+                                className="w-full gap-1.5 sm:w-auto"
                             >
                                 <Plus className="size-4" />
                                 شارژ کیف پول
