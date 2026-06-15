@@ -6,9 +6,9 @@ use App\Enums\CustomerStatus;
 use Database\Factories\CustomerFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
 
 /**
@@ -27,10 +27,11 @@ use Illuminate\Support\Carbon;
  * @property string|null $postal_code
  * @property CustomerStatus $status
  * @property string|null $note
+ * @property string|null $password
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-class Customer extends Model
+class Customer extends Authenticatable
 {
     /** @use HasFactory<CustomerFactory> */
     use HasFactory;
@@ -62,12 +63,21 @@ class Customer extends Model
     ];
 
     /**
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
             'status' => CustomerStatus::class,
+            'password' => 'hashed',
         ];
     }
 

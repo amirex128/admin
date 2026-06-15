@@ -6,6 +6,7 @@ use App\Enums\OrderPaymentMethod;
 use App\Enums\OrderStatus;
 use App\Enums\ProductApprovalStatus;
 use App\Enums\ShippingMethod;
+use App\Http\Controllers\Concerns\ResolvesStorefront;
 use App\Http\Requests\StorefrontCheckoutRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\ProductResource;
@@ -31,6 +32,8 @@ use Symfony\Component\HttpFoundation\Response as HttpResponse;
  */
 class StorefrontController extends Controller
 {
+    use ResolvesStorefront;
+
     public function __construct(
         private readonly StoreSettingService $storeSettings,
         private readonly StorePaymentService $storePayments,
@@ -42,7 +45,7 @@ class StorefrontController extends Controller
      */
     public function home(string $store): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
         $owner = $settings->user;
 
         $base = fn () => Product::query()->where('user_id', $owner->id)->roots()
@@ -62,7 +65,7 @@ class StorefrontController extends Controller
      */
     public function product(string $store, Product $product): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         abort_unless(
             $product->user_id === $settings->user_id
@@ -83,7 +86,7 @@ class StorefrontController extends Controller
      */
     public function category(string $store, Category $category): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         abort_unless($category->user_id === $settings->user_id, HttpResponse::HTTP_NOT_FOUND);
 
@@ -106,7 +109,7 @@ class StorefrontController extends Controller
      */
     public function page(string $store, string $slug): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         $map = [
             'about' => ['درباره ما', $settings->about_us],
@@ -127,7 +130,7 @@ class StorefrontController extends Controller
      */
     public function faq(string $store): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         return $this->render($settings, 'faq', [
             'faqs' => $settings->faqs ?? [],
@@ -139,7 +142,7 @@ class StorefrontController extends Controller
      */
     public function cart(string $store): Response
     {
-        return $this->render($this->resolve($store), 'cart', []);
+        return $this->render($this->resolveStore($store), 'cart', []);
     }
 
     /**
@@ -148,7 +151,7 @@ class StorefrontController extends Controller
      */
     public function checkout(Request $request, string $store): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
         $provinceId = $request->integer('province_id');
 
         return $this->render($settings, 'checkout', [
@@ -171,7 +174,7 @@ class StorefrontController extends Controller
      */
     public function placeOrder(StorefrontCheckoutRequest $request, string $store): RedirectResponse|HttpResponse
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
         $owner = $settings->user;
         $validated = $request->validated();
 
@@ -252,7 +255,7 @@ class StorefrontController extends Controller
      */
     public function paymentCallback(Request $request, string $store): RedirectResponse
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         $order = Order::query()
             ->where('user_id', $settings->user_id)
@@ -276,7 +279,7 @@ class StorefrontController extends Controller
      */
     public function order(Request $request, string $store, string $code): Response
     {
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         $order = Order::query()
             ->where('user_id', $settings->user_id)
@@ -300,7 +303,7 @@ class StorefrontController extends Controller
      */
     public function track(string $store): Response
     {
-        return $this->render($this->resolve($store), 'track', []);
+        return $this->render($this->resolveStore($store), 'track', []);
     }
 
     /**
@@ -313,7 +316,7 @@ class StorefrontController extends Controller
             'phone' => ['required', 'string'],
         ]);
 
-        $settings = $this->resolve($store);
+        $settings = $this->resolveStore($store);
 
         $order = Order::query()
             ->where('user_id', $settings->user_id)
@@ -331,17 +334,6 @@ class StorefrontController extends Controller
     }
 
     /**
-     * Resolve a store by its subdomain or custom domain.
-     */
-    protected function resolve(string $store): StoreSetting
-    {
-        return StoreSetting::query()
-            ->with('user')
-            ->where(fn ($q) => $q->where('subdomain', $store)->orWhere('custom_domain', $store))
-            ->firstOrFail();
-    }
-
-    /**
      * Render a storefront page within the selected template, with shared store
      * props and SEO metadata.
      *
@@ -354,43 +346,6 @@ class StorefrontController extends Controller
         return Inertia::render("storefront/{$template}/{$page}", array_merge([
             'store' => $this->storeProps($settings),
         ], $props));
-    }
-
-    /**
-     * The shared store identity / navigation / footer props.
-     *
-     * @return array<string, mixed>
-     */
-    protected function storeProps(StoreSetting $settings): array
-    {
-        $owner = $settings->user;
-        $key = $settings->subdomain ?: $settings->custom_domain;
-
-        $categories = Category::query()->where('user_id', $owner->id)->whereNull('parent_id')
-            ->orderBy('name')->get(['id', 'name'])
-            ->map(fn (Category $c) => ['id' => $c->id, 'name' => $c->name])->all();
-
-        $badges = collect($settings->badges ?? [])
-            ->filter(fn (array $badge) => ($badge['enabled'] ?? false))
-            ->values()->all();
-
-        return [
-            'key' => $key,
-            'name' => $settings->persian_name ?: $owner->name,
-            'business_type' => $settings->business_type,
-            'phone' => $settings->store_phone,
-            'address' => trim((string) ($settings->postal_code ?? '')),
-            'socials' => (object) ($settings->socials ?? []),
-            'badges' => $badges,
-            'categories' => $categories,
-            'pages' => [
-                'about' => filled($settings->about_us),
-                'buying-guide' => filled($settings->buying_guide),
-                'return-policy' => filled($settings->return_policy),
-                'terms' => filled($settings->terms),
-                'faq' => ! empty($settings->faqs),
-            ],
-        ];
     }
 
     /**
