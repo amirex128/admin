@@ -50,6 +50,18 @@ class UserFactory extends Factory
     }
 
     /**
+     * Indicate that the user is an administrator.
+     */
+    public function admin(): static
+    {
+        return $this->afterMaking(function (User $user) {
+            $user->is_admin = true;
+        })->afterCreating(function (User $user) {
+            $user->forceFill(['is_admin' => true])->saveQuietly();
+        });
+    }
+
+    /**
      * Indicate that the model has two-factor authentication configured.
      */
     public function withTwoFactor(): static

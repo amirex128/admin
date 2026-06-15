@@ -4,6 +4,7 @@ export type User = {
     phone: string;
     email: string | null;
     avatar?: string;
+    is_admin?: boolean;
     email_verified_at: string | null;
     phone_verified_at: string | null;
     referral_code: string | null;

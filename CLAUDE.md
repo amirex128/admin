@@ -224,3 +224,22 @@ Rules:
 - If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
 - Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
 - After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+
+## Project Rules (MUST follow)
+
+These rules were captured from the user's prompts and are binding for all future work.
+
+### Capturing new rules
+- Whenever the user states a rule, convention, or "always/never do X" instruction in a prompt, immediately record it in this "Project Rules" section so it is enforced from then on. Treat any durable preference the user expresses as a rule to persist here.
+
+### Panels
+- The application has two distinct panels: the **user panel** and the **admin panel**. Admin-only screens live under `app/Http/Controllers/Admin`, `routes/admin.php`, and `resources/js/pages/admin/**`, and are guarded by the `admin` middleware (`EnsureUserIsAdmin`, backed by `users.is_admin`). User financial screens live under `resources/js/pages/financial/**`.
+
+### Money & wallet (critical)
+- ALL monetary management across the entire project MUST go through `App\Services\Wallet\WalletService`. Never read or mutate `wallets.balance` or insert `wallet_transactions` rows directly anywhere else. Use `deposit()`, `withdraw()`, or `adjust()` so every change is atomic, race-safe (`lockForUpdate`), and recorded in the ledger.
+- Money is stored as integer **Toman** (no decimals). Format amounts for display with the helpers in `resources/js/lib/format.ts`.
+
+### UI & localization
+- The product is for Iranian users: all UI text is **Persian (Farsi)** and the layout is **RTL**.
+- Code, comments, identifiers, and documentation are written in **English**.
+- Build every interface with **shadcn/ui** components (the `resources/js/components/ui/**` primitives, new-york style). Reuse existing components before creating new ones. Subscription plan displays in the user panel must be visually appealing.
