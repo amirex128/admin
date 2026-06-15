@@ -1,16 +1,16 @@
 # Graph Report - shopify  (2026-06-15)
 
 ## Corpus Check
-- 306 files · ~74,268 words
+- 433 files · ~113,390 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1501 nodes · 2791 edges · 146 communities (99 shown, 47 thin omitted)
+- 1503 nodes · 2793 edges · 149 communities (99 shown, 50 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 20 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `437a765c`
+- Built from commit: `7f1054c8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -106,6 +106,7 @@
 - [[_COMMUNITY_Community 89|Community 89]]
 - [[_COMMUNITY_Community 90|Community 90]]
 - [[_COMMUNITY_Community 91|Community 91]]
+- [[_COMMUNITY_Community 92|Community 92]]
 - [[_COMMUNITY_Community 93|Community 93]]
 - [[_COMMUNITY_Community 94|Community 94]]
 - [[_COMMUNITY_Community 95|Community 95]]
@@ -121,6 +122,8 @@
 - [[_COMMUNITY_Community 119|Community 119]]
 - [[_COMMUNITY_Community 120|Community 120]]
 - [[_COMMUNITY_Community 121|Community 121]]
+- [[_COMMUNITY_Community 147|Community 147]]
+- [[_COMMUNITY_Community 148|Community 148]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 139 edges
@@ -135,21 +138,21 @@
 10. `User` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `InputError()` --calls--> `cn()`  [EXTRACTED]
+  resources/js/components/input-error.tsx → resources/js/lib/utils.ts
+- `TextLink()` --calls--> `cn()`  [EXTRACTED]
+  resources/js/components/text-link.tsx → resources/js/lib/utils.ts
 - `BreadcrumbEllipsis()` --calls--> `cn()`  [EXTRACTED]
   resources/js/components/ui/breadcrumb.tsx → resources/js/lib/utils.ts
+- `CardFooter()` --calls--> `cn()`  [EXTRACTED]
+  resources/js/components/ui/card.tsx → resources/js/lib/utils.ts
 - `DialogOverlay()` --calls--> `cn()`  [EXTRACTED]
   resources/js/components/ui/dialog.tsx → resources/js/lib/utils.ts
-- `DropdownMenuCheckboxItem()` --calls--> `cn()`  [EXTRACTED]
-  resources/js/components/ui/dropdown-menu.tsx → resources/js/lib/utils.ts
-- `DropdownMenuRadioItem()` --calls--> `cn()`  [EXTRACTED]
-  resources/js/components/ui/dropdown-menu.tsx → resources/js/lib/utils.ts
-- `DropdownMenuShortcut()` --calls--> `cn()`  [EXTRACTED]
-  resources/js/components/ui/dropdown-menu.tsx → resources/js/lib/utils.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (146 total, 47 thin omitted)
+## Communities (149 total, 50 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
@@ -157,7 +160,7 @@ Nodes (31): Request, HasMany, BelongsTo, BelongsTo, HasMany, BelongsTo, HasMany,
 
 ### Community 1 - "Community 1"
 Cohesion: 0.12
-Nodes (8): UseTwoFactorAuthReturn, disable(), enable(), qrCode(), recoveryCodes(), regenerateRecoveryCodes(), secretKey(), twoFactor
+Nodes (9): UseTwoFactorAuthReturn, confirm(), disable(), enable(), qrCode(), recoveryCodes(), regenerateRecoveryCodes(), secretKey() (+1 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.05
@@ -168,47 +171,47 @@ Cohesion: 0.06
 Nodes (15): SmsResult, SmsResult, static, static, PlanFactory, SubscriptionFactory, UserFactory, WalletFactory (+7 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.12
-Nodes (20): AppHeader(), mainNavItems, Props, rightNavItems, UserInfo(), GetInitialsFn, Avatar(), AvatarFallback() (+12 more)
+Cohesion: 0.14
+Nodes (17): AppHeader(), mainNavItems, Props, rightNavItems, UserInfo(), GetInitialsFn, Avatar(), AvatarFallback() (+9 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.06
-Nodes (30): appearance, edit(), AppContent(), Props, AppShell(), Props, AppSidebar(), AppearanceToggleTab() (+22 more)
+Cohesion: 0.10
+Nodes (20): edit(), AppearanceToggleTab(), TwoFactorSetupStep(), Appearance, applyTheme(), getStoredAppearance(), handleSystemThemeChange(), initializeTheme() (+12 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.05
-Nodes (11): ConfirmedPasswordStatusController, ConfirmedTwoFactorAuthenticationController, EmailVerificationNotificationController, EmailVerificationPromptController, RegisteredUserController, TwoFactorAuthenticatedSessionController, TwoFactorQrCodeController, TwoFactorSecretKeyController (+3 more)
+Nodes (12): ConfirmedPasswordStatusController, ConfirmedTwoFactorAuthenticationController, EmailVerificationNotificationController, EmailVerificationPromptController, TwoFactorAuthenticatedSessionController, TwoFactorAuthenticationController, TwoFactorQrCodeController, TwoFactorSecretKeyController (+4 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.13
-Nodes (15): Props, Props, Props, Props, Props, Props, PageProps, Props (+7 more)
+Cohesion: 0.09
+Nodes (22): Props, Props, Props, Props, Props, Props, TextLink(), PageProps (+14 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.05
 Nodes (39): dependencies, class-variance-authority, clsx, concurrently, globals, @inertiajs/react, @inertiajs/vite, input-otp (+31 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.07
-Nodes (15): confirm, DumpController, HomeController, register, store(), wallet, edit(), security (+7 more)
+Cohesion: 0.08
+Nodes (12): boost, confirm, HomeController, login, login, addNestedParams(), clearParamFamily(), getValue() (+4 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.10
-Nodes (32): PaginationNav(), PageProps, PERIOD_LABELS, PlansPage(), WalletPage(), formatDate(), formatDateTime(), formatToman() (+24 more)
+Cohesion: 0.13
+Nodes (22): PlansPage(), WalletPage(), formatDate(), formatDateTime(), formatToman(), formatTomanLabel(), Badge(), badgeVariants (+14 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.09
-Nodes (33): adminNavItems, financialNavItems, footerNavItems, mainNavItems, NavFooter(), NavUser(), useIsMobile(), DropdownMenuContent() (+25 more)
+Cohesion: 0.12
+Nodes (19): adminNavItems, financialNavItems, footerNavItems, mainNavItems, NavFooter(), NavMain(), NavUser(), useIsMobile() (+11 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.06
-Nodes (7): EntriesController, MailEmlController, ModelsController, MonitoredTagController, QueueBatchesController, RecordingController, Controllers
+Nodes (7): CacheController, EntriesController, MailEmlController, MonitoredTagController, QueueController, RecordingController, Controllers
 
 ### Community 14 - "Community 14"
-Cohesion: 0.25
-Nodes (11): Props, PageProps, QUICK_AMOUNTS, PageProps, Card(), CardContent(), CardDescription(), CardHeader() (+3 more)
+Cohesion: 0.14
+Nodes (20): PaginationNav(), Props, PageProps, QUICK_AMOUNTS, PageProps, AdminUserRow, Plan, Subscription (+12 more)
 
 ### Community 16 - "Community 16"
-Cohesion: 0.14
+Cohesion: 0.13
 Nodes (7): BelongsTo, User, PasswordResetCodeService, Facade, Sms, PasswordResetCode, SmsManagerTest
 
 ### Community 17 - "Community 17"
@@ -216,32 +219,24 @@ Cohesion: 0.11
 Nodes (5): dashboard(), home(), login(), register(), AuthLayoutProps
 
 ### Community 18 - "Community 18"
+Cohesion: 0.39
+Nodes (5): toUrl(), ToggleGroupContext, ToggleGroupItem(), Toggle(), toggleVariants
+
+### Community 19 - "Community 19"
 Cohesion: 0.11
-Nodes (24): InputError(), TextLink(), cn(), CardFooter(), NavigationMenuContent(), NavigationMenuIndicator(), NavigationMenuList(), navigationMenuTriggerStyle (+16 more)
+Nodes (4): DumpController, PasskeyConfirmationController, WalletController, RouteQueryOptions
 
 ### Community 20 - "Community 20"
-Cohesion: 0.14
-Nodes (12): Props, CleanupFn, logout(), DropdownMenuCheckboxItem(), DropdownMenuGroup(), DropdownMenuItem(), DropdownMenuLabel(), DropdownMenuRadioItem() (+4 more)
-
-### Community 21 - "Community 21"
-Cohesion: 0.11
-Nodes (12): NavMain(), IsCurrentOrParentUrlFn, IsCurrentUrlFn, UseCurrentUrlReturn, WhenCurrentUrlFn, toUrl(), edit(), profile (+4 more)
-
-### Community 22 - "Community 22"
-Cohesion: 0.13
-Nodes (3): AdminAccessTest, WalletServiceTest, WalletService
+Cohesion: 0.12
+Nodes (14): Props, CleanupFn, logout(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuGroup(), DropdownMenuItem(), DropdownMenuLabel() (+6 more)
 
 ### Community 23 - "Community 23"
 Cohesion: 0.16
 Nodes (7): RedirectResponse, Request, Response, ProfileController, ProfileDeleteRequest, ProfileUpdateRequest, ProfileController
 
-### Community 24 - "Community 24"
-Cohesion: 0.12
-Nodes (5): boost, local, login, storage, RouteQueryOptions
-
 ### Community 25 - "Community 25"
-Cohesion: 0.20
-Nodes (13): BILLING_PERIODS, PlanFormData, Props, Dialog(), DialogClose(), DialogContent(), DialogDescription(), DialogFooter() (+5 more)
+Cohesion: 0.10
+Nodes (24): BILLING_PERIODS, PlanFormData, Props, Dialog(), DialogClose(), DialogContent(), DialogDescription(), DialogFooter() (+16 more)
 
 ### Community 26 - "Community 26"
 Cohesion: 0.14
@@ -256,8 +251,8 @@ Cohesion: 0.21
 Nodes (6): Plan, RedirectResponse, Request, Response, SubscriptionPlanController, SubscriptionPlanController
 
 ### Community 29 - "Community 29"
-Cohesion: 0.10
-Nodes (4): PasskeyConfirmationController, PasskeyLoginController, PasskeyRegistrationController, Controllers
+Cohesion: 0.11
+Nodes (6): appearance, PasskeyLoginController, register, store(), userPassword, RouteDefinition
 
 ### Community 30 - "Community 30"
 Cohesion: 0.15
@@ -269,7 +264,7 @@ Nodes (6): PlanController, Plan, RedirectResponse, Response, StorePlanRequest, U
 
 ### Community 33 - "Community 33"
 Cohesion: 0.20
-Nodes (4): VerificationNotificationTest, BaseTestCase, ExampleTest, TestCase
+Nodes (4): BaseTestCase, ExampleTest, SubscriptionPlanTest, TestCase
 
 ### Community 36 - "Community 36"
 Cohesion: 0.18
@@ -296,20 +291,20 @@ Cohesion: 0.33
 Nodes (5): Request, Request, JsonResource, PlanResource, SubscriptionResource
 
 ### Community 44 - "Community 44"
-Cohesion: 0.19
-Nodes (6): Props, confirm(), InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot
+Cohesion: 0.18
+Nodes (6): InputError(), Props, InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot
 
 ### Community 46 - "Community 46"
-Cohesion: 0.20
-Nodes (10): require, inertiajs/inertia-laravel, laravel/chisel, laravel/fortify, laravel/framework, laravel/telescope, laravel/tinker, laravel/wayfinder (+2 more)
+Cohesion: 0.17
+Nodes (12): require, inertiajs/inertia-laravel, laravel/ai, laravel/chisel, laravel/fortify, laravel/framework, laravel/telescope, laravel/tinker (+4 more)
 
 ### Community 47 - "Community 47"
 Cohesion: 0.22
 Nodes (9): scripts, build, build:ssr, dev, format, format:check, lint, lint:check (+1 more)
 
 ### Community 48 - "Community 48"
-Cohesion: 0.19
-Nodes (9): Props, destroy(), Auth, Passkey, TwoFactorSecretKey, TwoFactorSetupData, User, InertiaConfig (+1 more)
+Cohesion: 0.11
+Nodes (11): Props, destroy(), PasskeyRegistrationController, Controllers, Auth, Passkey, TwoFactorSecretKey, TwoFactorSetupData (+3 more)
 
 ### Community 49 - "Community 49"
 Cohesion: 0.46
@@ -320,8 +315,8 @@ Cohesion: 0.25
 Nodes (4): Auth, Controllers, Settings, User
 
 ### Community 53 - "Community 53"
-Cohesion: 0.32
-Nodes (3): PasswordConfirmationTest, RefreshDatabase, ExampleTest
+Cohesion: 0.19
+Nodes (4): PasswordConfirmationTest, VerificationNotificationTest, RefreshDatabase, ExampleTest
 
 ### Community 55 - "Community 55"
 Cohesion: 0.36
@@ -331,13 +326,9 @@ Nodes (4): Database\\Seeders\\, Seeder, PlanSeeder, WithoutModelEvents
 Cohesion: 0.43
 Nodes (6): Content, Envelope, PasswordResetCodeMail, Mailable, Queueable, SerializesModels
 
-### Community 57 - "Community 57"
-Cohesion: 0.06
-Nodes (7): CommandsController, ExceptionController, MailHtmlController, UserWalletController, verification, applyUrlDefaults(), UrlDefaults
-
 ### Community 58 - "Community 58"
-Cohesion: 0.29
-Nodes (8): Breadcrumbs(), Breadcrumb(), BreadcrumbEllipsis(), BreadcrumbItem(), BreadcrumbList(), BreadcrumbPage(), BreadcrumbSeparator(), SidebarTrigger()
+Cohesion: 0.12
+Nodes (18): AppContent(), Props, AppShell(), Props, AppSidebar(), Breadcrumbs(), BreadcrumbItem, AppLayoutProps (+10 more)
 
 ### Community 59 - "Community 59"
 Cohesion: 0.25
@@ -367,13 +358,21 @@ Nodes (4): Closure, Request, Response, EnsureUserIsAdmin
 Cohesion: 0.53
 Nodes (4): Closure, Request, Response, HandleAppearance
 
+### Community 71 - "Community 71"
+Cohesion: 0.15
+Nodes (23): cn(), Sheet(), SheetContent(), SheetDescription(), SheetFooter(), SheetHeader(), SheetOverlay(), SheetTitle() (+15 more)
+
 ### Community 72 - "Community 72"
 Cohesion: 0.33
 Nodes (7): autoload, autoload-dev, psr-4, psr-4, App\\, Database\\Factories\\, Tests\\
 
+### Community 83 - "Community 83"
+Cohesion: 0.07
+Nodes (8): QueueBatchesController, ScheduleController, subscribe(), UserWalletController, wallet, plans, applyUrlDefaults(), UrlDefaults
+
 ### Community 89 - "Community 89"
-Cohesion: 0.11
-Nodes (7): login, wallet, show(), users, charge(), RouteDefinition, wellKnown
+Cohesion: 0.33
+Nodes (3): wallet, charge(), index()
 
 ### Community 91 - "Community 91"
 Cohesion: 0.60
@@ -387,25 +386,29 @@ Nodes (3): emailRules(), nameRules(), profileRules()
 Cohesion: 0.83
 Nodes (3): down(), getConnection(), up()
 
+### Community 147 - "Community 147"
+Cohesion: 0.33
+Nodes (5): IsCurrentOrParentUrlFn, IsCurrentUrlFn, UseCurrentUrlReturn, WhenCurrentUrlFn, SettingsLayout()
+
 ## Knowledge Gaps
-- **267 isolated node(s):** `$schema`, `name`, `type`, `description`, `keywords` (+262 more)
+- **269 isolated node(s):** `$schema`, `name`, `type`, `description`, `keywords` (+264 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **47 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `WalletTransactionType` connect `Community 0` to `Community 2`, `Community 41`, `Community 10`, `Community 42`, `Community 49`, `Community 22`, `Community 28`, `Community 93`?**
-  _High betweenness centrality (0.188) - this node is a cross-community bridge._
-- **Why does `QueryParams` connect `Community 9` to `Community 1`, `Community 5`, `Community 6`, `Community 12`, `Community 13`, `Community 15`, `Community 17`, `Community 19`, `Community 21`, `Community 23`, `Community 24`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 35`, `Community 39`, `Community 45`, `Community 54`, `Community 57`, `Community 60`, `Community 68`, `Community 71`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 79`, `Community 80`, `Community 81`, `Community 82`, `Community 83`, `Community 84`, `Community 85`, `Community 87`, `Community 89`, `Community 90`?**
-  _High betweenness centrality (0.082) - this node is a cross-community bridge._
-- **Why does `RouteDefinition` connect `Community 89` to `Community 1`, `Community 5`, `Community 6`, `Community 9`, `Community 12`, `Community 13`, `Community 15`, `Community 17`, `Community 19`, `Community 21`, `Community 23`, `Community 24`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 35`, `Community 39`, `Community 45`, `Community 54`, `Community 57`, `Community 60`, `Community 68`, `Community 71`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 79`, `Community 80`, `Community 81`, `Community 82`, `Community 83`, `Community 84`, `Community 85`, `Community 87`, `Community 90`?**
-  _High betweenness centrality (0.077) - this node is a cross-community bridge._
+- **Why does `WalletTransactionType` connect `Community 0` to `Community 33`, `Community 2`, `Community 41`, `Community 42`, `Community 14`, `Community 49`, `Community 22`, `Community 28`?**
+  _High betweenness centrality (0.174) - this node is a cross-community bridge._
+- **Why does `QueryParams` connect `Community 9` to `Community 1`, `Community 6`, `Community 10`, `Community 12`, `Community 13`, `Community 15`, `Community 17`, `Community 19`, `Community 148`, `Community 21`, `Community 23`, `Community 24`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 35`, `Community 39`, `Community 45`, `Community 48`, `Community 54`, `Community 57`, `Community 60`, `Community 68`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 79`, `Community 80`, `Community 81`, `Community 82`, `Community 83`, `Community 84`, `Community 85`, `Community 89`, `Community 90`, `Community 92`, `Community 93`?**
+  _High betweenness centrality (0.073) - this node is a cross-community bridge._
+- **Why does `RouteFormDefinition` connect `Community 6` to `Community 1`, `Community 9`, `Community 10`, `Community 12`, `Community 13`, `Community 15`, `Community 17`, `Community 19`, `Community 148`, `Community 21`, `Community 23`, `Community 24`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 35`, `Community 39`, `Community 45`, `Community 48`, `Community 54`, `Community 57`, `Community 60`, `Community 68`, `Community 73`, `Community 74`, `Community 75`, `Community 76`, `Community 77`, `Community 78`, `Community 79`, `Community 80`, `Community 81`, `Community 82`, `Community 83`, `Community 84`, `Community 85`, `Community 89`, `Community 90`, `Community 92`, `Community 93`?**
+  _High betweenness centrality (0.073) - this node is a cross-community bridge._
 - **What connects `$schema`, `name`, `type` to the rest of the system?**
-  _267 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _269 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05045045045045045 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.12280701754385964 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11578947368421053 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05454545454545454 - nodes in this community are weakly interconnected._
