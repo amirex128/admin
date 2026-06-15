@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AiModelController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
@@ -44,6 +45,12 @@ Route::middleware(['auth', 'verified', 'admin'])
         Route::get('orders/{order}/pdf', [OrderController::class, 'pdf'])->name('orders.pdf');
         Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
         Route::patch('orders/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
+
+        // Customer relationship management oversight (all sellers' customers).
+        Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+        Route::put('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+        Route::patch('customers/{customer}/block', [CustomerController::class, 'toggleBlock'])->name('customers.block');
+        Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
         // Payments & transaction management (ZarinPal)
         Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');

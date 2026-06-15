@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CustomerController;
+use App\Http\Controllers\User\CustomerImportController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PackagingTypeController;
 use App\Http\Controllers\User\PaymentCallbackController;
@@ -55,6 +57,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('orders/{order}/pdf', [OrderController::class, 'pdf'])->name('orders.pdf');
     Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
     Route::patch('orders/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
+
+    // Customer relationship management (CRM) — static segments before {customer}.
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('customers', [CustomerController::class, 'store'])->name('customers.store');
+    Route::post('customers/import/preview', [CustomerImportController::class, 'preview'])->name('customers.import.preview');
+    Route::post('customers/import/run', [CustomerImportController::class, 'import'])->name('customers.import.run');
+    Route::get('customers/import/template', [CustomerImportController::class, 'template'])->name('customers.import.template');
+    Route::put('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+    Route::patch('customers/{customer}/block', [CustomerController::class, 'toggleBlock'])->name('customers.block');
+    Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
     // Categories & packaging types (managed inline from the product form)
     Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
