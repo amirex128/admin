@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Ai\Contracts\ContentGenerator;
+use App\Services\Ai\LaravelAiContentGenerator;
 use App\Services\Sms\Contracts\SmsProvider;
 use App\Services\Sms\Providers\LimoSmsProvider;
 use App\Services\Sms\SmsManager;
@@ -20,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerSmsServices();
+
+        $this->app->bind(ContentGenerator::class, LaravelAiContentGenerator::class);
     }
 
     /**
