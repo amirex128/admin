@@ -7,3 +7,4 @@ export type * from './product';
 export type * from './order';
 export type * from './store';
 export type * from './customer';
+export type * from './notification';
