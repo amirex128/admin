@@ -29,7 +29,50 @@ class UpdateStoreSettingRequest extends FormRequest
     {
         $methods = StoreSettingService::SHIPPING_METHODS;
 
+        $targetUser = $this->route('user') ?: $this->user();
+        $settingId = optional($targetUser?->storeSetting)->id;
+
         return [
+            'persian_name' => ['nullable', 'string', 'max:255'],
+            'business_type' => ['nullable', 'string', 'max:255'],
+            'store_phone' => ['nullable', 'string', 'max:30'],
+            'postal_code' => ['nullable', 'string', 'max:20'],
+            'latitude' => ['nullable', 'numeric', 'between:-90,90'],
+            'longitude' => ['nullable', 'numeric', 'between:-180,180'],
+
+            'socials' => ['nullable', 'array'],
+            'socials.telegram' => ['nullable', 'string', 'max:255'],
+            'socials.whatsapp' => ['nullable', 'string', 'max:255'],
+            'socials.instagram' => ['nullable', 'string', 'max:255'],
+            'socials.eitaa' => ['nullable', 'string', 'max:255'],
+            'socials.rubika' => ['nullable', 'string', 'max:255'],
+            'socials.bale' => ['nullable', 'string', 'max:255'],
+
+            'about_us' => ['nullable', 'string', 'max:65535'],
+            'buying_guide' => ['nullable', 'string', 'max:65535'],
+            'return_policy' => ['nullable', 'string', 'max:65535'],
+            'terms' => ['nullable', 'string', 'max:65535'],
+
+            'faqs' => ['nullable', 'array'],
+            'faqs.*.question' => ['required', 'string', 'max:500'],
+            'faqs.*.answer' => ['required', 'string', 'max:5000'],
+
+            'badges' => ['nullable', 'array'],
+            'badges.*.title' => ['required', 'string', 'max:255'],
+            'badges.*.description' => ['nullable', 'string', 'max:1000'],
+            'badges.*.html' => ['nullable', 'string', 'max:5000'],
+            'badges.*.enabled' => ['boolean'],
+
+            'subdomain' => [
+                'nullable', 'string', 'max:63', 'regex:/^[a-z0-9]([a-z0-9-]*[a-z0-9])?$/',
+                Rule::unique('store_settings', 'subdomain')->ignore($settingId),
+            ],
+            'custom_domain' => [
+                'nullable', 'string', 'max:255', 'regex:/^[a-z0-9.-]+\.[a-z]{2,}$/',
+                Rule::unique('store_settings', 'custom_domain')->ignore($settingId),
+            ],
+            'template' => ['nullable', 'string', 'max:50'],
+
             'province_id' => ['nullable', 'integer', 'exists:provinces,id'],
             'city_id' => ['nullable', 'integer', Rule::exists('cities', 'id')->where(function ($query) {
                 if ($this->filled('province_id')) {
@@ -73,6 +116,19 @@ class UpdateStoreSettingRequest extends FormRequest
         // Booleans default to false when the toggle is omitted.
         foreach (['card_to_card_enabled', 'zarinpal_enabled'] as $flag) {
             $data[$flag] = $this->boolean($flag);
+        }
+
+        // Derive the domain connection status: subdomains are instant on our
+        // infrastructure, custom domains require DNS verification first.
+        $targetUser = $this->route('user') ?: $this->user();
+        $current = optional($targetUser?->storeSetting)->domain_status ?? 'none';
+
+        if ($this->filled('custom_domain')) {
+            $data['domain_status'] = $current === 'connected' ? 'connected' : 'pending';
+        } elseif ($this->filled('subdomain')) {
+            $data['domain_status'] = 'connected';
+        } else {
+            $data['domain_status'] = 'none';
         }
 
         return $data;
