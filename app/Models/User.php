@@ -153,6 +153,16 @@ class User extends Authenticatable implements PasskeyUser
     }
 
     /**
+     * The discount coupons that belong to the user.
+     *
+     * @return HasMany<Coupon, $this>
+     */
+    public function coupons(): HasMany
+    {
+        return $this->hasMany(Coupon::class);
+    }
+
+    /**
      * The store configuration that belongs to the user.
      *
      * @return HasOne<StoreSetting, $this>

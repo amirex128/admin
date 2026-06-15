@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CouponController;
 use App\Http\Controllers\User\CustomerController;
 use App\Http\Controllers\User\CustomerImportController;
 use App\Http\Controllers\User\NotificationController;
@@ -68,6 +69,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
     Route::patch('customers/{customer}/block', [CustomerController::class, 'toggleBlock'])->name('customers.block');
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+    // Discount coupons (Jalali validity window + product targeting)
+    Route::get('coupons', [CouponController::class, 'index'])->name('coupons.index');
+    Route::post('coupons', [CouponController::class, 'store'])->name('coupons.store');
+    Route::put('coupons/{coupon}', [CouponController::class, 'update'])->name('coupons.update');
+    Route::patch('coupons/{coupon}/toggle', [CouponController::class, 'toggle'])->name('coupons.toggle');
+    Route::delete('coupons/{coupon}', [CouponController::class, 'destroy'])->name('coupons.destroy');
 
     // Notifications (in-app feed + header bell)
     Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');

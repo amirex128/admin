@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AiModelController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentController;
@@ -47,6 +48,11 @@ Route::middleware(['auth', 'verified', 'admin'])
         Route::get('orders/{order}/pdf', [OrderController::class, 'pdf'])->name('orders.pdf');
         Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
         Route::patch('orders/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
+
+        // Discount coupon oversight (all sellers' coupons).
+        Route::get('coupons', [CouponController::class, 'index'])->name('coupons.index');
+        Route::patch('coupons/{coupon}/toggle', [CouponController::class, 'toggle'])->name('coupons.toggle');
+        Route::delete('coupons/{coupon}', [CouponController::class, 'destroy'])->name('coupons.destroy');
 
         // Customer relationship management oversight (all sellers' customers).
         Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
