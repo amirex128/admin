@@ -56,6 +56,10 @@ export type Product = {
     order_mode: string;
     order_mode_label: string;
     is_active: boolean;
+    approval_status: string;
+    approval_status_label: string;
+    approval_status_color: string;
+    rejection_reason: string | null;
     price: number;
     discounted_price: number;
     stock: number;

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\OrderMode;
+use App\Enums\ProductApprovalStatus;
 use App\Enums\SalesUnit;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,6 +28,9 @@ use Illuminate\Support\Carbon;
  * @property bool $is_special_offer
  * @property OrderMode $order_mode
  * @property bool $is_active
+ * @property ProductApprovalStatus $approval_status
+ * @property string|null $rejection_reason
+ * @property Carbon|null $reviewed_at
  * @property int $price
  * @property int $stock
  * @property int|null $discount_percent
@@ -39,6 +43,15 @@ class Product extends Model
 {
     /** @use HasFactory<ProductFactory> */
     use HasFactory;
+
+    /**
+     * The model's default attribute values.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'approval_status' => ProductApprovalStatus::Pending->value,
+    ];
 
     /**
      * @var list<string>
@@ -56,6 +69,9 @@ class Product extends Model
         'is_special_offer',
         'order_mode',
         'is_active',
+        'approval_status',
+        'rejection_reason',
+        'reviewed_at',
         'price',
         'stock',
         'discount_percent',
@@ -74,6 +90,8 @@ class Product extends Model
             'is_special_offer' => 'boolean',
             'order_mode' => OrderMode::class,
             'is_active' => 'boolean',
+            'approval_status' => ProductApprovalStatus::class,
+            'reviewed_at' => 'datetime',
             'price' => 'integer',
             'stock' => 'integer',
             'discount_percent' => 'integer',
@@ -166,6 +184,24 @@ class Product extends Model
     public function isVariation(): bool
     {
         return $this->parent_id !== null;
+    }
+
+    /**
+     * Whether the product has been approved by an administrator.
+     */
+    public function isApproved(): bool
+    {
+        return $this->approval_status === ProductApprovalStatus::Approved;
+    }
+
+    /**
+     * Scope a query to products with the given approval status.
+     *
+     * @param  Builder<Product>  $query
+     */
+    public function scopeWithApproval(Builder $query, ProductApprovalStatus $status): void
+    {
+        $query->where('approval_status', $status);
     }
 
     /**

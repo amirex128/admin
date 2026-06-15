@@ -9,6 +9,7 @@ import {
     Receipt,
     ShoppingCart,
     Sparkles,
+    Ticket,
     Users,
     Wallet,
 } from 'lucide-react';
@@ -27,11 +28,15 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as adminAiModelsIndex } from '@/routes/admin/ai-models';
+import { index as adminCouponsIndex } from '@/routes/admin/coupons';
+import { index as adminCustomersIndex } from '@/routes/admin/customers';
 import { index as adminOrdersIndex } from '@/routes/admin/orders';
 import { index as adminPaymentsIndex } from '@/routes/admin/payments';
 import { index as adminPlansIndex } from '@/routes/admin/plans';
 import { index as adminProductsIndex } from '@/routes/admin/products';
 import { index as adminUsersIndex } from '@/routes/admin/users';
+import { index as couponsIndex } from '@/routes/coupons';
+import { index as customersIndex } from '@/routes/customers';
 import { index as ordersIndex } from '@/routes/orders';
 import { index as plansIndex } from '@/routes/plans';
 import { index as productsIndex } from '@/routes/products';
@@ -53,6 +58,16 @@ const mainNavItems: NavItem[] = [
         title: 'سفارشات',
         href: ordersIndex(),
         icon: ShoppingCart,
+    },
+    {
+        title: 'مشتریان',
+        href: customersIndex(),
+        icon: Users,
+    },
+    {
+        title: 'کدهای تخفیف',
+        href: couponsIndex(),
+        icon: Ticket,
     },
 ];
 
@@ -84,6 +99,16 @@ const adminNavItems: NavItem[] = [
         title: 'سفارشات',
         href: adminOrdersIndex(),
         icon: ClipboardList,
+    },
+    {
+        title: 'مشتریان',
+        href: adminCustomersIndex(),
+        icon: Users,
+    },
+    {
+        title: 'کدهای تخفیف',
+        href: adminCouponsIndex(),
+        icon: Ticket,
     },
     {
         title: 'تراکنش‌های پرداخت',

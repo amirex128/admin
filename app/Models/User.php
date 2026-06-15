@@ -24,6 +24,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property string $name
  * @property string $phone
  * @property string|null $email
+ * @property int|null $province_id
+ * @property int|null $city_id
  * @property Carbon|null $email_verified_at
  * @property Carbon|null $phone_verified_at
  * @property string $password
@@ -38,7 +40,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'phone', 'email', 'password', 'referral_code', 'referred_by', 'ai_model_id'])]
+#[Fillable(['name', 'phone', 'email', 'province_id', 'city_id', 'password', 'referral_code', 'referred_by', 'ai_model_id'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 class User extends Authenticatable implements PasskeyUser
 {
@@ -141,6 +143,26 @@ class User extends Authenticatable implements PasskeyUser
     }
 
     /**
+     * The CRM customers that belong to the user.
+     *
+     * @return HasMany<Customer, $this>
+     */
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    /**
+     * The discount coupons that belong to the user.
+     *
+     * @return HasMany<Coupon, $this>
+     */
+    public function coupons(): HasMany
+    {
+        return $this->hasMany(Coupon::class);
+    }
+
+    /**
      * The store configuration that belongs to the user.
      *
      * @return HasOne<StoreSetting, $this>
@@ -168,6 +190,26 @@ class User extends Authenticatable implements PasskeyUser
     public function aiModel(): BelongsTo
     {
         return $this->belongsTo(AiModel::class);
+    }
+
+    /**
+     * The user's province (used for shipping calculations).
+     *
+     * @return BelongsTo<Province, $this>
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    /**
+     * The user's city (used for shipping calculations).
+     *
+     * @return BelongsTo<City, $this>
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 
     /**

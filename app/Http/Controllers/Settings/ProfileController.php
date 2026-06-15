@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileDeleteRequest;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
+use App\Models\City;
+use App\Models\Province;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,9 +21,20 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
+        $user = $request->user();
+        $provinceId = $request->integer('province_id') ?: $user->province_id;
+
         return Inertia::render('settings/profile', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'mustVerifyEmail' => $user instanceof MustVerifyEmail,
             'status' => $request->session()->get('status'),
+            'provinces' => Province::query()->orderBy('name')->get(['id', 'name']),
+            'cities' => $provinceId
+                ? City::query()->where('province_id', $provinceId)->orderBy('name')->get(['id', 'name'])
+                : [],
+            'location' => [
+                'province_id' => $provinceId,
+                'city_id' => $user->city_id,
+            ],
         ]);
     }
 

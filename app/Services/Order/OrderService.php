@@ -6,6 +6,8 @@ use App\Enums\OrderPaymentStatus;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\User;
+use App\Notifications\NewOrderReceived;
+use App\Services\Customer\CustomerService;
 use App\Services\Store\StoreSettingService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -16,7 +18,10 @@ use Illuminate\Support\Str;
  */
 class OrderService
 {
-    public function __construct(private readonly StoreSettingService $storeSettings) {}
+    public function __construct(
+        private readonly StoreSettingService $storeSettings,
+        private readonly CustomerService $customers,
+    ) {}
 
     /**
      * Create an order (or pre-invoice/proforma) for the given seller.
@@ -41,8 +46,13 @@ class OrderService
                 ? $rawPaymentStatus
                 : OrderPaymentStatus::from($rawPaymentStatus);
 
+            // Every order/pre-invoice is tied to a CRM customer record so the
+            // seller builds up a customer book automatically.
+            $customer = $this->customers->findOrCreateForOrder($owner, $data);
+
             /** @var Order $order */
             $order = $owner->orders()->create([
+                'customer_id' => $customer->id,
                 'code' => $this->generateCode(),
                 'status' => $status,
                 'payment_status' => $paymentStatus,
@@ -68,6 +78,8 @@ class OrderService
             }
 
             $this->recordHistory($order, $status, $data['note'] ?? null, $performedBy);
+
+            $owner->notify(new NewOrderReceived($order));
 
             return $order;
         });

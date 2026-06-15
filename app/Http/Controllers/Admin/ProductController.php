@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ProductApprovalStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\RejectProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Notifications\ProductApproved;
+use App\Notifications\ProductRejected;
 use App\Services\Product\ProductService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,6 +38,10 @@ class ProductController extends Controller
                         ->orWhere('id', $user);
                 });
             })
+            ->when(
+                ProductApprovalStatus::tryFrom($request->string('approval')->toString()),
+                fn ($query, ProductApprovalStatus $status) => $query->withApproval($status),
+            )
             ->latest('id')
             ->paginate(15)
             ->withQueryString()
@@ -41,11 +49,49 @@ class ProductController extends Controller
 
         return Inertia::render('admin/products/index', [
             'products' => $products,
+            'approvalStatuses' => ProductApprovalStatus::options(),
             'filters' => [
                 'search' => $request->string('search')->toString(),
                 'user' => $request->string('user')->toString(),
+                'approval' => $request->string('approval')->toString() ?: null,
             ],
         ]);
+    }
+
+    /**
+     * Approve a product so it becomes publishable.
+     */
+    public function approve(Product $product): RedirectResponse
+    {
+        $product->update([
+            'approval_status' => ProductApprovalStatus::Approved,
+            'rejection_reason' => null,
+            'reviewed_at' => now(),
+        ]);
+
+        $product->user->notify(new ProductApproved($product));
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'محصول تأیید شد.']);
+
+        return back();
+    }
+
+    /**
+     * Reject a product with a reason shown back to the seller.
+     */
+    public function reject(RejectProductRequest $request, Product $product): RedirectResponse
+    {
+        $product->update([
+            'approval_status' => ProductApprovalStatus::Rejected,
+            'rejection_reason' => $request->validated('reason'),
+            'reviewed_at' => now(),
+        ]);
+
+        $product->user->notify(new ProductRejected($product, $request->validated('reason')));
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'محصول رد شد.']);
+
+        return back();
     }
 
     /**

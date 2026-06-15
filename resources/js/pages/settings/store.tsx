@@ -2,7 +2,12 @@ import { Head } from '@inertiajs/react';
 
 import Heading from '@/components/heading';
 import { StoreSettingsForm } from '@/components/settings/store-settings-form';
-import type { GeoOption, StoreSettings } from '@/types';
+import type {
+    Category,
+    GeoOption,
+    PackagingType,
+    StoreSettings,
+} from '@/types';
 
 type PageProps = {
     settings: StoreSettings;
@@ -10,6 +15,7 @@ type PageProps = {
     cities: GeoOption[];
     shippingMethods: string[];
     updateUrl: string;
+    taxonomy: { categories: Category[]; packagingTypes: PackagingType[] };
 };
 
 export default function StoreSettingsPage({
@@ -18,6 +24,7 @@ export default function StoreSettingsPage({
     cities,
     shippingMethods,
     updateUrl,
+    taxonomy,
 }: PageProps) {
     return (
         <>
@@ -36,6 +43,7 @@ export default function StoreSettingsPage({
                     cities={cities}
                     shippingMethods={shippingMethods}
                     updateUrl={updateUrl}
+                    taxonomy={taxonomy}
                 />
             </div>
         </>

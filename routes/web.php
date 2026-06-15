@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\User\CategoryController;
+use App\Http\Controllers\User\CouponController;
+use App\Http\Controllers\User\CustomerController;
+use App\Http\Controllers\User\CustomerImportController;
+use App\Http\Controllers\User\NotificationController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PackagingTypeController;
 use App\Http\Controllers\User\PaymentCallbackController;
@@ -56,9 +60,37 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
     Route::patch('orders/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
 
-    // Categories & packaging types (managed inline from the product form)
+    // Customer relationship management (CRM) — static segments before {customer}.
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('customers', [CustomerController::class, 'store'])->name('customers.store');
+    Route::post('customers/import/preview', [CustomerImportController::class, 'preview'])->name('customers.import.preview');
+    Route::post('customers/import/run', [CustomerImportController::class, 'import'])->name('customers.import.run');
+    Route::get('customers/import/template', [CustomerImportController::class, 'template'])->name('customers.import.template');
+    Route::put('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+    Route::patch('customers/{customer}/block', [CustomerController::class, 'toggleBlock'])->name('customers.block');
+    Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+    // Discount coupons (Jalali validity window + product targeting)
+    Route::get('coupons', [CouponController::class, 'index'])->name('coupons.index');
+    Route::post('coupons', [CouponController::class, 'store'])->name('coupons.store');
+    Route::put('coupons/{coupon}', [CouponController::class, 'update'])->name('coupons.update');
+    Route::patch('coupons/{coupon}/toggle', [CouponController::class, 'toggle'])->name('coupons.toggle');
+    Route::delete('coupons/{coupon}', [CouponController::class, 'destroy'])->name('coupons.destroy');
+
+    // Notifications (in-app feed + header bell)
+    Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
+    Route::patch('notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::delete('notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+
+    // Categories & packaging types (managed inline from the product form and
+    // from the store settings page).
     Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     Route::post('packaging-types', [PackagingTypeController::class, 'store'])->name('packaging-types.store');
+    Route::put('packaging-types/{packagingType}', [PackagingTypeController::class, 'update'])->name('packaging-types.update');
+    Route::delete('packaging-types/{packagingType}', [PackagingTypeController::class, 'destroy'])->name('packaging-types.destroy');
 });
 
 require __DIR__.'/auth.php';

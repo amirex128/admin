@@ -1,13 +1,28 @@
 import { Head, router } from '@inertiajs/react';
-import { ImageOff, Search, Trash2, User as UserIcon } from 'lucide-react';
+import {
+    BadgeCheck,
+    ImageOff,
+    Search,
+    Trash2,
+    User as UserIcon,
+    X,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import ProductController from '@/actions/App/Http/Controllers/Admin/ProductController';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
+import { RejectProductDialog } from '@/components/products/reject-product-dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import {
     Table,
@@ -19,14 +34,21 @@ import {
 } from '@/components/ui/table';
 import { formatToman } from '@/lib/format';
 import { index as adminProductsIndex } from '@/routes/admin/products';
-import type { Paginated, Product } from '@/types';
+import type { Paginated, Product, SelectOption } from '@/types';
+
+const ALL = '__all__';
 
 type PageProps = {
     products: Paginated<Product>;
-    filters: { search: string; user: string };
+    approvalStatuses: SelectOption[];
+    filters: { search: string; user: string; approval: string | null };
 };
 
-export default function AdminProductsIndex({ products, filters }: PageProps) {
+export default function AdminProductsIndex({
+    products,
+    approvalStatuses,
+    filters,
+}: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
     const [user, setUser] = useState(filters.user ?? '');
 
@@ -41,13 +63,29 @@ export default function AdminProductsIndex({ products, filters }: PageProps) {
         const timeout = setTimeout(() => {
             router.get(
                 adminProductsIndex().url,
-                { search, user },
+                { search, user, approval: filters.approval ?? undefined },
                 { preserveState: true, preserveScroll: true, replace: true },
             );
         }, 350);
 
         return () => clearTimeout(timeout);
     }, [search, user, filters]);
+
+    function applyApproval(value: string | null) {
+        router.get(
+            adminProductsIndex().url,
+            { search, user, approval: value ?? undefined },
+            { preserveState: true, preserveScroll: true, replace: true },
+        );
+    }
+
+    function approve(product: Product) {
+        router.patch(
+            ProductController.approve(product.id).url,
+            {},
+            { preserveScroll: true },
+        );
+    }
 
     function toggle(product: Product) {
         router.patch(
@@ -96,6 +134,27 @@ export default function AdminProductsIndex({ products, filters }: PageProps) {
                             className="pr-9"
                         />
                     </div>
+                    <Select
+                        value={filters.approval ?? ALL}
+                        onValueChange={(value) =>
+                            applyApproval(value === ALL ? null : value)
+                        }
+                    >
+                        <SelectTrigger className="w-44">
+                            <SelectValue placeholder="وضعیت ممیزی" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value={ALL}>همه وضعیت‌ها</SelectItem>
+                            {approvalStatuses.map((status) => (
+                                <SelectItem
+                                    key={status.value}
+                                    value={status.value}
+                                >
+                                    {status.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
                 </div>
 
                 <div className="rounded-xl border">
@@ -106,7 +165,7 @@ export default function AdminProductsIndex({ products, filters }: PageProps) {
                                 <TableHead>نام</TableHead>
                                 <TableHead>مالک</TableHead>
                                 <TableHead>قیمت</TableHead>
-                                <TableHead>موجودی</TableHead>
+                                <TableHead>ممیزی</TableHead>
                                 <TableHead>فعال</TableHead>
                                 <TableHead className="text-left">
                                     عملیات
@@ -157,8 +216,24 @@ export default function AdminProductsIndex({ products, filters }: PageProps) {
                                     <TableCell className="tabular-nums">
                                         {formatToman(product.price)}
                                     </TableCell>
-                                    <TableCell className="tabular-nums">
-                                        {product.stock}
+                                    <TableCell>
+                                        <Badge
+                                            variant={
+                                                product.approval_status ===
+                                                'approved'
+                                                    ? 'secondary'
+                                                    : product.approval_status ===
+                                                        'rejected'
+                                                      ? 'destructive'
+                                                      : 'outline'
+                                            }
+                                            title={
+                                                product.rejection_reason ??
+                                                undefined
+                                            }
+                                        >
+                                            {product.approval_status_label}
+                                        </Badge>
                                     </TableCell>
                                     <TableCell>
                                         <Switch
@@ -169,12 +244,48 @@ export default function AdminProductsIndex({ products, filters }: PageProps) {
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <div className="flex justify-end">
+                                        <div className="flex justify-end gap-1">
+                                            {product.approval_status !==
+                                                'approved' && (
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    onClick={() =>
+                                                        approve(product)
+                                                    }
+                                                    className="text-emerald-600 hover:text-emerald-600"
+                                                    title="تأیید"
+                                                >
+                                                    <BadgeCheck className="size-4" />
+                                                </Button>
+                                            )}
+                                            {product.approval_status !==
+                                                'rejected' && (
+                                                <RejectProductDialog
+                                                    product={product}
+                                                    submitUrl={
+                                                        ProductController.reject(
+                                                            product.id,
+                                                        ).url
+                                                    }
+                                                    trigger={
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            className="text-amber-600 hover:text-amber-600"
+                                                            title="رد"
+                                                        >
+                                                            <X className="size-4" />
+                                                        </Button>
+                                                    }
+                                                />
+                                            )}
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
                                                 onClick={() => destroy(product)}
                                                 className="text-destructive hover:text-destructive"
+                                                title="حذف"
                                             >
                                                 <Trash2 className="size-4" />
                                             </Button>

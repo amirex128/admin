@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\OrderMode;
+use App\Enums\ProductApprovalStatus;
 use App\Enums\SalesUnit;
 use App\Models\Product;
 use App\Models\User;
@@ -34,6 +35,7 @@ class ProductFactory extends Factory
             'is_special_offer' => fake()->boolean(20),
             'order_mode' => fake()->randomElement(OrderMode::cases()),
             'is_active' => true,
+            'approval_status' => ProductApprovalStatus::Approved,
             'price' => fake()->numberBetween(10, 5000) * 1000,
             'stock' => fake()->numberBetween(0, 200),
             'discount_percent' => fake()->optional()->numberBetween(5, 50),
@@ -48,6 +50,29 @@ class ProductFactory extends Factory
     public function inactive(): static
     {
         return $this->state(fn (): array => ['is_active' => false]);
+    }
+
+    /**
+     * Indicate that the product is awaiting admin review.
+     */
+    public function pendingReview(): static
+    {
+        return $this->state(fn (): array => [
+            'approval_status' => ProductApprovalStatus::Pending,
+            'reviewed_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the product was rejected with a reason.
+     */
+    public function rejected(string $reason = 'تصاویر محصول نامناسب است.'): static
+    {
+        return $this->state(fn (): array => [
+            'approval_status' => ProductApprovalStatus::Rejected,
+            'rejection_reason' => $reason,
+            'reviewed_at' => now(),
+        ]);
     }
 
     /**
