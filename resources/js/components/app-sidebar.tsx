@@ -1,11 +1,13 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
     BookOpen,
+    ClipboardList,
     CreditCard,
     FolderGit2,
     LayoutGrid,
     Package,
     Receipt,
+    ShoppingCart,
     Sparkles,
     Users,
     Wallet,
@@ -25,10 +27,12 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as adminAiModelsIndex } from '@/routes/admin/ai-models';
+import { index as adminOrdersIndex } from '@/routes/admin/orders';
 import { index as adminPaymentsIndex } from '@/routes/admin/payments';
 import { index as adminPlansIndex } from '@/routes/admin/plans';
 import { index as adminProductsIndex } from '@/routes/admin/products';
 import { index as adminUsersIndex } from '@/routes/admin/users';
+import { index as ordersIndex } from '@/routes/orders';
 import { index as plansIndex } from '@/routes/plans';
 import { index as productsIndex } from '@/routes/products';
 import { index as walletIndex } from '@/routes/wallet';
@@ -44,6 +48,11 @@ const mainNavItems: NavItem[] = [
         title: 'محصولات',
         href: productsIndex(),
         icon: Package,
+    },
+    {
+        title: 'سفارشات',
+        href: ordersIndex(),
+        icon: ShoppingCart,
     },
 ];
 
@@ -70,6 +79,11 @@ const adminNavItems: NavItem[] = [
         title: 'محصولات',
         href: adminProductsIndex(),
         icon: Package,
+    },
+    {
+        title: 'سفارشات',
+        href: adminOrdersIndex(),
+        icon: ClipboardList,
     },
     {
         title: 'تراکنش‌های پرداخت',

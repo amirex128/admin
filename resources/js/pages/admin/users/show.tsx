@@ -1,5 +1,10 @@
-import { Head, useForm } from '@inertiajs/react';
-import { ArrowDownLeft, ArrowUpRight, Wallet } from 'lucide-react';
+import { Head, Link, useForm } from '@inertiajs/react';
+import {
+    ArrowDownLeft,
+    ArrowUpRight,
+    ClipboardList,
+    Wallet,
+} from 'lucide-react';
 import { useState } from 'react';
 
 import UserWalletController from '@/actions/App/Http/Controllers/Admin/UserWalletController';
@@ -22,6 +27,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import { formatDate, formatTomanLabel } from '@/lib/format';
 import { cn } from '@/lib/utils';
+import { index as adminOrdersIndex } from '@/routes/admin/orders';
 import { index as adminUsersIndex } from '@/routes/admin/users';
 import type { Paginated, Subscription, WalletTransaction } from '@/types';
 
@@ -79,10 +85,20 @@ export default function AdminUserShow({
             <Head title={`مدیریت ${user.name}`} />
 
             <div className="flex h-full flex-1 flex-col gap-6 p-4">
-                <Heading
-                    title={user.name}
-                    description="هاب مدیریت کاربر: مشاهده تراکنش‌ها و تنظیم موجودی کیف پول."
-                />
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                    <Heading
+                        title={user.name}
+                        description="هاب مدیریت کاربر: مشاهده تراکنش‌ها، سفارش‌ها و تنظیم موجودی کیف پول."
+                    />
+                    <Button asChild variant="outline" className="gap-1.5">
+                        <Link
+                            href={`${adminOrdersIndex().url}?user=${user.id}`}
+                        >
+                            <ClipboardList className="size-4" />
+                            سفارش‌های کاربر
+                        </Link>
+                    </Button>
+                </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
                     <Card className="md:col-span-1">

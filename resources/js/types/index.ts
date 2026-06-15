@@ -4,3 +4,4 @@ export type * from './ui';
 export type * from './pagination';
 export type * from './financial';
 export type * from './product';
+export type * from './order';

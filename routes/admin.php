@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified', 'admin'])
         Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
         Route::get('orders/{order}/pdf', [OrderController::class, 'pdf'])->name('orders.pdf');
         Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
+        Route::patch('orders/{order}/payment', [OrderController::class, 'updatePayment'])->name('orders.payment');
 
         // Payments & transaction management (ZarinPal)
         Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');

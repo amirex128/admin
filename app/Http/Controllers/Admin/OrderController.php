@@ -11,6 +11,7 @@ use App\Http\Controllers\Concerns\FiltersOrders;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreOrderRequest;
 use App\Http\Requests\Admin\UpdateOrderStatusRequest;
+use App\Http\Requests\User\UpdateOrderPaymentRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Product;
@@ -130,6 +131,18 @@ class OrderController extends Controller
         );
 
         Inertia::flash('toast', ['type' => 'success', 'message' => 'وضعیت سفارش بروزرسانی شد.']);
+
+        return back();
+    }
+
+    /**
+     * Update the payment status of the order.
+     */
+    public function updatePayment(UpdateOrderPaymentRequest $request, Order $order): RedirectResponse
+    {
+        $this->orderService->markPayment($order, $request->enum('payment_status', OrderPaymentStatus::class));
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'وضعیت پرداخت بروزرسانی شد.']);
 
         return back();
     }
