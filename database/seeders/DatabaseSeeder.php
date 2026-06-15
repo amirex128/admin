@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PlanSeeder::class);
+        $this->call([PlanSeeder::class, AiModelSeeder::class]);
 
         User::factory()->admin()->create([
             'name' => 'Admin User',
@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '09120000001',
             'email' => 'test@example.com',
         ]);
+
+        $this->call([ProductSeeder::class, PaymentSeeder::class]);
     }
 }

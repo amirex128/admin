@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -27,6 +28,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property Carbon|null $phone_verified_at
  * @property string $password
  * @property bool $is_admin
+ * @property int|null $ai_model_id
  * @property string|null $referral_code
  * @property int|null $referred_by
  * @property string|null $two_factor_secret
@@ -36,7 +38,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'phone', 'email', 'password', 'referral_code', 'referred_by'])]
+#[Fillable(['name', 'phone', 'email', 'password', 'referral_code', 'referred_by', 'ai_model_id'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
 class User extends Authenticatable implements PasskeyUser
 {
@@ -89,6 +91,16 @@ class User extends Authenticatable implements PasskeyUser
     }
 
     /**
+     * The gateway payments initiated by the user.
+     *
+     * @return HasMany<Payment, $this>
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
      * The subscriptions that belong to the user.
      *
      * @return HasMany<Subscription, $this>
@@ -96,6 +108,57 @@ class User extends Authenticatable implements PasskeyUser
     public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
+    }
+
+    /**
+     * The products that belong to the user.
+     *
+     * @return HasMany<Product, $this>
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    /**
+     * The product categories that belong to the user.
+     *
+     * @return HasMany<Category, $this>
+     */
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    /**
+     * The packaging types that belong to the user.
+     *
+     * @return HasMany<PackagingType, $this>
+     */
+    public function packagingTypes(): HasMany
+    {
+        return $this->hasMany(PackagingType::class);
+    }
+
+    /**
+     * The AI model the user has selected for their panel.
+     *
+     * @return BelongsTo<AiModel, $this>
+     */
+    public function aiModel(): BelongsTo
+    {
+        return $this->belongsTo(AiModel::class);
+    }
+
+    /**
+     * Media files owned directly by the user (e.g. rich text editor uploads
+     * made before a product exists).
+     *
+     * @return MorphMany<Media, $this>
+     */
+    public function media(): MorphMany
+    {
+        return $this->morphMany(Media::class, 'mediable');
     }
 
     /**

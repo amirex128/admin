@@ -43,6 +43,22 @@ export type Subscription = {
     plan?: Plan;
 };
 
+export type Payment = {
+    id: number;
+    amount: number;
+    authority: string | null;
+    ref_id: string | null;
+    card_pan: string | null;
+    status: string;
+    status_label: string;
+    description: string | null;
+    is_reversible: boolean;
+    is_refundable: boolean;
+    paid_at: string | null;
+    created_at: string | null;
+    user?: { id: number; name: string; phone: string };
+};
+
 export type AdminUserRow = {
     id: number;
     name: string;

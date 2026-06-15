@@ -8,6 +8,7 @@ import { cn, toUrl } from '@/lib/utils';
 import { edit as editAppearance } from '@/routes/appearance';
 import { edit } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
+import { edit as editAi } from '@/routes/settings/ai';
 import type { NavItem } from '@/types';
 
 const sidebarNavItems: NavItem[] = [
@@ -24,6 +25,11 @@ const sidebarNavItems: NavItem[] = [
     {
         title: 'ظاهر',
         href: editAppearance(),
+        icon: null,
+    },
+    {
+        title: 'هوش مصنوعی',
+        href: editAi(),
         icon: null,
     },
 ];

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
+use App\Http\Controllers\User\AiPreferenceController;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('user-password.update');
 
     Route::inertia('settings/appearance', 'settings/appearance')->name('appearance.edit');
+
+    // AI settings — choose the model that powers the user's AI requests.
+    Route::get('settings/ai', [AiPreferenceController::class, 'edit'])->name('settings.ai.edit');
+    Route::put('settings/ai', [AiPreferenceController::class, 'update'])->name('settings.ai.update');
 });
 
 Route::get('.well-known/passkey-endpoints', function () {
