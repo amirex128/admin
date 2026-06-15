@@ -4,6 +4,7 @@ import {
     CreditCard,
     FolderGit2,
     LayoutGrid,
+    Package,
     Sparkles,
     Users,
     Wallet,
@@ -22,9 +23,12 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import { index as adminAiModelsIndex } from '@/routes/admin/ai-models';
 import { index as adminPlansIndex } from '@/routes/admin/plans';
+import { index as adminProductsIndex } from '@/routes/admin/products';
 import { index as adminUsersIndex } from '@/routes/admin/users';
 import { index as plansIndex } from '@/routes/plans';
+import { index as productsIndex } from '@/routes/products';
 import { index as walletIndex } from '@/routes/wallet';
 import type { Auth, NavItem } from '@/types';
 
@@ -33,6 +37,11 @@ const mainNavItems: NavItem[] = [
         title: 'داشبورد',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'محصولات',
+        href: productsIndex(),
+        icon: Package,
     },
 ];
 
@@ -56,9 +65,19 @@ const adminNavItems: NavItem[] = [
         icon: Users,
     },
     {
+        title: 'محصولات',
+        href: adminProductsIndex(),
+        icon: Package,
+    },
+    {
         title: 'پلن‌های اشتراک',
         href: adminPlansIndex(),
         icon: CreditCard,
+    },
+    {
+        title: 'تنظیمات هوش مصنوعی',
+        href: adminAiModelsIndex(),
+        icon: Sparkles,
     },
 ];
 
