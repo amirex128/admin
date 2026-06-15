@@ -141,6 +141,16 @@ class User extends Authenticatable implements PasskeyUser
     }
 
     /**
+     * The store configuration that belongs to the user.
+     *
+     * @return HasOne<StoreSetting, $this>
+     */
+    public function storeSetting(): HasOne
+    {
+        return $this->hasOne(StoreSetting::class);
+    }
+
+    /**
      * The packaging types that belong to the user.
      *
      * @return HasMany<PackagingType, $this>

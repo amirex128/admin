@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
+use App\Http\Controllers\Settings\StoreSettingController;
 use App\Http\Controllers\User\AiPreferenceController;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // AI settings — choose the model that powers the user's AI requests.
     Route::get('settings/ai', [AiPreferenceController::class, 'edit'])->name('settings.ai.edit');
     Route::put('settings/ai', [AiPreferenceController::class, 'update'])->name('settings.ai.update');
+
+    // Store settings — payment, shipping, location and finance configuration.
+    Route::get('settings/store', [StoreSettingController::class, 'edit'])->name('settings.store.edit');
+    Route::put('settings/store', [StoreSettingController::class, 'update'])->name('settings.store.update');
 });
 
 Route::get('.well-known/passkey-endpoints', function () {

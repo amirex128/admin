@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([PlanSeeder::class, AiModelSeeder::class]);
+        $this->call([IranLocationSeeder::class, PlanSeeder::class, AiModelSeeder::class]);
 
         User::factory()->admin()->create([
             'name' => 'Admin User',

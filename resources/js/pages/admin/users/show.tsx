@@ -3,6 +3,7 @@ import {
     ArrowDownLeft,
     ArrowUpRight,
     ClipboardList,
+    Store,
     Wallet,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -29,6 +30,7 @@ import { formatDate, formatTomanLabel } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { index as adminOrdersIndex } from '@/routes/admin/orders';
 import { index as adminUsersIndex } from '@/routes/admin/users';
+import { edit as adminUserStoreSettings } from '@/routes/admin/users/store-settings';
 import type { Paginated, Subscription, WalletTransaction } from '@/types';
 
 type AdminUser = {
@@ -90,14 +92,22 @@ export default function AdminUserShow({
                         title={user.name}
                         description="هاب مدیریت کاربر: مشاهده تراکنش‌ها، سفارش‌ها و تنظیم موجودی کیف پول."
                     />
-                    <Button asChild variant="outline" className="gap-1.5">
-                        <Link
-                            href={`${adminOrdersIndex().url}?user=${user.id}`}
-                        >
-                            <ClipboardList className="size-4" />
-                            سفارش‌های کاربر
-                        </Link>
-                    </Button>
+                    <div className="flex flex-wrap gap-2">
+                        <Button asChild variant="outline" className="gap-1.5">
+                            <Link
+                                href={`${adminOrdersIndex().url}?user=${user.id}`}
+                            >
+                                <ClipboardList className="size-4" />
+                                سفارش‌های کاربر
+                            </Link>
+                        </Button>
+                        <Button asChild variant="outline" className="gap-1.5">
+                            <Link href={adminUserStoreSettings(user.id).url}>
+                                <Store className="size-4" />
+                                تنظیمات فروشگاه
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">

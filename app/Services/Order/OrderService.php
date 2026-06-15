@@ -6,6 +6,7 @@ use App\Enums\OrderPaymentStatus;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\User;
+use App\Services\Store\StoreSettingService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -15,6 +16,8 @@ use Illuminate\Support\Str;
  */
 class OrderService
 {
+    public function __construct(private readonly StoreSettingService $storeSettings) {}
+
     /**
      * Create an order (or pre-invoice/proforma) for the given seller.
      *
@@ -24,7 +27,9 @@ class OrderService
     {
         return DB::transaction(function () use ($owner, $data, $performedBy): Order {
             $items = $this->normalizeItems($data['items'] ?? []);
-            $taxPercent = (int) ($data['tax_percent'] ?? 0);
+            $taxPercent = array_key_exists('tax_percent', $data) && $data['tax_percent'] !== null
+                ? (int) $data['tax_percent']
+                : $this->storeSettings->forUser($owner)->vat_percent;
             $shippingCost = (int) ($data['shipping_cost'] ?? 0);
             $totals = $this->calculateTotals($items, $taxPercent, $shippingCost);
 

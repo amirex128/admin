@@ -9,6 +9,7 @@ import { edit as editAppearance } from '@/routes/appearance';
 import { edit } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
 import { edit as editAi } from '@/routes/settings/ai';
+import { edit as editStore } from '@/routes/settings/store';
 import type { NavItem } from '@/types';
 
 const sidebarNavItems: NavItem[] = [
@@ -20,6 +21,11 @@ const sidebarNavItems: NavItem[] = [
     {
         title: 'امنیت',
         href: editSecurity(),
+        icon: null,
+    },
+    {
+        title: 'تنظیمات فروشگاه',
+        href: editStore(),
         icon: null,
     },
     {
