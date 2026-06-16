@@ -3,6 +3,7 @@ import { Search, Trash2, User as UserIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import AdminCouponController from '@/actions/App/Http/Controllers/Admin/CouponController';
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,7 @@ type PageProps = {
 export default function AdminCouponsIndex({ coupons, filters }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
     const [user, setUser] = useState(filters.user ?? '');
+    const confirm = useConfirm();
 
     useEffect(() => {
         if (
@@ -57,8 +59,14 @@ export default function AdminCouponsIndex({ coupons, filters }: PageProps) {
         );
     }
 
-    function destroy(coupon: Coupon) {
-        if (!confirm(`حذف کد تخفیف «${coupon.code}»؟`)) {
+    async function destroy(coupon: Coupon) {
+        if (
+            !(await confirm({
+                title: 'حذف کد تخفیف',
+                description: `آیا از حذف کد تخفیف «${coupon.code}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

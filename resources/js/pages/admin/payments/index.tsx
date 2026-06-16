@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import PaymentController from '@/actions/App/Http/Controllers/Admin/PaymentController';
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
 import { Badge } from '@/components/ui/badge';
@@ -75,6 +76,7 @@ export default function AdminPaymentsIndex({
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
     const [user, setUser] = useState(filters.user ?? '');
+    const confirm = useConfirm();
 
     useEffect(() => {
         if (search === (filters.search ?? '') && user === (filters.user ?? '')) {
@@ -100,8 +102,14 @@ export default function AdminPaymentsIndex({
         );
     }
 
-    function reverse(payment: Payment) {
-        if (!confirm('برگشت وجه (ریورس) این تراکنش؟')) {
+    async function reverse(payment: Payment) {
+        if (
+            !(await confirm({
+                title: 'برگشت وجه (ریورس)',
+                description: 'برگشت وجه (ریورس) این تراکنش انجام شود؟',
+                confirmText: 'برگشت وجه',
+            }))
+        ) {
             return;
         }
 
@@ -112,8 +120,14 @@ export default function AdminPaymentsIndex({
         );
     }
 
-    function refund(payment: Payment) {
-        if (!confirm('استرداد وجه این تراکنش؟')) {
+    async function refund(payment: Payment) {
+        if (
+            !(await confirm({
+                title: 'استرداد وجه',
+                description: 'استرداد وجه این تراکنش انجام شود؟',
+                confirmText: 'استرداد',
+            }))
+        ) {
             return;
         }
 

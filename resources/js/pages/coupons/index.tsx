@@ -3,6 +3,7 @@ import { Pencil, Plus, Search, Ticket, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import CouponController from '@/actions/App/Http/Controllers/User/CouponController';
+import { useConfirm } from '@/components/confirm-dialog';
 import { CouponFormDialog } from '@/components/coupons/coupon-form-dialog';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
@@ -46,6 +47,7 @@ export default function CouponsIndex({
     filters,
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
+    const confirm = useConfirm();
 
     useEffect(() => {
         if (search === (filters.search ?? '')) {
@@ -79,8 +81,14 @@ export default function CouponsIndex({
         );
     }
 
-    function destroy(coupon: Coupon) {
-        if (!confirm(`حذف کد تخفیف «${coupon.code}»؟`)) {
+    async function destroy(coupon: Coupon) {
+        if (
+            !(await confirm({
+                title: 'حذف کد تخفیف',
+                description: `آیا از حذف کد تخفیف «${coupon.code}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

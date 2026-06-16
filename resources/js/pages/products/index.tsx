@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import ProductController from '@/actions/App/Http/Controllers/User/ProductController';
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
 import { ExcelImportDialog } from '@/components/products/excel-import-dialog';
@@ -57,6 +58,7 @@ export default function ProductsIndex({
     filters,
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
+    const confirm = useConfirm();
 
     const rejected = products.data.filter(
         (product) => product.approval_status === 'rejected',
@@ -86,8 +88,14 @@ export default function ProductsIndex({
         );
     }
 
-    function destroy(product: Product) {
-        if (!confirm(`حذف محصول «${product.name}»؟`)) {
+    async function destroy(product: Product) {
+        if (
+            !(await confirm({
+                title: 'حذف محصول',
+                description: `آیا از حذف محصول «${product.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

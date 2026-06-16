@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import AdminCustomerController from '@/actions/App/Http/Controllers/Admin/CustomerController';
+import { useConfirm } from '@/components/confirm-dialog';
 import { CustomerFormDialog } from '@/components/customers/customer-form-dialog';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
@@ -54,6 +55,7 @@ export default function AdminCustomersIndex({
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
     const [user, setUser] = useState(filters.user ?? '');
+    const confirm = useConfirm();
 
     useEffect(() => {
         if (
@@ -90,8 +92,14 @@ export default function AdminCustomersIndex({
         );
     }
 
-    function destroy(customer: Customer) {
-        if (!confirm(`حذف مشتری «${customer.name}»؟`)) {
+    async function destroy(customer: Customer) {
+        if (
+            !(await confirm({
+                title: 'حذف مشتری',
+                description: `آیا از حذف مشتری «${customer.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

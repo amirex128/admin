@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import CustomerController from '@/actions/App/Http/Controllers/User/CustomerController';
+import { useConfirm } from '@/components/confirm-dialog';
 import { CustomerFormDialog } from '@/components/customers/customer-form-dialog';
 import { CustomerImportDialog } from '@/components/customers/customer-import-dialog';
 import Heading from '@/components/heading';
@@ -54,6 +55,7 @@ export default function CustomersIndex({
     filters,
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
+    const confirm = useConfirm();
 
     useEffect(() => {
         if (search === (filters.search ?? '')) {
@@ -87,8 +89,14 @@ export default function CustomersIndex({
         );
     }
 
-    function destroy(customer: Customer) {
-        if (!confirm(`حذف مشتری «${customer.name}»؟`)) {
+    async function destroy(customer: Customer) {
+        if (
+            !(await confirm({
+                title: 'حذف مشتری',
+                description: `آیا از حذف مشتری «${customer.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

@@ -1,6 +1,7 @@
 import { Head, Link, router } from '@inertiajs/react';
 import { Check, Sparkles, Wallet } from 'lucide-react';
 
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -28,12 +29,18 @@ export default function PlansPage({
     balance,
     activeSubscription,
 }: PageProps) {
-    function choose(plan: Plan) {
+    const confirm = useConfirm();
+
+    async function choose(plan: Plan) {
         if (plan.discounted_price > balance) {
             if (
-                confirm(
-                    'موجودی کیف پول شما کافی نیست. به صفحه شارژ منتقل می‌شوید؟',
-                )
+                await confirm({
+                    title: 'موجودی ناکافی',
+                    description:
+                        'موجودی کیف پول شما کافی نیست. به صفحه شارژ منتقل می‌شوید؟',
+                    confirmText: 'شارژ کیف پول',
+                    destructive: false,
+                })
             ) {
                 router.visit(walletIndex().url);
             }
@@ -41,7 +48,14 @@ export default function PlansPage({
             return;
         }
 
-        if (confirm(`خرید اشتراک «${plan.name}» را تأیید می‌کنید؟`)) {
+        if (
+            await confirm({
+                title: 'تایید خرید اشتراک',
+                description: `خرید اشتراک «${plan.name}» را تأیید می‌کنید؟`,
+                confirmText: 'خرید',
+                destructive: false,
+            })
+        ) {
             router.post(subscribe(plan.id).url, {}, { preserveScroll: true });
         }
     }

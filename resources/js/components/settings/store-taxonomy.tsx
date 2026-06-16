@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import CategoryController from '@/actions/App/Http/Controllers/User/CategoryController';
 import PackagingTypeController from '@/actions/App/Http/Controllers/User/PackagingTypeController';
+import { useConfirm } from '@/components/confirm-dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,6 +26,7 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
     const [name, setName] = useState('');
     const [editingId, setEditingId] = useState<number | null>(null);
     const [editingName, setEditingName] = useState('');
+    const confirm = useConfirm();
 
     function add() {
         if (name.trim() === '') {
@@ -52,8 +54,14 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
         );
     }
 
-    function destroy(category: Category) {
-        if (!confirm(`حذف دسته‌بندی «${category.name}»؟`)) {
+    async function destroy(category: Category) {
+        if (
+            !(await confirm({
+                title: 'حذف دسته‌بندی',
+                description: `آیا از حذف دسته‌بندی «${category.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 
@@ -188,6 +196,7 @@ export function PackagingManager({
     const [description, setDescription] = useState('');
     const [editingId, setEditingId] = useState<number | null>(null);
     const [editingName, setEditingName] = useState('');
+    const confirm = useConfirm();
 
     function add() {
         if (name.trim() === '') {
@@ -218,8 +227,14 @@ export function PackagingManager({
         );
     }
 
-    function destroy(packaging: PackagingType) {
-        if (!confirm(`حذف بسته‌بندی «${packaging.name}»؟`)) {
+    async function destroy(packaging: PackagingType) {
+        if (
+            !(await confirm({
+                title: 'حذف بسته‌بندی',
+                description: `آیا از حذف بسته‌بندی «${packaging.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

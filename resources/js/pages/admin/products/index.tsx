@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import ProductController from '@/actions/App/Http/Controllers/Admin/ProductController';
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { PaginationNav } from '@/components/pagination-nav';
 import { RejectProductDialog } from '@/components/products/reject-product-dialog';
@@ -51,6 +52,7 @@ export default function AdminProductsIndex({
 }: PageProps) {
     const [search, setSearch] = useState(filters.search ?? '');
     const [user, setUser] = useState(filters.user ?? '');
+    const confirm = useConfirm();
 
     useEffect(() => {
         if (
@@ -95,8 +97,14 @@ export default function AdminProductsIndex({
         );
     }
 
-    function destroy(product: Product) {
-        if (!confirm(`حذف محصول «${product.name}»؟`)) {
+    async function destroy(product: Product) {
+        if (
+            !(await confirm({
+                title: 'حذف محصول',
+                description: `آیا از حذف محصول «${product.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

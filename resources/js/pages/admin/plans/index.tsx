@@ -3,6 +3,7 @@ import { Check, Pencil, Plus, Trash2 } from 'lucide-react';
 
 import PlanController from '@/actions/App/Http/Controllers/Admin/PlanController';
 import { PlanFormDialog } from '@/components/admin/plan-form-dialog';
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,8 @@ type PageProps = {
 };
 
 export default function AdminPlansIndex({ plans }: PageProps) {
+    const confirm = useConfirm();
+
     function toggle(plan: Plan) {
         router.patch(
             PlanController.toggle(plan.id).url,
@@ -32,8 +35,14 @@ export default function AdminPlansIndex({ plans }: PageProps) {
         );
     }
 
-    function destroy(plan: Plan) {
-        if (!confirm(`آیا از حذف پلن «${plan.name}» مطمئن هستید؟`)) {
+    async function destroy(plan: Plan) {
+        if (
+            !(await confirm({
+                title: 'حذف پلن',
+                description: `آیا از حذف پلن «${plan.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 

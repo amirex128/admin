@@ -3,6 +3,7 @@ import { Pencil, Plus, Sparkles, Trash2 } from 'lucide-react';
 
 import AiModelController from '@/actions/App/Http/Controllers/Admin/AiModelController';
 import { AiModelFormDialog } from '@/components/admin/ai-model-form-dialog';
+import { useConfirm } from '@/components/confirm-dialog';
 import Heading from '@/components/heading';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -19,6 +20,8 @@ type PageProps = {
 };
 
 export default function AdminAiSettings({ models, providers }: PageProps) {
+    const confirm = useConfirm();
+
     function toggle(model: AiModel) {
         router.patch(
             AiModelController.toggle(model.id).url,
@@ -27,8 +30,14 @@ export default function AdminAiSettings({ models, providers }: PageProps) {
         );
     }
 
-    function destroy(model: AiModel) {
-        if (!confirm(`حذف مدل «${model.name}»؟`)) {
+    async function destroy(model: AiModel) {
+        if (
+            !(await confirm({
+                title: 'حذف مدل',
+                description: `آیا از حذف مدل «${model.name}» مطمئن هستید؟`,
+                confirmText: 'حذف',
+            }))
+        ) {
             return;
         }
 
