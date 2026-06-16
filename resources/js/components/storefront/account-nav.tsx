@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { LogOut, Package, UserCog } from 'lucide-react';
+import { LogOut, Package, Receipt, UserCog } from 'lucide-react';
 
 import { shopUrl } from '@/components/storefront/storefront-layout';
 import type { StorefrontStore } from '@/types';
@@ -12,7 +12,7 @@ export function AccountNav({
     active,
 }: {
     store: StorefrontStore;
-    active: 'orders' | 'profile';
+    active: 'orders' | 'transactions' | 'profile';
 }) {
     const linkClass = (key: string) =>
         `flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${
@@ -26,6 +26,13 @@ export function AccountNav({
             <Link href={shopUrl(store.key, '/account')} className={linkClass('orders')}>
                 <Package className="size-4" />
                 سفارش‌های من
+            </Link>
+            <Link
+                href={shopUrl(store.key, '/account/transactions')}
+                className={linkClass('transactions')}
+            >
+                <Receipt className="size-4" />
+                تراکنش‌ها
             </Link>
             <Link
                 href={shopUrl(store.key, '/account/profile')}

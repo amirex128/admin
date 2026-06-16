@@ -44,6 +44,8 @@ export these page components (matching the controller's `render()` calls):
 | `account/orders.tsx` | `storefront.account` | Customer order history |
 | `account/order.tsx` | `storefront.account.order` | Single order with status timeline |
 | `account/profile.tsx` | `storefront.account.profile` / `.password` | Profile & password management |
+| `account/transactions.tsx` | `storefront.account.transactions` | Customer transactions ledger |
+| `account/order.tsx` (return dialog) | `storefront.account.order.return` | Return/refund request for delivered orders |
 
 ## Shared building blocks (reuse these)
 
