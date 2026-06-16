@@ -40,6 +40,8 @@ class OrderManagementTest extends TestCase
     public function test_a_user_can_create_an_order_with_items(): void
     {
         $user = User::factory()->create();
+        // Tax is derived from the store's VAT percent, not supplied by the form.
+        \App\Models\StoreSetting::factory()->for($user)->create(['vat_percent' => 10]);
         $product = Product::factory()->for($user)->create(['price' => 100000]);
 
         $response = $this->actingAs($user)->post(route('orders.store'), [
@@ -48,7 +50,6 @@ class OrderManagementTest extends TestCase
             'province' => 'تهران',
             'city' => 'تهران',
             'status' => OrderStatus::AwaitingConfirmation->value,
-            'tax_percent' => 10,
             'shipping_cost' => 50000,
             'items' => [
                 ['product_id' => $product->id, 'name' => $product->name, 'unit_price' => 100000, 'quantity' => 2, 'discount_percent' => 0],
