@@ -47,7 +47,7 @@ class OrderResource extends JsonResource
             'delivered_at' => $this->delivered_at?->toISOString(),
             'paid_at' => $this->paid_at?->toISOString(),
             'created_at' => $this->created_at?->toISOString(),
-            'items' => OrderItemResource::collection($this->whenLoaded('items')),
+            'items' => $this->whenLoaded('items', fn () => OrderItemResource::collection($this->items)->resolve()),
             'histories' => $this->whenLoaded('statusHistories', fn () => $this->statusHistories->map(fn ($history) => [
                 'id' => $history->id,
                 'status' => $history->status->value,

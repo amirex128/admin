@@ -61,7 +61,7 @@ class ProductResource extends JsonResource
                     ? $attribute->values->map(fn ($value) => ['id' => $value->id, 'value' => $value->value])->values()
                     : [],
             ])->values()),
-            'variations' => ProductResource::collection($this->whenLoaded('variations')),
+            'variations' => $this->whenLoaded('variations', fn () => ProductResource::collection($this->variations)->resolve()),
             'variations_count' => $this->whenCounted('variations'),
             'created_at' => $this->created_at?->toISOString(),
         ];

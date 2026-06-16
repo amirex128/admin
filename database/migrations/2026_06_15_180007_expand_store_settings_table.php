@@ -46,6 +46,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Drop the unique indexes first; SQLite cannot drop a column while an
+        // index still references it (raises "no such column" on the index).
+        Schema::table('store_settings', function (Blueprint $table) {
+            $table->dropUnique('store_settings_subdomain_unique');
+            $table->dropUnique('store_settings_custom_domain_unique');
+        });
+
         Schema::table('store_settings', function (Blueprint $table) {
             $table->dropColumn([
                 'persian_name', 'business_type', 'store_phone', 'postal_code',
