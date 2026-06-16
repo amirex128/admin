@@ -6,6 +6,7 @@ use App\Enums\OrderPaymentStatus;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\StoreSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -41,7 +42,7 @@ class OrderManagementTest extends TestCase
     {
         $user = User::factory()->create();
         // Tax is derived from the store's VAT percent, not supplied by the form.
-        \App\Models\StoreSetting::factory()->for($user)->create(['vat_percent' => 10]);
+        StoreSetting::factory()->for($user)->create(['vat_percent' => 10]);
         $product = Product::factory()->for($user)->create(['price' => 100000]);
 
         $response = $this->actingAs($user)->post(route('orders.store'), [
