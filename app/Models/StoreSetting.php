@@ -14,8 +14,25 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property int $user_id
+ * @property string|null $persian_name
+ * @property string|null $business_type
+ * @property string|null $store_phone
  * @property int|null $province_id
  * @property int|null $city_id
+ * @property string|null $postal_code
+ * @property string|null $latitude
+ * @property string|null $longitude
+ * @property array<string, string|null>|null $socials
+ * @property string|null $about_us
+ * @property string|null $buying_guide
+ * @property string|null $return_policy
+ * @property string|null $terms
+ * @property array<int, array<string, mixed>>|null $faqs
+ * @property array<int, array<string, mixed>>|null $badges
+ * @property string|null $subdomain
+ * @property string|null $custom_domain
+ * @property string $domain_status
+ * @property string $template
  * @property bool $card_to_card_enabled
  * @property string|null $card_holder_name
  * @property string|null $card_number
@@ -48,6 +65,8 @@ class StoreSetting extends Model
         'refund_window_minutes' => 30,
         'intra_city_days' => 1,
         'inter_city_days' => 3,
+        'domain_status' => 'none',
+        'template' => 'classic',
     ];
 
     /**
@@ -55,8 +74,25 @@ class StoreSetting extends Model
      */
     protected $fillable = [
         'user_id',
+        'persian_name',
+        'business_type',
+        'store_phone',
         'province_id',
         'city_id',
+        'postal_code',
+        'latitude',
+        'longitude',
+        'socials',
+        'about_us',
+        'buying_guide',
+        'return_policy',
+        'terms',
+        'faqs',
+        'badges',
+        'subdomain',
+        'custom_domain',
+        'domain_status',
+        'template',
         'card_to_card_enabled',
         'card_holder_name',
         'card_number',
@@ -77,6 +113,9 @@ class StoreSetting extends Model
     protected function casts(): array
     {
         return [
+            'socials' => 'array',
+            'faqs' => 'array',
+            'badges' => 'array',
             'card_to_card_enabled' => 'boolean',
             'zarinpal_enabled' => 'boolean',
             'zarinpal_access_token' => 'encrypted',

@@ -34,6 +34,9 @@ trait BuildsStoreSettingProps
                 ->map(fn (Province $province) => ['id' => $province->id, 'name' => $province->name])->all(),
             'cities' => $cities->map(fn (City $city) => ['id' => $city->id, 'name' => $city->name])->all(),
             'shippingMethods' => StoreSettingService::SHIPPING_METHODS,
+            'templates' => config('storefront.templates'),
+            'storeBaseDomain' => config('storefront.base_domain'),
+            'nameservers' => config('storefront.nameservers'),
         ];
     }
 }

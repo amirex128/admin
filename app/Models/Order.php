@@ -28,6 +28,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $address
  * @property ShippingMethod|null $shipping_method
  * @property OrderPaymentMethod|null $payment_method
+ * @property string|null $payment_authority
  * @property string|null $tracking_code
  * @property int $subtotal
  * @property int $tax_percent
@@ -62,6 +63,7 @@ class Order extends Model
         'address',
         'shipping_method',
         'payment_method',
+        'payment_authority',
         'tracking_code',
         'subtotal',
         'tax_percent',

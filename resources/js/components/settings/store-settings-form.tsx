@@ -1,7 +1,26 @@
 import { router, useForm } from '@inertiajs/react';
-import { Boxes, CreditCard, FolderTree, MapPin, Percent, Truck } from 'lucide-react';
+import {
+    Boxes,
+    BadgeCheck,
+    CreditCard,
+    FileText,
+    FolderTree,
+    Globe,
+    MapPin,
+    Percent,
+    Share2,
+    Store,
+    Truck,
+} from 'lucide-react';
 
 import InputError from '@/components/input-error';
+import {
+    StoreBadgesTab,
+    StoreContentTab,
+    StoreDomainTab,
+    StoreInfoTab,
+    StoreSocialsTab,
+} from '@/components/settings/store-extra-tabs';
 import {
     CategoryManager,
     PackagingManager,
@@ -29,7 +48,10 @@ import type {
     Category,
     GeoOption,
     PackagingType,
+    StoreBadge,
+    StoreFaq,
     StoreSettings,
+    StoreTemplateOption,
 } from '@/types';
 
 const SHIPPING_LABELS: Record<string, string> = {
@@ -44,9 +66,25 @@ type MethodForm = {
     inter_cost: string;
 };
 
-type StoreForm = {
+export type StoreForm = {
+    persian_name: string;
+    business_type: string;
+    store_phone: string;
     province_id: number | null;
     city_id: number | null;
+    postal_code: string;
+    latitude: string;
+    longitude: string;
+    socials: Record<string, string>;
+    about_us: string;
+    buying_guide: string;
+    return_policy: string;
+    terms: string;
+    faqs: StoreFaq[];
+    badges: StoreBadge[];
+    subdomain: string;
+    custom_domain: string;
+    template: string;
     card_to_card_enabled: boolean;
     card_holder_name: string;
     card_number: string;
@@ -72,6 +110,9 @@ export function StoreSettingsForm({
     shippingMethods,
     updateUrl,
     taxonomy,
+    templates = [],
+    storeBaseDomain = 'sotoon53.com',
+    nameservers = ['ns.sotoon53.com', 'd.ns.sotoon53.com'],
 }: {
     settings: StoreSettings;
     provinces: GeoOption[];
@@ -79,10 +120,36 @@ export function StoreSettingsForm({
     shippingMethods: string[];
     updateUrl: string;
     taxonomy?: { categories: Category[]; packagingTypes: PackagingType[] };
+    templates?: StoreTemplateOption[];
+    storeBaseDomain?: string;
+    nameservers?: string[];
 }) {
     const form = useForm<StoreForm>({
+        persian_name: settings.persian_name ?? '',
+        business_type: settings.business_type ?? '',
+        store_phone: settings.store_phone ?? '',
         province_id: settings.province_id,
         city_id: settings.city_id,
+        postal_code: settings.postal_code ?? '',
+        latitude: settings.latitude ?? '',
+        longitude: settings.longitude ?? '',
+        socials: {
+            telegram: settings.socials?.telegram ?? '',
+            whatsapp: settings.socials?.whatsapp ?? '',
+            instagram: settings.socials?.instagram ?? '',
+            eitaa: settings.socials?.eitaa ?? '',
+            rubika: settings.socials?.rubika ?? '',
+            bale: settings.socials?.bale ?? '',
+        },
+        about_us: settings.about_us ?? '',
+        buying_guide: settings.buying_guide ?? '',
+        return_policy: settings.return_policy ?? '',
+        terms: settings.terms ?? '',
+        faqs: settings.faqs ?? [],
+        badges: settings.badges ?? [],
+        subdomain: settings.subdomain ?? '',
+        custom_domain: settings.custom_domain ?? '',
+        template: settings.template ?? 'classic',
         card_to_card_enabled: settings.card_to_card_enabled,
         card_holder_name: settings.card_holder_name ?? '',
         card_number: settings.card_number ?? '',
@@ -140,10 +207,22 @@ export function StoreSettingsForm({
             >
                 <TabsList className="h-auto w-52 shrink-0 flex-col gap-1 bg-transparent p-0">
                     <TabTrigger
+                        value="info"
+                        icon={<Store className="size-4" />}
+                    >
+                        اطلاعات فروشگاه
+                    </TabTrigger>
+                    <TabTrigger
                         value="location"
                         icon={<MapPin className="size-4" />}
                     >
                         موقعیت فروشگاه
+                    </TabTrigger>
+                    <TabTrigger
+                        value="socials"
+                        icon={<Share2 className="size-4" />}
+                    >
+                        شبکه‌های اجتماعی
                     </TabTrigger>
                     <TabTrigger
                         value="payment"
@@ -162,6 +241,24 @@ export function StoreSettingsForm({
                         icon={<Percent className="size-4" />}
                     >
                         مالی و مالیات
+                    </TabTrigger>
+                    <TabTrigger
+                        value="content"
+                        icon={<FileText className="size-4" />}
+                    >
+                        صفحات و محتوا
+                    </TabTrigger>
+                    <TabTrigger
+                        value="badges"
+                        icon={<BadgeCheck className="size-4" />}
+                    >
+                        نمادها و مجوزها
+                    </TabTrigger>
+                    <TabTrigger
+                        value="domain"
+                        icon={<Globe className="size-4" />}
+                    >
+                        دامنه و قالب
                     </TabTrigger>
                     {taxonomy && (
                         <>
@@ -182,6 +279,20 @@ export function StoreSettingsForm({
                 </TabsList>
 
                 <div className="flex-1 space-y-6">
+                    <TabsContent value="info">
+                        <StoreInfoTab
+                            data={form.data}
+                            setField={form.setData}
+                        />
+                    </TabsContent>
+
+                    <TabsContent value="socials">
+                        <StoreSocialsTab
+                            data={form.data}
+                            setField={form.setData}
+                        />
+                    </TabsContent>
+
                     <TabsContent value="location">
                         <Card>
                             <CardHeader>
@@ -479,6 +590,31 @@ export function StoreSettingsForm({
                                 />
                             </CardContent>
                         </Card>
+                    </TabsContent>
+
+                    <TabsContent value="content">
+                        <StoreContentTab
+                            data={form.data}
+                            setField={form.setData}
+                        />
+                    </TabsContent>
+
+                    <TabsContent value="badges">
+                        <StoreBadgesTab
+                            data={form.data}
+                            setField={form.setData}
+                        />
+                    </TabsContent>
+
+                    <TabsContent value="domain">
+                        <StoreDomainTab
+                            data={form.data}
+                            setField={form.setData}
+                            templates={templates}
+                            baseDomain={storeBaseDomain}
+                            nameservers={nameservers}
+                            domainStatus={settings.domain_status}
+                        />
                     </TabsContent>
 
                     {taxonomy && (

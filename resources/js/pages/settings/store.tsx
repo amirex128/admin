@@ -7,6 +7,7 @@ import type {
     GeoOption,
     PackagingType,
     StoreSettings,
+    StoreTemplateOption,
 } from '@/types';
 
 type PageProps = {
@@ -16,6 +17,9 @@ type PageProps = {
     shippingMethods: string[];
     updateUrl: string;
     taxonomy: { categories: Category[]; packagingTypes: PackagingType[] };
+    templates: StoreTemplateOption[];
+    storeBaseDomain: string;
+    nameservers: string[];
 };
 
 export default function StoreSettingsPage({
@@ -25,6 +29,9 @@ export default function StoreSettingsPage({
     shippingMethods,
     updateUrl,
     taxonomy,
+    templates,
+    storeBaseDomain,
+    nameservers,
 }: PageProps) {
     return (
         <>
@@ -44,6 +51,9 @@ export default function StoreSettingsPage({
                     shippingMethods={shippingMethods}
                     updateUrl={updateUrl}
                     taxonomy={taxonomy}
+                    templates={templates}
+                    storeBaseDomain={storeBaseDomain}
+                    nameservers={nameservers}
                 />
             </div>
         </>

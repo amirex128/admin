@@ -21,6 +21,15 @@ class CustomerSeeder extends Seeder
         Customer::factory()->count(12)->for($user)->create();
         Customer::factory()->count(2)->for($user)->blocked()->create();
 
+        // A known storefront account for demoing customer login (09120000050 / password).
+        $account = Customer::factory()->for($user)->create([
+            'name' => 'مشتری نمونه',
+            'phone' => '09120000050',
+            'email' => 'customer@example.com',
+        ]);
+        $account->password = 'password';
+        $account->save();
+
         $this->backfillFromOrders($user);
     }
 
