@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react';
 import { Plus, Trash2 } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
 
+import { HelpTooltip } from '@/components/help-tooltip';
 import InputError from '@/components/input-error';
 import { Combobox } from '@/components/products/combobox';
 import { Button } from '@/components/ui/button';
@@ -38,7 +39,6 @@ type OrderFormData = {
     shipping_method: string;
     payment_method: string;
     payment_status: string;
-    tax_percent: string;
     shipping_cost: string;
     status: string;
     note: string;
@@ -66,6 +66,7 @@ export function OrderForm({
     shippingMethods,
     paymentMethods,
     paymentStatusOptions,
+    vatPercent = 0,
     requireUser = false,
     userId = null,
     userSelect,
@@ -75,6 +76,7 @@ export function OrderForm({
     shippingMethods: SelectOption[];
     paymentMethods: SelectOption[];
     paymentStatusOptions: SelectOption[];
+    vatPercent?: number;
     requireUser?: boolean;
     userId?: number | null;
     userSelect?: React.ReactNode;
@@ -89,7 +91,6 @@ export function OrderForm({
         shipping_method: '',
         payment_method: '',
         payment_status: 'unpaid',
-        tax_percent: '0',
         shipping_cost: '0',
         status: 'awaiting_confirmation',
         note: '',
@@ -109,12 +110,11 @@ export function OrderForm({
             (sum, item) => sum + lineTotal(item),
             0,
         );
-        const taxPercent = Number(form.data.tax_percent) || 0;
-        const taxAmount = Math.round((subtotal * taxPercent) / 100);
+        const taxAmount = Math.round((subtotal * vatPercent) / 100);
         const shipping = Number(form.data.shipping_cost) || 0;
 
         return { subtotal, taxAmount, total: subtotal + taxAmount + shipping };
-    }, [form.data.items, form.data.tax_percent, form.data.shipping_cost]);
+    }, [form.data.items, form.data.shipping_cost, vatPercent]);
 
     function addProduct(productId: number | null) {
         if (productId === null) {
@@ -444,18 +444,16 @@ export function OrderForm({
                     <CardContent className="space-y-4">
                         <div className="grid grid-cols-2 gap-3">
                             <div className="grid gap-2">
-                                <Label>مالیات ٪</Label>
+                                <Label className="flex items-center gap-1">
+                                    مالیات ٪
+                                    <HelpTooltip text="درصد مالیات از تنظیمات فروشگاه شما خوانده می‌شود و در صفحه ثبت سفارش قابل تغییر نیست." />
+                                </Label>
                                 <Input
                                     type="number"
-                                    min={0}
-                                    max={100}
-                                    value={form.data.tax_percent}
-                                    onChange={(event) =>
-                                        form.setData(
-                                            'tax_percent',
-                                            event.target.value,
-                                        )
-                                    }
+                                    value={vatPercent}
+                                    readOnly
+                                    disabled
+                                    className="bg-muted"
                                 />
                             </div>
                             <div className="grid gap-2">
@@ -480,7 +478,7 @@ export function OrderForm({
                                 value={totals.subtotal}
                             />
                             <SummaryRow
-                                label="مالیات"
+                                label={`مالیات (${vatPercent}٪)`}
                                 value={totals.taxAmount}
                             />
                             <SummaryRow

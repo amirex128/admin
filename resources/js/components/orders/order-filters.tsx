@@ -47,12 +47,11 @@ export function OrderFilters({
     showUserFilter?: boolean;
 }) {
     const [search, setSearch] = useState(filters.search ?? '');
-    const [city, setCity] = useState(filters.city ?? '');
     const [user, setUser] = useState(filters.user ?? '');
 
     function apply(overrides: Partial<OrderFilterState>) {
         const next: Record<string, string | number> = {};
-        const merged = { ...filters, search, city, user, ...overrides };
+        const merged = { ...filters, search, user, ...overrides };
 
         for (const [key, value] of Object.entries(merged)) {
             if (value !== null && value !== undefined && value !== '') {
@@ -69,14 +68,9 @@ export function OrderFilters({
 
     useEffect(() => {
         const current = filters.search ?? '';
-        const currentCity = filters.city ?? '';
         const currentUser = filters.user ?? '';
 
-        if (
-            search === current &&
-            city === currentCity &&
-            user === currentUser
-        ) {
+        if (search === current && user === currentUser) {
             return;
         }
 
@@ -84,7 +78,7 @@ export function OrderFilters({
 
         return () => clearTimeout(timeout);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [search, city, user]);
+    }, [search, user]);
 
     const activeTab = filters.status ?? 'all';
 
@@ -144,13 +138,6 @@ export function OrderFilters({
                         className="w-56"
                     />
                 )}
-
-                <Input
-                    value={city}
-                    onChange={(event) => setCity(event.target.value)}
-                    placeholder="شهر"
-                    className="w-32"
-                />
 
                 <FilterSelect
                     value={filters.shipping_method}
@@ -237,14 +224,13 @@ export function OrderFilters({
                     </div>
                 </div>
 
-                {(hasAdvanced || filters.search || filters.city) && (
+                {(hasAdvanced || filters.search) && (
                     <Button
                         variant="ghost"
                         size="sm"
                         className="gap-1.5"
                         onClick={() => {
                             setSearch('');
-                            setCity('');
                             setUser('');
                             router.get(
                                 indexUrl,

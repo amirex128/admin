@@ -34,7 +34,8 @@ trait BuildsOrderRules
             'tracking_code' => ['nullable', 'string', 'max:255'],
             'status' => ['required', Rule::enum(OrderStatus::class)->only([OrderStatus::Proforma, OrderStatus::AwaitingConfirmation])],
             'payment_status' => ['nullable', Rule::enum(OrderPaymentStatus::class)],
-            'tax_percent' => ['nullable', 'integer', 'min:0', 'max:100'],
+            // Tax is always derived from the store's main VAT percent in settings;
+            // it is never supplied by the manual order form.
             'shipping_cost' => ['nullable', 'integer', 'min:0', 'max:100000000000'],
             'note' => ['nullable', 'string', 'max:2000'],
 

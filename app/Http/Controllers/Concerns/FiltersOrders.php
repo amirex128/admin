@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
  * Shared order list filtering used by the seller and admin order controllers.
  *
  * Supports the status tab (including the "unpaid" payment tab) plus the
- * advanced filters: city, shipping/payment method, registration & ship date
+ * advanced filters: shipping/payment method, registration & ship date
  * ranges, price range and sorting.
  */
 trait FiltersOrders
@@ -41,7 +41,6 @@ trait FiltersOrders
                     ->where('code', 'like', "%{$search}%")
                     ->orWhere('customer_name', 'like', "%{$search}%"));
             })
-            ->when($request->string('city')->toString(), fn ($q, string $city) => $q->where('city', 'like', "%{$city}%"))
             ->when($request->enum('shipping_method', ShippingMethod::class), fn ($q, ShippingMethod $m) => $q->where('shipping_method', $m))
             ->when($request->enum('payment_method', OrderPaymentMethod::class), fn ($q, OrderPaymentMethod $m) => $q->where('payment_method', $m))
             ->when($request->date('date_from'), fn ($q, $date) => $q->whereDate('created_at', '>=', $date))
@@ -69,7 +68,6 @@ trait FiltersOrders
         return [
             'status' => $request->string('status')->toString() ?: null,
             'search' => $request->string('search')->toString(),
-            'city' => $request->string('city')->toString() ?: null,
             'shipping_method' => $request->string('shipping_method')->toString() ?: null,
             'payment_method' => $request->string('payment_method')->toString() ?: null,
             'date_from' => $request->string('date_from')->toString() ?: null,

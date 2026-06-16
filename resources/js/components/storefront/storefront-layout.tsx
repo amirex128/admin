@@ -41,7 +41,7 @@ export function StorefrontLayout({
     const pageTitle = title ? `${title} | ${store.name}` : store.name;
 
     return (
-        <div dir="rtl" className="flex min-h-screen flex-col bg-neutral-50 text-neutral-900">
+        <div dir="rtl" className="storefront-scope flex min-h-screen flex-col bg-neutral-50 text-neutral-900">
             <Head title={pageTitle}>
                 {description && <meta name="description" content={description} />}
                 <meta property="og:title" content={pageTitle} />

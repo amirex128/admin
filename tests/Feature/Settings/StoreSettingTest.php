@@ -48,6 +48,7 @@ class StoreSettingTest extends TestCase
             'card_holder_name' => 'علی رضایی',
             'card_number' => '6037991234567890',
             'zarinpal_enabled' => true,
+            'zarinpal_merchant_id' => 'merchant-123',
             'zarinpal_access_token' => 'secret-token',
             'vat_percent' => 9,
             'refund_window_minutes' => 30,
@@ -66,6 +67,15 @@ class StoreSettingTest extends TestCase
         $this->assertSame('secret-token', $settings->zarinpal_access_token);
         $this->assertSame(30000, $settings->shipping_methods['post']['intra_cost']);
         $this->assertSame(2, $settings->intra_city_days);
+    }
+
+    public function test_enabling_zarinpal_requires_merchant_credentials(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)->put(route('settings.store.update'), [
+            'zarinpal_enabled' => true,
+        ])->assertSessionHasErrors(['zarinpal_merchant_id', 'zarinpal_access_token']);
     }
 
     public function test_new_orders_default_to_the_store_vat_percent(): void

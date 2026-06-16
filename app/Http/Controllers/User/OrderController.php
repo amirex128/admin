@@ -18,6 +18,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Services\Order\OrderPdfService;
 use App\Services\Order\OrderService;
+use App\Services\Store\StoreSettingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -28,7 +29,10 @@ class OrderController extends Controller
 {
     use FiltersOrders;
 
-    public function __construct(private readonly OrderService $orderService) {}
+    public function __construct(
+        private readonly OrderService $orderService,
+        private readonly StoreSettingService $storeSettings,
+    ) {}
 
     /**
      * Display the seller's orders with status tabs and advanced filters.
@@ -164,6 +168,7 @@ class OrderController extends Controller
             'paymentMethods' => OrderPaymentMethod::options(),
             'paymentStatusOptions' => OrderPaymentStatus::options(),
             'salesUnits' => SalesUnit::options(),
+            'vatPercent' => (int) $this->storeSettings->forUser($user)->vat_percent,
         ];
     }
 }
