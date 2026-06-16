@@ -29,10 +29,12 @@ Route::prefix('shop/{store}')->name('storefront.')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/account', [AccountController::class, 'orders'])->name('account');
+    Route::get('/account/transactions', [AccountController::class, 'transactions'])->name('account.transactions');
     Route::get('/account/profile', [AccountController::class, 'profile'])->name('account.profile');
     Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile.update');
     Route::put('/account/password', [AccountController::class, 'updatePassword'])->name('account.password');
     Route::get('/account/orders/{code}', [AccountController::class, 'order'])->name('account.order');
+    Route::post('/account/orders/{code}/return', [AccountController::class, 'requestReturn'])->name('account.order.return');
     Route::get('/pages/{slug}', [StorefrontController::class, 'page'])->name('page');
     Route::get('/categories/{category}', [StorefrontController::class, 'category'])->name('category');
     Route::get('/orders/{code}', [StorefrontController::class, 'order'])->name('order');

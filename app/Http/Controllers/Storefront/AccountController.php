@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Storefront;
 
+use App\Enums\OrderStatus;
 use App\Http\Controllers\Concerns\ResolvesStorefront;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\StoreSetting;
+use App\Notifications\OrderReturnRequested;
+use App\Services\Order\OrderService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +72,61 @@ class AccountController extends Controller
         return $this->render($settings, 'account/order', [
             'order' => OrderResource::make($order)->resolve(),
         ]);
+    }
+
+    /**
+     * The customer's transactions (paid orders) ledger.
+     */
+    public function transactions(Request $request, string $store): Response|RedirectResponse
+    {
+        $settings = $this->resolveStore($store);
+        $customer = $this->currentCustomer($settings);
+
+        if ($customer === null) {
+            return redirect()->route('storefront.login', ['store' => $store]);
+        }
+
+        $orders = Order::query()
+            ->where('user_id', $settings->user_id)
+            ->where('customer_id', $customer->id)
+            ->latest('id')
+            ->paginate(15)
+            ->through(fn (Order $order) => OrderResource::make($order)->resolve());
+
+        return $this->render($settings, 'account/transactions', ['transactions' => $orders]);
+    }
+
+    /**
+     * Submit a return (refund) request for a delivered order.
+     */
+    public function requestReturn(Request $request, string $store, string $code, OrderService $orders): RedirectResponse
+    {
+        $settings = $this->resolveStore($store);
+        $customer = $this->currentCustomer($settings);
+
+        abort_if($customer === null, HttpResponse::HTTP_FORBIDDEN);
+
+        $data = $request->validate([
+            'reason' => ['required', 'string', 'max:1000'],
+        ]);
+
+        $order = Order::query()
+            ->where('user_id', $settings->user_id)
+            ->where('customer_id', $customer->id)
+            ->where('code', $code)
+            ->firstOrFail();
+
+        if ($order->status !== OrderStatus::Delivered) {
+            return back()->withErrors(['reason' => 'فقط برای سفارش‌های تحویل‌شده می‌توان درخواست مرجوعی ثبت کرد.']);
+        }
+
+        $orders->updateStatus($order, OrderStatus::ReturnRequested, $data['reason']);
+
+        $settings->user->notify(new OrderReturnRequested($order, $data['reason']));
+
+        Inertia::flash('toast', ['type' => 'success', 'message' => 'درخواست مرجوعی ثبت شد.']);
+
+        return back();
     }
 
     /**
