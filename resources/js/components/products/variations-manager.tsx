@@ -1,17 +1,11 @@
-import { Plus, Trash2, Upload, X } from 'lucide-react';
+import { Layers, Plus, Trash2, Upload } from 'lucide-react';
 import { useState } from 'react';
 
+import { HelpTooltip } from '@/components/help-tooltip';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import type { MediaItem } from '@/types';
 
@@ -33,14 +27,17 @@ export type VariationDraft = {
     remove_image: boolean;
 };
 
-export function emptyVariation(): VariationDraft {
+export function emptyVariation(
+    attributeName: string,
+    value: string,
+): VariationDraft {
     return {
         sku: '',
         price: '',
         stock: '0',
         discount_percent: '',
         is_active: true,
-        variation_attributes: {},
+        variation_attributes: { [attributeName]: value },
         image: null,
         existingImage: null,
         remove_image: false,
@@ -48,9 +45,11 @@ export function emptyVariation(): VariationDraft {
 }
 
 /**
- * Manages the attribute definitions (color, warranty, …) shown as individual
- * cards, and the resulting product variations with their own price, stock,
- * discount and image.
+ * Inline variation builder: the seller adds an attribute (e.g. «گارانتی»),
+ * then types each value (e.g. «یک ساله»). Adding a value immediately reveals an
+ * inline card right beneath it where price, stock, discount, the variation's own
+ * product SKU and image are entered — because every variation is itself a
+ * product record in the system.
  */
 export function VariationsManager({
     attributes,
@@ -66,10 +65,16 @@ export function VariationsManager({
     const [attributeName, setAttributeName] = useState('');
     const [valueInputs, setValueInputs] = useState<Record<number, string>>({});
 
+    function findVariationIndex(name: string, value: string): number {
+        return variations.findIndex(
+            (variation) => variation.variation_attributes[name] === value,
+        );
+    }
+
     function addAttribute() {
         const name = attributeName.trim();
 
-        if (name === '') {
+        if (name === '' || attributes.some((a) => a.name === name)) {
             return;
         }
 
@@ -78,106 +83,124 @@ export function VariationsManager({
     }
 
     function removeAttribute(index: number) {
+        const removed = attributes[index];
         onAttributesChange(attributes.filter((_, i) => i !== index));
+        onVariationsChange(
+            variations.filter(
+                (variation) => !(removed.name in variation.variation_attributes),
+            ),
+        );
     }
 
     function addValue(index: number) {
         const value = (valueInputs[index] ?? '').trim();
+        const attribute = attributes[index];
 
-        if (value === '') {
+        if (value === '' || attribute.values.includes(value)) {
             return;
         }
 
-        const next = [...attributes];
+        const nextAttributes = [...attributes];
+        nextAttributes[index] = {
+            ...attribute,
+            values: [...attribute.values, value],
+        };
+        onAttributesChange(nextAttributes);
 
-        if (!next[index].values.includes(value)) {
-            next[index] = {
-                ...next[index],
-                values: [...next[index].values, value],
-            };
-            onAttributesChange(next);
-        }
+        // Inline-create the matching variation card.
+        onVariationsChange([
+            ...variations,
+            emptyVariation(attribute.name, value),
+        ]);
 
         setValueInputs({ ...valueInputs, [index]: '' });
     }
 
     function removeValue(attrIndex: number, value: string) {
+        const attribute = attributes[attrIndex];
         const next = [...attributes];
         next[attrIndex] = {
-            ...next[attrIndex],
-            values: next[attrIndex].values.filter((v) => v !== value),
+            ...attribute,
+            values: attribute.values.filter((v) => v !== value),
         };
         onAttributesChange(next);
+        onVariationsChange(
+            variations.filter(
+                (variation) =>
+                    variation.variation_attributes[attribute.name] !== value,
+            ),
+        );
     }
 
-    function updateVariation(index: number, patch: Partial<VariationDraft>) {
+    function updateVariation(
+        name: string,
+        value: string,
+        patch: Partial<VariationDraft>,
+    ) {
+        const idx = findVariationIndex(name, value);
+
+        if (idx === -1) {
+            return;
+        }
+
         const next = [...variations];
-        next[index] = { ...next[index], ...patch };
+        next[idx] = { ...next[idx], ...patch };
         onVariationsChange(next);
     }
 
     return (
-        <div className="space-y-6">
-            <div className="space-y-3">
-                <Label>ویژگی‌ها</Label>
-                <div className="flex gap-2">
-                    <Input
-                        value={attributeName}
-                        onChange={(event) =>
-                            setAttributeName(event.target.value)
+        <div className="space-y-4">
+            <div className="flex gap-2">
+                <Input
+                    value={attributeName}
+                    onChange={(event) => setAttributeName(event.target.value)}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter') {
+                            event.preventDefault();
+                            addAttribute();
                         }
-                        onKeyDown={(event) => {
-                            if (event.key === 'Enter') {
-                                event.preventDefault();
-                                addAttribute();
-                            }
-                        }}
-                        placeholder="نام ویژگی (مثلاً رنگ یا گارانتی)"
-                    />
-                    <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={addAttribute}
-                    >
-                        <Plus className="size-4" />
-                    </Button>
-                </div>
+                    }}
+                    placeholder="نام ویژگی (مثلاً رنگ یا گارانتی)"
+                />
+                <Button
+                    type="button"
+                    variant="outline"
+                    className="gap-1.5"
+                    onClick={addAttribute}
+                >
+                    <Plus className="size-4" />
+                    افزودن ویژگی
+                </Button>
+            </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+            {attributes.length === 0 ? (
+                <p className="flex flex-col items-center gap-2 rounded-xl border border-dashed py-8 text-center text-sm text-muted-foreground">
+                    <Layers className="size-6" />
+                    هنوز ویژگی‌ای اضافه نشده است. برای ساخت تنوع، یک ویژگی اضافه
+                    کنید.
+                </p>
+            ) : (
+                <div className="space-y-4">
                     {attributes.map((attribute, index) => (
-                        <Card key={index}>
-                            <CardHeader className="flex-row items-center justify-between gap-2 pb-2">
-                                <span className="font-medium">
+                        <Card
+                            key={attribute.name}
+                            className="border-primary/20 bg-primary/5"
+                        >
+                            <CardHeader className="flex-row items-center justify-between gap-2 pb-3">
+                                <span className="flex items-center gap-1.5 font-semibold">
+                                    <Layers className="size-4 text-primary" />
                                     {attribute.name}
                                 </span>
                                 <button
                                     type="button"
                                     onClick={() => removeAttribute(index)}
-                                    className="text-muted-foreground hover:text-destructive"
+                                    className="text-muted-foreground transition-colors hover:text-destructive"
+                                    aria-label="حذف ویژگی"
                                 >
                                     <Trash2 className="size-4" />
                                 </button>
                             </CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="flex flex-wrap gap-1.5">
-                                    {attribute.values.map((value) => (
-                                        <span
-                                            key={value}
-                                            className="flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-xs"
-                                        >
-                                            {value}
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    removeValue(index, value)
-                                                }
-                                            >
-                                                <X className="size-3" />
-                                            </button>
-                                        </span>
-                                    ))}
-                                </div>
+                            <CardContent className="space-y-3">
                                 <div className="flex gap-2">
                                     <Input
                                         value={valueInputs[index] ?? ''}
@@ -193,219 +216,184 @@ export function VariationsManager({
                                                 addValue(index);
                                             }
                                         }}
-                                        placeholder="افزودن مقدار"
-                                        className="h-8 text-sm"
+                                        placeholder="افزودن مقدار (مثلاً یک ساله)"
+                                        className="bg-background"
                                     />
                                     <Button
                                         type="button"
-                                        variant="outline"
-                                        size="icon"
-                                        className="size-8"
+                                        variant="secondary"
+                                        className="gap-1.5"
                                         onClick={() => addValue(index)}
                                     >
                                         <Plus className="size-4" />
+                                        افزودن تنوع
                                     </Button>
                                 </div>
+
+                                {attribute.values.length === 0 ? (
+                                    <p className="text-xs text-muted-foreground">
+                                        یک مقدار وارد کنید تا کارت تنوع برای ورود
+                                        قیمت، موجودی، تخفیف و تصویر ساخته شود.
+                                    </p>
+                                ) : (
+                                    <div className="space-y-3">
+                                        {attribute.values.map((value) => {
+                                            const variation =
+                                                variations[
+                                                    findVariationIndex(
+                                                        attribute.name,
+                                                        value,
+                                                    )
+                                                ];
+
+                                            if (!variation) {
+                                                return null;
+                                            }
+
+                                            return (
+                                                <VariationCard
+                                                    key={value}
+                                                    label={value}
+                                                    variation={variation}
+                                                    onChange={(patch) =>
+                                                        updateVariation(
+                                                            attribute.name,
+                                                            value,
+                                                            patch,
+                                                        )
+                                                    }
+                                                    onRemove={() =>
+                                                        removeValue(
+                                                            index,
+                                                            value,
+                                                        )
+                                                    }
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                )}
                             </CardContent>
                         </Card>
                     ))}
                 </div>
-            </div>
+            )}
+        </div>
+    );
+}
 
-            <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                    <Label>تنوع‌ها</Label>
-                    <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        className="gap-1.5"
-                        onClick={() =>
-                            onVariationsChange([
-                                ...variations,
-                                emptyVariation(),
-                            ])
-                        }
-                    >
-                        <Plus className="size-4" />
-                        افزودن تنوع
-                    </Button>
+function VariationCard({
+    label,
+    variation,
+    onChange,
+    onRemove,
+}: {
+    label: string;
+    variation: VariationDraft;
+    onChange: (patch: Partial<VariationDraft>) => void;
+    onRemove: () => void;
+}) {
+    return (
+        <Card className="bg-background">
+            <CardContent className="space-y-3 pt-4">
+                <div className="flex items-center justify-between gap-2">
+                    <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-sm font-medium text-primary">
+                        {label}
+                    </span>
+                    <label className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Switch
+                            checked={variation.is_active}
+                            onCheckedChange={(checked) =>
+                                onChange({ is_active: checked })
+                            }
+                        />
+                        فعال
+                        <button
+                            type="button"
+                            onClick={onRemove}
+                            className="text-muted-foreground transition-colors hover:text-destructive"
+                            aria-label="حذف تنوع"
+                        >
+                            <Trash2 className="size-4" />
+                        </button>
+                    </label>
                 </div>
 
-                {variations.length === 0 ? (
-                    <p className="rounded-md border border-dashed py-6 text-center text-sm text-muted-foreground">
-                        این محصول تنوعی ندارد.
-                    </p>
-                ) : (
-                    <div className="space-y-3">
-                        {variations.map((variation, index) => (
-                            <Card key={index}>
-                                <CardContent className="space-y-3 pt-4">
-                                    <div className="flex items-start justify-between gap-2">
-                                        <div className="grid flex-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                                            {attributes.map((attribute) => (
-                                                <div
-                                                    key={attribute.name}
-                                                    className="grid gap-1"
-                                                >
-                                                    <Label className="text-xs">
-                                                        {attribute.name}
-                                                    </Label>
-                                                    <Select
-                                                        value={
-                                                            variation
-                                                                .variation_attributes[
-                                                                attribute.name
-                                                            ] ?? ''
-                                                        }
-                                                        onValueChange={(value) =>
-                                                            updateVariation(
-                                                                index,
-                                                                {
-                                                                    variation_attributes:
-                                                                        {
-                                                                            ...variation.variation_attributes,
-                                                                            [attribute.name]:
-                                                                                value,
-                                                                        },
-                                                                },
-                                                            )
-                                                        }
-                                                    >
-                                                        <SelectTrigger className="h-9">
-                                                            <SelectValue placeholder="انتخاب" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            {attribute.values.map(
-                                                                (value) => (
-                                                                    <SelectItem
-                                                                        key={
-                                                                            value
-                                                                        }
-                                                                        value={
-                                                                            value
-                                                                        }
-                                                                    >
-                                                                        {value}
-                                                                    </SelectItem>
-                                                                ),
-                                                            )}
-                                                        </SelectContent>
-                                                    </Select>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                onVariationsChange(
-                                                    variations.filter(
-                                                        (_, i) => i !== index,
-                                                    ),
-                                                )
-                                            }
-                                            className="text-muted-foreground hover:text-destructive"
-                                        >
-                                            <Trash2 className="size-4" />
-                                        </button>
-                                    </div>
-
-                                    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                                        <div className="grid gap-1">
-                                            <Label className="text-xs">
-                                                قیمت
-                                            </Label>
-                                            <Input
-                                                type="number"
-                                                min={0}
-                                                value={variation.price}
-                                                onChange={(event) =>
-                                                    updateVariation(index, {
-                                                        price: event.target
-                                                            .value,
-                                                    })
-                                                }
-                                            />
-                                        </div>
-                                        <div className="grid gap-1">
-                                            <Label className="text-xs">
-                                                موجودی
-                                            </Label>
-                                            <Input
-                                                type="number"
-                                                min={0}
-                                                value={variation.stock}
-                                                onChange={(event) =>
-                                                    updateVariation(index, {
-                                                        stock: event.target
-                                                            .value,
-                                                    })
-                                                }
-                                            />
-                                        </div>
-                                        <div className="grid gap-1">
-                                            <Label className="text-xs">
-                                                تخفیف (٪)
-                                            </Label>
-                                            <Input
-                                                type="number"
-                                                min={0}
-                                                max={100}
-                                                value={
-                                                    variation.discount_percent
-                                                }
-                                                onChange={(event) =>
-                                                    updateVariation(index, {
-                                                        discount_percent:
-                                                            event.target.value,
-                                                    })
-                                                }
-                                            />
-                                        </div>
-                                        <div className="grid gap-1">
-                                            <Label className="text-xs">
-                                                تصویر
-                                            </Label>
-                                            <label className="flex h-9 cursor-pointer items-center gap-1.5 rounded-md border px-3 text-sm text-muted-foreground hover:bg-muted">
-                                                <Upload className="size-4" />
-                                                {variation.image
-                                                    ? variation.image.name
-                                                    : 'انتخاب'}
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    className="hidden"
-                                                    onChange={(event) =>
-                                                        updateVariation(index, {
-                                                            image:
-                                                                event.target
-                                                                    .files?.[0] ??
-                                                                null,
-                                                            remove_image: true,
-                                                        })
-                                                    }
-                                                />
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <label className="flex items-center gap-2 text-sm">
-                                        <Switch
-                                            checked={variation.is_active}
-                                            onCheckedChange={(checked) =>
-                                                updateVariation(index, {
-                                                    is_active: checked,
-                                                })
-                                            }
-                                        />
-                                        فعال
-                                    </label>
-                                </CardContent>
-                            </Card>
-                        ))}
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-1">
+                        <Label className="text-xs">قیمت (تومان)</Label>
+                        <Input
+                            type="number"
+                            min={0}
+                            value={variation.price}
+                            onChange={(event) =>
+                                onChange({ price: event.target.value })
+                            }
+                            required
+                        />
                     </div>
-                )}
-            </div>
-        </div>
+                    <div className="grid gap-1">
+                        <Label className="text-xs">موجودی</Label>
+                        <Input
+                            type="number"
+                            min={0}
+                            value={variation.stock}
+                            onChange={(event) =>
+                                onChange({ stock: event.target.value })
+                            }
+                            required
+                        />
+                    </div>
+                    <div className="grid gap-1">
+                        <Label className="text-xs">تخفیف (٪)</Label>
+                        <Input
+                            type="number"
+                            min={0}
+                            max={100}
+                            value={variation.discount_percent}
+                            onChange={(event) =>
+                                onChange({
+                                    discount_percent: event.target.value,
+                                })
+                            }
+                        />
+                    </div>
+                    <div className="grid gap-1">
+                        <Label className="flex items-center gap-1 text-xs">
+                            شناسه محصول (SKU)
+                            <HelpTooltip text="هر تنوع یک محصول مستقل در سیستم است و می‌تواند شناسه اختصاصی خود را داشته باشد." />
+                        </Label>
+                        <Input
+                            value={variation.sku}
+                            onChange={(event) =>
+                                onChange({ sku: event.target.value })
+                            }
+                            dir="ltr"
+                        />
+                    </div>
+                    <div className="grid gap-1 sm:col-span-2">
+                        <Label className="text-xs">تصویر تنوع</Label>
+                        <label className="flex h-9 cursor-pointer items-center gap-1.5 rounded-md border px-3 text-sm text-muted-foreground hover:bg-muted">
+                            <Upload className="size-4" />
+                            {variation.image
+                                ? variation.image.name
+                                : (variation.existingImage?.original_name ??
+                                  'انتخاب تصویر')}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(event) =>
+                                    onChange({
+                                        image: event.target.files?.[0] ?? null,
+                                        remove_image: true,
+                                    })
+                                }
+                            />
+                        </label>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
     );
 }

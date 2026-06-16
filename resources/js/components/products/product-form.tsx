@@ -1,7 +1,8 @@
 import { useForm } from '@inertiajs/react';
-import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 import ProductController from '@/actions/App/Http/Controllers/User/ProductController';
+import { HelpTooltip } from '@/components/help-tooltip';
 import InputError from '@/components/input-error';
 import { CategorySelect } from '@/components/products/category-select';
 import { MediaUploader } from '@/components/products/media-uploader';
@@ -44,6 +45,7 @@ type ProductFormData = {
     order_mode: string;
     is_special_offer: boolean;
     is_active: boolean;
+    has_variations: boolean;
     price: string;
     stock: string;
     discount_percent: string;
@@ -83,6 +85,7 @@ export function ProductForm({
         order_mode: product?.order_mode ?? orderModes[0]?.value ?? 'direct',
         is_special_offer: product?.is_special_offer ?? false,
         is_active: product?.is_active ?? true,
+        has_variations: (product?.variations?.length ?? 0) > 0,
         price: product ? String(product.price) : '',
         stock: product ? String(product.stock) : '0',
         discount_percent: product?.discount_percent
@@ -117,29 +120,46 @@ export function ProductForm({
     function submit(event: React.FormEvent) {
         event.preventDefault();
 
-        form.transform((data) => ({
-            ...data,
-            is_special_offer: data.is_special_offer ? 1 : 0,
-            is_active: data.is_active ? 1 : 0,
-            remove_video: data.remove_video ? 1 : 0,
-            variations: data.variations.map((variation) => ({
-                id: variation.id,
-                sku: variation.sku,
-                price: variation.price,
-                stock: variation.stock,
-                discount_percent: variation.discount_percent,
-                is_active: variation.is_active ? 1 : 0,
-                remove_image: variation.remove_image ? 1 : 0,
-                variation_attributes: variation.variation_attributes,
-                image: variation.image,
-            })),
-        }));
+        form.transform((data) => {
+            const usesVariations = data.has_variations;
+
+            return {
+                ...data,
+                is_special_offer: data.is_special_offer ? 1 : 0,
+                is_active: data.is_active ? 1 : 0,
+                remove_video: data.remove_video ? 1 : 0,
+                attributes: usesVariations ? data.attributes : [],
+                variations: usesVariations
+                    ? data.variations.map((variation) => ({
+                          id: variation.id,
+                          sku: variation.sku,
+                          price: variation.price,
+                          stock: variation.stock,
+                          discount_percent: variation.discount_percent,
+                          is_active: variation.is_active ? 1 : 0,
+                          remove_image: variation.remove_image ? 1 : 0,
+                          variation_attributes: variation.variation_attributes,
+                          image: variation.image,
+                      }))
+                    : [],
+            };
+        });
 
         const url = isEditing
             ? ProductController.update(product.id).url
             : ProductController.store().url;
 
-        form.post(url, { forceFormData: true });
+        form.post(url, {
+            forceFormData: true,
+            onError: (errors) => {
+                const first = Object.values(errors)[0];
+
+                toast.error(
+                    first ??
+                        'ثبت محصول با خطا مواجه شد. لطفاً فیلدهای مشخص‌شده را بررسی کنید.',
+                );
+            },
+        });
     }
 
     const aiContext = [form.data.name, product?.category?.name]
@@ -230,6 +250,12 @@ export function ProductForm({
                             </div>
                         </div>
 
+                        <div className="flex items-center gap-1.5">
+                            <Label className="text-sm font-medium">
+                                قیمت، موجودی و تخفیف محصول اصلی
+                            </Label>
+                            <HelpTooltip text="این مقادیر مربوط به خود محصول اصلی است. اگر محصول تنوع داشته باشد، قیمت و موجودی هر تنوع جداگانه در بخش «تنوع محصول» مشخص می‌شود." />
+                        </div>
                         <div className="grid gap-4 sm:grid-cols-3">
                             <div className="grid gap-2">
                                 <Label htmlFor="price">قیمت (تومان)</Label>
@@ -408,31 +434,50 @@ export function ProductForm({
 
             <Card>
                 <CardHeader>
-                    <CardTitle>تنوع محصول</CardTitle>
-                    <CardDescription>
-                        ویژگی‌ها را تعریف و برای هر تنوع قیمت، موجودی، تخفیف و
-                        تصویر مجزا تعیین کنید.
-                    </CardDescription>
+                    <div className="flex items-start justify-between gap-4">
+                        <div className="space-y-1.5">
+                            <CardTitle className="flex items-center gap-1.5">
+                                تنوع محصول
+                                <HelpTooltip text="اگر این محصول در چند حالت مختلف عرضه می‌شود (مثلاً گارانتی یک‌ساله و دوساله)، این گزینه را فعال کنید. هر تنوع یک محصول مستقل با قیمت، موجودی و تصویر خودش است." />
+                            </CardTitle>
+                            <CardDescription>
+                                آیا این محصول تنوع‌های مختلفی دارد؟ در صورت فعال
+                                بودن، ویژگی‌ها و تنوع‌ها را اینجا تعریف کنید.
+                            </CardDescription>
+                        </div>
+                        <label className="flex shrink-0 items-center gap-2 text-sm">
+                            <Switch
+                                checked={form.data.has_variations}
+                                onCheckedChange={(checked) =>
+                                    form.setData('has_variations', checked)
+                                }
+                            />
+                            تنوع دارد
+                        </label>
+                    </div>
                 </CardHeader>
-                <CardContent>
-                    <VariationsManager
-                        attributes={form.data.attributes}
-                        onAttributesChange={(attributes) =>
-                            form.setData('attributes', attributes)
-                        }
-                        variations={form.data.variations}
-                        onVariationsChange={(variations) =>
-                            form.setData('variations', variations)
-                        }
-                    />
-                </CardContent>
+                {form.data.has_variations && (
+                    <CardContent>
+                        <VariationsManager
+                            attributes={form.data.attributes}
+                            onAttributesChange={(attributes) =>
+                                form.setData('attributes', attributes)
+                            }
+                            variations={form.data.variations}
+                            onVariationsChange={(variations) =>
+                                form.setData('variations', variations)
+                            }
+                        />
+                    </CardContent>
+                )}
             </Card>
 
             <div className="flex justify-end gap-2">
-                <Button type="submit" disabled={form.processing} className="gap-1.5">
-                    {form.processing && (
-                        <Loader2 className="size-4 animate-spin" />
-                    )}
+                <Button
+                    type="submit"
+                    loading={form.processing}
+                    className="gap-1.5"
+                >
                     {isEditing ? 'ذخیره تغییرات' : 'ایجاد محصول'}
                 </Button>
             </div>
