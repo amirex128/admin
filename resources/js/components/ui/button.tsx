@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { Loader2Icon } from "lucide-react"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -39,19 +40,43 @@ function Button({
   variant,
   size,
   asChild = false,
+  loading = false,
+  disabled,
+  children,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    loading?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
 
+  // When asChild is used the child must be a single element, so we cannot inject
+  // a spinner. Loading then only toggles the disabled/busy state.
+  if (asChild) {
+    return (
+      <Comp
+        data-slot="button"
+        aria-busy={loading || undefined}
+        className={cn(buttonVariants({ variant, size, className }))}
+        {...props}
+      >
+        {children}
+      </Comp>
+    )
+  }
+
   return (
-    <Comp
+    <button
       data-slot="button"
+      aria-busy={loading || undefined}
+      disabled={disabled || loading}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {loading && <Loader2Icon className="size-4 animate-spin" />}
+      {children}
+    </button>
   )
 }
 

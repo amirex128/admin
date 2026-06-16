@@ -10,8 +10,16 @@ function Toaster({ ...props }: ToasterProps) {
     return (
         <Sonner
             theme={appearance}
-            className="toaster group"
-            position="bottom-right"
+            dir="rtl"
+            className="toaster group font-iransansx"
+            position="bottom-left"
+            toastOptions={{
+                classNames: {
+                    toast: 'font-iransansx text-right',
+                    title: 'font-iransansx text-right',
+                    description: 'font-iransansx text-right',
+                },
+            }}
             style={
                 {
                     '--normal-bg': 'var(--popover)',

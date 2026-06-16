@@ -5,9 +5,10 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 function Select({
+  dir = "rtl",
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Root>) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />
+  return <SelectPrimitive.Root data-slot="select" dir={dir} {...props} />
 }
 
 function SelectGroup({

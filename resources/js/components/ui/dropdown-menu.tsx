@@ -5,9 +5,12 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 function DropdownMenu({
+  dir = "rtl",
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
-  return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
+  return (
+    <DropdownMenuPrimitive.Root data-slot="dropdown-menu" dir={dir} {...props} />
+  )
 }
 
 function DropdownMenuPortal({

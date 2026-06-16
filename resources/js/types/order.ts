@@ -67,7 +67,6 @@ export type OrderStatusOption = {
 export type OrderFilterState = {
     status: string | null;
     search: string;
-    city: string | null;
     shipping_method: string | null;
     payment_method: string | null;
     date_from: string | null;

@@ -86,8 +86,14 @@ class UpdateStoreSettingRequest extends FormRequest
             'sheba_number' => ['nullable', 'string', 'max:34'],
 
             'zarinpal_enabled' => ['boolean'],
-            'zarinpal_merchant_id' => ['nullable', 'string', 'max:255'],
-            'zarinpal_access_token' => ['nullable', 'string', 'max:255'],
+            'zarinpal_merchant_id' => [
+                Rule::requiredIf(fn (): bool => $this->boolean('zarinpal_enabled')),
+                'nullable', 'string', 'max:255',
+            ],
+            'zarinpal_access_token' => [
+                Rule::requiredIf(fn (): bool => $this->boolean('zarinpal_enabled')),
+                'nullable', 'string', 'max:255',
+            ],
 
             'vat_percent' => ['nullable', 'integer', 'min:0', 'max:100'],
             'refund_window_minutes' => ['nullable', 'integer', 'min:0', 'max:1440'],
@@ -101,6 +107,19 @@ class UpdateStoreSettingRequest extends FormRequest
                 "shipping_methods.{$method}.intra_cost" => ['nullable', 'integer', 'min:0', 'max:100000000000'],
                 "shipping_methods.{$method}.inter_cost" => ['nullable', 'integer', 'min:0', 'max:100000000000'],
             ])->all(),
+        ];
+    }
+
+    /**
+     * Custom Persian validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'zarinpal_merchant_id.required' => 'برای فعال‌سازی درگاه اختصاصی زرین‌پال، وارد کردن مرچنت کد الزامی است.',
+            'zarinpal_access_token.required' => 'برای فعال‌سازی درگاه اختصاصی زرین‌پال، وارد کردن توکن دسترسی الزامی است.',
         ];
     }
 

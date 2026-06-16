@@ -11,6 +11,7 @@ type PageProps = {
     shippingMethods: SelectOption[];
     paymentMethods: SelectOption[];
     paymentStatusOptions: SelectOption[];
+    vatPercent: number;
 };
 
 export default function OrderFormPage({
@@ -18,6 +19,7 @@ export default function OrderFormPage({
     shippingMethods,
     paymentMethods,
     paymentStatusOptions,
+    vatPercent,
 }: PageProps) {
     return (
         <>
@@ -35,6 +37,7 @@ export default function OrderFormPage({
                     shippingMethods={shippingMethods}
                     paymentMethods={paymentMethods}
                     paymentStatusOptions={paymentStatusOptions}
+                    vatPercent={vatPercent}
                 />
             </div>
         </>
