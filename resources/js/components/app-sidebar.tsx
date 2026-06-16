@@ -86,6 +86,11 @@ const financialNavItems: NavItem[] = [
 
 const adminNavItems: NavItem[] = [
     {
+        title: 'داشبورد',
+        href: dashboard(),
+        icon: LayoutGrid,
+    },
+    {
         title: 'کاربران',
         href: adminUsersIndex(),
         icon: Users,
@@ -159,9 +164,14 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
-                <NavMain items={financialNavItems} label="مالی" />
-                {isAdmin && <NavMain items={adminNavItems} label="مدیریت" />}
+                {isAdmin ? (
+                    <NavMain items={adminNavItems} label="مدیریت" />
+                ) : (
+                    <>
+                        <NavMain items={mainNavItems} />
+                        <NavMain items={financialNavItems} label="مالی" />
+                    </>
+                )}
             </SidebarContent>
 
             <SidebarFooter>
